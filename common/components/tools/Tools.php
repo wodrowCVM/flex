@@ -6,7 +6,7 @@
  * Time: 4:36 PM
  */
 
-namespace common\tools;
+namespace common\companents\tools;
 
 
 class Tools

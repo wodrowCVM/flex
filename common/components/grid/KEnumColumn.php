@@ -1,7 +1,7 @@
 <?php
 namespace common\components\grid;
 
-use yii\grid\DataColumn;
+use kartik\grid\DataColumn;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
  * ]
  * @package common\components\grid
  */
-class EnumColumn extends DataColumn
+class KEnumColumn extends DataColumn
 {
     /**
      * @var array List of value => name pairs

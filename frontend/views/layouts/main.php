@@ -38,8 +38,8 @@ AppAsset::register($this);
     ]);
     $leftItems = [
 //        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => '社区', 'url' => ['/site/about']],
+        ['label' => '帖子', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         $rightItems[] = ['label' => '注册', 'url' => ['/site/signup']];

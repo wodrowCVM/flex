@@ -9,6 +9,7 @@ $params = array_merge(
 $config = [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
+    'language' => 'zh-CN',
     'name' => '轻纺家园管理中心',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],

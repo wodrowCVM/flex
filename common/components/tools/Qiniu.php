@@ -6,7 +6,7 @@
  * Time: 17:23
  */
 
-namespace common\tools;
+namespace common\components\tools;
 
 
 class Qiniu
