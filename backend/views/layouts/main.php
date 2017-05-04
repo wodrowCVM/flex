@@ -44,15 +44,15 @@ AppAsset::register($this);
              echo Nav::widget([
                  'options' => ['class' => 'navbar-nav navbar-right', 'id' => 'navbar-main'],
                  'items' => [
-                     ['label' => 'Home', 'url' => ['/site/index']],
-                     ['label' => 'About', 'url' => ['/site/about']],
+                     ['label' => 'Frontend Home', 'url' => Yii::$app->params['frontend_url']],
+                     /*['label' => 'About', 'url' => ['/site/about']],
                      ['label' => 'Contact', 'url' => ['/site/contact']],
                      [
                          'label' => 'Products', 'url' => ['product/index'],
                          'items' => [
                              ['label' => 'New Arrivals', 'url' => ['product/index', 'tag' => 'new']],
                              ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
-                     ]],
+                     ]],*/
                      Yii::$app->user->isGuest ?
                          ['label' => 'Login', 'url' => ['/site/login']] :
                          ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
