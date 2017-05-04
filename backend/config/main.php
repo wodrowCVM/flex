@@ -27,9 +27,6 @@ $config = [
         'test' =>[
             'class' => \backend\modules\test\Test::className(),
         ],
-        'category' =>[
-            'class' => \backend\modules\category\Category::className(),
-        ],
     ],
     'components' => [
         'request' => [
