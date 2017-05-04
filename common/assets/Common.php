@@ -11,6 +11,7 @@ namespace common\assets;
 
 use kartik\icons\FontAwesomeAsset;
 use yii\web\AssetBundle;
+use yii\web\YiiAsset;
 
 class Common extends AssetBundle
 {
@@ -19,7 +20,9 @@ class Common extends AssetBundle
         parent::init();
         $this->depends = array_merge($this->depends, [
             Lodash::className(),
-//            FontAwesomeAsset::className(),
+            \rmrevin\yii\fontawesome\cdn\AssetBundle::className(),
+//            \rmrevin\yii\fontawesome\AssetBundle::className(),
+            YiiAsset::className(),
         ]);
     }
 }
