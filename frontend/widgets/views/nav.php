@@ -41,7 +41,7 @@ echo Nav::widget([
 //        ['label' => Icon::show('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
         ['label' => Icon::show('commenting') . '动弹', 'url' => ['/tweet'], 'active' => $tweetActive],
         ['label' => Icon::show('th') . '标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
-        ['label' => Icon::show('signal') . '新手入门', 'url' => ['/site/getstart']],
+//        ['label' => Icon::show('signal') . '新手入门', 'url' => ['/site/getstart']],
         ['label' => Icon::show('user') . '会员', 'url' => ['/site/users']],
         ['label' => Icon::show('plane') . '酷站', 'url' => ['/nav'], 'active' => $navActive],
 

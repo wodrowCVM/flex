@@ -162,7 +162,7 @@ class UserService
      */
     public static function findActiveUser($limit = 12)
     {
-        $cacheKey = md5(__METHOD__ . $limit);
+        /*$cacheKey = md5(__METHOD__ . $limit);
         if (false === $items = \Yii::$app->cache->get($cacheKey)) {
             $items = User::find()
                 ->joinWith(['merit', 'userInfo'])
@@ -176,7 +176,13 @@ class UserService
                     'tags' => [ActiveRecordHelper::getCommonTag(User::className())]
                 ])
             );
-        }
+        }*/
+        $items = User::find()
+            ->joinWith(['merit', 'userInfo'])
+            ->where([User::tableName() . '.status' => 10])
+            ->orderBy(['merit' => SORT_DESC, '(like_count+thanks_count)' => SORT_DESC])
+            ->limit($limit)
+            ->all();
         return $items;
     }
 }
