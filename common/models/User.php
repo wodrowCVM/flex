@@ -1,41 +1,31 @@
 <?php
 namespace common\models;
 
-use common\helpers\Avatar;
-use devgroup\TagDependencyHelper\ActiveRecordHelper;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\helpers\FileHelper;
 use yii\web\IdentityInterface;
-use common\components\db\Mailer;
-use frontend\modules\user\models\UserAccount;
 
 /**
  * User model
  *
  * @property integer $id
  * @property string $username
- * @property string $avatar
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
- * @property integer $role
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
- * @property string $tagline
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
-    const ROLE_USER = 10;
-    const ROLE_ADMIN = 20;
-    const ROLE_SUPER_ADMIN = 30;
+
 
     /**
      * @inheritdoc
@@ -52,11 +42,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::className(),
-            'class' => ActiveRecordHelper::className(),
         ];
     }
-
-
 
     /**
      * @inheritdoc
@@ -66,9 +53,6 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-
-            ['role', 'default', 'value' => 10],
-            ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN, self::ROLE_SUPER_ADMIN]],
         ];
     }
 
@@ -100,16 +84,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * 邮箱登录
-     * @user onyony
-     * @param $email
-     * @return null|static
-     */
-    public static function findByEmail($email)
-    {
-        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
-    }
-    /**
      * Finds user by password reset token
      *
      * @param string $token password reset token
@@ -131,16 +105,16 @@ class User extends ActiveRecord implements IdentityInterface
      * Finds out if password reset token is valid
      *
      * @param string $token password reset token
-     * @return boolean
+     * @return bool
      */
     public static function isPasswordResetTokenValid($token)
     {
         if (empty($token)) {
             return false;
         }
+
+        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        $parts = explode('_', $token);
-        $timestamp = (int)end($parts);
         return $timestamp + $expire >= time();
     }
 
@@ -172,7 +146,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Validates password
      *
      * @param string $password password to validate
-     * @return boolean if password provided is valid for current user
+     * @return bool if password provided is valid for current user
      */
     public function validatePassword($password)
     {
@@ -211,95 +185,5 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
-    }
-
-    /**
-     * 获取用户头像
-     * @param int $size
-     * @return string
-     * @throws \yii\base\Exception
-     */
-    public function getUserAvatar($size = 50)
-    {
-        if ($this->avatar) {
-            // TODO 写法更优雅
-            $avatarPath = Yii::$app->basePath . Yii::$app->params['avatarPath'];
-            $avatarCachePath = Yii::$app->basePath . Yii::$app->params['avatarCachePath'];
-            FileHelper::createDirectory($avatarCachePath); // 创建文件夹
-            if (file_exists($avatarCachePath . $size . '_' . $this->avatar)) {
-                // 头像是否存在
-                return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
-            }
-            \yii\imagine\Image::thumbnail($avatarPath . $this->avatar, $size, $size)
-                ->save($avatarCachePath . $size . '_' . $this->avatar, ['quality' => 100]);
-            return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
-        }
-        return (new Avatar($this->email, $size))->getAvater();
-    }
-
-    public function getUserInfo()
-    {
-        return $this->hasOne(UserInfo::className(), ['user_id' => 'id']);
-    }
-
-    public function getMerit()
-    {
-        return $this->hasOne(Merit::className(), ['user_id' => 'id']);
-    }
-
-    /**
-     * @return Account[] Connected accounts ($provider => $account)
-     */
-    public function getAccounts()
-    {
-        $connected = [];
-        $accounts = $this->hasMany(UserAccount::className(), ['user_id' => 'id'])->all();
-
-        // @var Account $account
-        foreach ($accounts as $account) {
-            $connected[$account->provider] = $account;
-        }
-
-        return $connected;
-    }
-
-    /** @inheritdoc */
-    public function afterSave($insert, $changedAttributes)
-    {
-        if ($insert) {
-            $time = time();
-            $ip = isset(Yii::$app->request->userIP) ? Yii::$app->request->userIP : '127.0.0.1';
-            $userInfo = Yii::createObject([
-                'class' => UserInfo::className(),
-                'user_id' => $this->id,
-                'prev_login_time' => $time,
-                'prev_login_ip' => $ip,
-                'last_login_time' => $time,
-                'last_login_ip' => $ip,
-                'created_at' => $time,
-                'updated_at' => $time,
-            ]);
-            $userInfo->save();
-        }
-        parent::afterSave($insert, $changedAttributes);
-    }
-
-
-    public static function isAdmin($username)
-    {
-        if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public static function isSuperAdmin($username)
-    {
-        if (static::findOne(['username' => $username, 'role' => self::ROLE_SUPER_ADMIN])) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

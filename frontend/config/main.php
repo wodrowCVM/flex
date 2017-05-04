@@ -6,80 +6,46 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 
-return [
-    'id' => 'app-frontend',
+$config = [
+    'id' => 'frontend',
     'basePath' => dirname(__DIR__),
+    'name' => "轻纺家园",
+    'language' => 'zh-CN',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'treemanager' =>  [
+            'class' => \kartik\tree\Module::className(),
+        ]
+    ],
     'components' => [
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                '<alias:login|logout|about|tags|getstart|signup|contact|users|markdown>' => 'site/<alias>',
-                '<alias:search>' => 'topic/default/<alias>',
-                'member/<username:\w+>' => 'user/default/show',
-                'member/<username:\w+>/post' => 'user/default/post',
-                'member/<username:\w+>/favorite' => 'user/default/favorite',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                'member/<action>/<type:\w+>/<id:\d+>' => 'user/action/<action>',
-                'tag/<tag:\w+>' => 'topic/default/index/',
-                'node/<node:[0-9a-zA-Z\-]+>' => 'topic/default/index',
-                'topic/<id:[0-9a-zA-Z\-]+>' => 'topic/default/view',
-                '<module>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
-            ],
+        'request' => [
+            'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
-        'xunsearch' => [
-            'class' => 'hightman\xunsearch\Connection', // 此行必须
-            'iniDirectory' => '@frontend/config',    // 搜索 ini 文件目录，默认：@vendor/hightman/xunsearch/app
-            'charset' => 'utf-8',   // 指定项目使用的默认编码，默认即时 utf-8，可不指定
-        ],
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                // 'google' => [
-                //     'class' => 'yii\authclient\clients\GoogleOpenId'
-                // ],
-                'github' => [
-                    'class' => 'yii\authclient\clients\GitHub',
-                    'clientId' => 'github_client_id',
-                    'clientSecret' => 'github_client_secret',
-                    'viewOptions' => [
-                        'popupWidth' => 820,
-                        'popupHeight' => 600,
-                    ]
-                ],
-            ],
+        'session' => [
+            // this is the name of the session cookie used for login on the frontend
+            'name' => 'advanced-frontend',
         ],
         'log' => [
-            // 'traceLevel' => YII_DEBUG ? 3 : 0,
+            'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info', 'trace'],
+                'file' => [
+                    'class' => \yii\log\FileTarget::className(),
+                    'levels' => ['error'],
+//                    'categories' => ['wodrow'],
                 ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    'categories' => ['log'],
-                    'logVars' => [], //除了except对应的分类之外，其他的都写入到
-                    'logFile' => '@frontend/runtime/logs/log/app.log',
-                    'maxFileSize' => 1024 * 1,
-                    'maxLogFiles' => 100,
-                ],
-            ],
-        ],
-        'i18n' => [
-            'translations' => [
-                'exception*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@frontend/messages',
-                    'fileMap' => [
-                        'app' => 'app.php',
+                'email' => [
+                    'class' => \yii\log\EmailTarget::className(),
+//                    'levels' => ['error', 'warning'],
+                    'categories' => ['email'],
+                    'message' => [
+                        'to' => ['1173957281@qq.com', /*'developer@example.com'*/],
+                        'subject' => '来自 qf_home 的新日志消息',
                     ],
                 ],
             ],
@@ -87,20 +53,35 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-    ],
-    'modules' => [
-        'user' => [
-            'class' => 'frontend\modules\user\Module',
+        'cache' => [
+            'class' => \yii\caching\FileCache::className(),
         ],
-        'topic' => [
-            'class' => 'frontend\modules\topic\Module',
+        'formatter' => [
+            'class' => \yii\i18n\Formatter::className(),
+            'dateFormat' => 'php:Y-m-d',
+            'datetimeFormat' => 'php:Y-m-d H:i:s',
+            'timeFormat' => 'php:H:i:s',
         ],
-        'nav' => [
-            'class' => 'frontend\modules\nav\Module',
+        'urlManager' => [
+            'showScriptName' => false,
+            'enablePrettyUrl' => true,
         ],
-        'tweet' => [
-            'class' => 'frontend\modules\tweet\Module',
+        'assetManager' => [
+            'converter' =>
+                [
+                    'class' => \singrana\assets\Converter::className(),
+                ],
+        ],
+        'i18n' => [
+            'translations' => [
+                'user' => [
+                    'class' => \yii\i18n\PhpMessageSource::className(),
+                    'basePath' => '@app/messages',
+                ]
+            ],
         ],
     ],
     'params' => $params,
 ];
+
+return $config;

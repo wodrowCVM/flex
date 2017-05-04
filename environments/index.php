@@ -9,11 +9,14 @@
  * return [
  *     'environment name' => [
  *         'path' => 'directory storing the local files',
+ *         'skipFiles'  => [
+ *             // list of files that should only copied once and skipped if they already exist
+ *         ],
  *         'setWritable' => [
  *             // list of directories that should be set writable
  *         ],
  *         'setExecutable' => [
- *             // list of directories that should be set executable
+ *             // list of files that should be set executable
  *         ],
  *         'setCookieValidationKey' => [
  *             // list of config files that need to be inserted with automatically generated cookie validation keys
@@ -31,15 +34,26 @@ return [
         'setWritable' => [
             'backend/runtime',
             'backend/web/assets',
+            'backend/web/css',
             'frontend/runtime',
             'frontend/web/assets',
+            'frontend/web/css',
+            'api/runtime',
+            'api/web/assets',
+            'api/web/css',
+            'test/runtime',
+            'test/web/assets',
+            'test/web/css',
         ],
         'setExecutable' => [
             'yii',
+            'yii_test',
         ],
         'setCookieValidationKey' => [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
+            'api/config/main-local.php',
+            'test/config/main-local.php',
         ],
     ],
     'Production' => [
@@ -47,8 +61,16 @@ return [
         'setWritable' => [
             'backend/runtime',
             'backend/web/assets',
+            'backend/web/css',
             'frontend/runtime',
             'frontend/web/assets',
+            'frontend/web/css',
+            'api/runtime',
+            'api/web/assets',
+            'api/web/css',
+            'test/runtime',
+            'test/web/assets',
+            'test/web/css',
         ],
         'setExecutable' => [
             'yii',
@@ -56,6 +78,8 @@ return [
         'setCookieValidationKey' => [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
+            'api/config/main-local.php',
+            'test/config/main-local.php',
         ],
     ],
 ];

@@ -1,15 +1,15 @@
 <?php
 
-use yii\helpers\Html;
-
 /* @var $this yii\web\View */
 /* @var $name string */
 /* @var $message string */
 /* @var $exception Exception */
 
+use yii\helpers\Html;
+
 $this->title = $name;
 ?>
-<section class="container site-error">
+<div class="site-error">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -24,4 +24,4 @@ $this->title = $name;
         Please contact us if you think this is a server error. Thank you.
     </p>
 
-</section>
+</div>

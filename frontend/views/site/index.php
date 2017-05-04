@@ -1,66 +1,37 @@
 <?php
-use yii\helpers\Html;
-use kartik\icons\Icon;
+/**
+ * Created by PhpStorm.
+ * User: wodrow
+ * Date: 17-5-3
+ * Time: 下午4:41
+ */
 
-Icon::map($this);
-
-$this->title = \Yii::$app->setting->get('siteName');
+\common\assets\CreateJs::register($this);
 ?>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="text-center"><?= \Yii::t('app', 'site_intro') ?></div>
-        </div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <canvas id="game"width="400"height="400" style="background: #ccc"></canvas>
     </div>
+</div>
 
-
-
-    <div class="panel panel-default list-panel">
-        <div class="panel-heading">
-            <h3 class="panel-title text-center">
-                <?= \Yii::t('app', 'Excellent Topics') ?> &nbsp;
-            </h3>
-        </div>
-
-        <div class="clearfix site-index-topic">
-            <?php if ($topics) {
-                foreach ($topics as $key => $vlaue) {
-                    echo $this->render('_item', ['model' => $vlaue]);
-                }
-            } else {
-                echo \Yii::t('app', 'Dont have any data Yet');
-            } ?>
-        </div>
-
-        <div class="panel-footer text-right">
-            <span class="index_count"><?= Icon::show('user'); ?><?= \Yii::t('app', 'Online Count') ?>
-                ：<?= $statistics['online_count']; ?>
-                &nbsp;<?= Icon::show('list'); ?><?= \Yii::t('app', 'Post Count') ?>：<?= $statistics['post_count']; ?>
-                &nbsp;<?= Icon::show('share'); ?><?= \Yii::t('app', 'Comment Count') ?>
-                ：<?= $statistics['comment_count']; ?></span><?= Html::a(\Yii::t('app', 'More Excellent Topics'), ['topic/default/index', 'sort' => 'excellent']) ?>
-        </div>
-    </div>
-
-    <div class="panel panel-default list-panel">
-        <div class="panel-heading">
-            <h3 class="panel-title text-center">社区会员榜</h3>
-        </div>
-
-        <div class="panel-body row">
-            <?php foreach ($users as $key => $value): ?>
-                <div class="col-md-1 col-xs-2">
-                    <div class="text-center">
-                        <p>
-                            <?= Html::a(Html::img($value->userAvatar, ['class' => 'img-responsive img-thumbnail']),
-                                ['/user/default/show', 'username' => $value['username']]
-                            ); ?>
-                        </p>
-                        <h5>
-                            <?= Html::a($value['username'], ['/user/default/show', 'username' => $value['username']]) ?>
-                        </h5>
-                    </div>
-                </div>
-            <?php endforeach ?>
-        </div>
-    </div>
-
-<?= \frontend\widgets\Node::widget() ?>
+<?php
+\common\components\jsblock\JsBlock::begin();
+?>
+    <script>
+        var stage = new createjs.Stage("game");
+        stage.x = 100;
+        stage.y = 100;
+        var text = new createjs.Text("hello game");
+        var circle = new createjs.Shape();
+        circle.graphics.beginFill("#555555").drawCircle(0, 0, 50);
+        stage.addChild(text);
+        stage.addChild(circle);
+        createjs.Tween.get(circle, {loop: true}).wait(1000).to({scaleX:0.2, scaleY:0.2}).wait(1000).to({scaleX:1, scaleY:1}, 1000, createjs.bounceInOut);
+        createjs.Ticker.setFPS(20);
+        createjs.Ticker.addEventListener('tick', stage);
+        stage.update();
+    </script>
+<?php
+\common\components\jsblock\JsBlock::end();
+?>

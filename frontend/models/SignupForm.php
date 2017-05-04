@@ -1,9 +1,8 @@
 <?php
 namespace frontend\models;
 
-use common\models\User;
 use yii\base\Model;
-use Yii;
+use common\models\User;
 
 /**
  * Signup form
@@ -13,7 +12,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
-    public $role;
+
 
     /**
      * @inheritdoc
@@ -21,35 +20,19 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
+            ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => '{attribute}只能为数字和字母'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => '此{attribute}已经被使用'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
-            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => '此{attribute}已经被使用'],
+            ['email', 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
-
-            ['role', 'integer'],
-            ['role', 'default', 'value' => User::ROLE_USER],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'username' => '用户名',
-            'password' => '密码',
-            'email' => '邮箱',
-            'role' => '角色',
         ];
     }
 
@@ -60,17 +43,16 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        if ($this->validate()) {
-            $user = new User();
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->role = $this->role;
-            $user->setPassword($this->password);
-            $user->generateAuthKey();
-            $user->save();
-            return $user;
+        if (!$this->validate()) {
+            return null;
         }
-
-        return null;
+        
+        $user = new User();
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+        
+        return $user->save() ? $user : null;
     }
 }

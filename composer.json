@@ -1,73 +1,125 @@
 {
-  "name": "iiyii/getyii",
-  "description": "Yii 2 Community",
-  "keywords": [
-    "yii2",
-    "framework",
-    "advanced",
-    "community",
-    "application template"
-  ],
-  "homepage": "https://github.com/iiYii/getyii/",
-  "type": "project",
-  "license": "BSD-3-Clause",
-  "support": {
-    "issues": "https://github.com/iiYii/getyii/issues?state=open",
-    "forum": "http://www.getyii.com/",
-    "wiki": "https://github.com/iiYii/getyii/wiki/",
-    "source": "https://github.com/iiYii/getyii"
-  },
-  "minimum-stability": "stable",
-  "require": {
-    "php": ">=5.4.0",
-    "yiisoft/yii2": "2.0.*@dev",
-    "yiisoft/yii2-bootstrap": "*",
-    "yiisoft/yii2-swiftmailer": "*",
-    "2amigos/yii2-selectize-widget": "*",
-    "bower-asset/sb-admin-2-assets": "*",
-    "bower-asset/font-awesome": "*",
-    "bower-asset/marked": "*",
-    "bower-asset/highlightjs": "*",
-    "bower-asset/metisMenu": "*",
-    "bower-asset/jquery-textcomplete": "*",
-    "bower-asset/emojify.js": "*",
-    "bower-asset/PACE": "*",
-    "bower-asset/localforage": "*",
-    "yiisoft/yii2-authclient": "*",
-    "yzalis/identicon": "*",
-    "funson86/yii2-setting": "*",
-    "yiisoft/yii2-imagine": "^2.0",
-    "fxp/composer-asset-plugin": "~1.0",
-    "kartik-v/yii2-icons": "*",
-    "hightman/xunsearch": "*@beta",
-    "kartik-v/yii2-widget-select2": "*",
-    "yiier/yii2-backup": "*",
-    "2amigos/yii2-qrcode-helper": "~1.0",
-    "kop/yii2-scroll-pager": "dev-master",
-    "devgroup/yii2-tag-dependency-helper": "*"
-  },
-  "require-dev": {
-    "yiisoft/yii2-codeception": "*",
-    "yiisoft/yii2-debug": "*",
-    "yiisoft/yii2-gii": "*",
-    "yiisoft/yii2-faker": "*"
-  },
-  "config": {
-    "process-timeout": 1800
-  },
-  "autoload": {
-    "files": [
-      "common/components/GlobalFunctions.php"
-    ]
-  },
-  "extra": {
-    "asset-installer-paths": {
-      "npm-asset-library": "vendor/npm",
-      "bower-asset-library": "vendor/bower"
+    "name": "yeework",
+    "description": "yeework",
+    "keywords": ["yii2", "framework", "advanced", "yee"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": ">=2.0.11",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "yiisoft/yii2-shell": "^2.0",
+        "phpoffice/phpexcel": "*",
+        "kartik-v/bootstrap-fileinput": "@dev",
+        "kartik-v/dependent-dropdown": "@dev",
+        "kartik-v/strength-meter": "dev-master",
+        "kartik-v/bootstrap-star-rating": "@dev",
+        "kartik-v/bootstrap-popover-x": "dev-master",
+        "kartik-v/php-date-formatter": "@dev",
+        "kartik-v/bootstrap-checkbox-x": "@dev",
+        "kartik-v/bootstrap-tabs-x": "@dev",
+        "kartik-v/krajee-markdown-editor": "@dev",
+        "kartik-v/yii2-helpers": "dev-master",
+        "kartik-v/yii2-tree-manager": "@dev",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-mpdf": "@dev",
+        "kartik-v/yii2-icons": "*",
+        "kartik-v/yii2-datecontrol": "*",
+        "kartik-v/yii2-dialog": "*",
+        "kartik-v/yii2-dynagrid": "*",
+        "kartik-v/yii2-export": "*",
+        "kartik-v/yii2-detail-view": "@dev",
+        "kartik-v/yii2-editable": "*",
+        "kartik-v/yii2-sortable": "@dev",
+        "kartik-v/yii2-builder": "@dev",
+        "kartik-v/yii2-field-range": "dev-master",
+        "kartik-v/yii2-sortable-input": "dev-master",
+        "kartik-v/yii2-label-inplace": "@dev",
+        "kartik-v/yii2-context-menu": "dev-master",
+        "kartik-v/yii2-date-range": "dev-master",
+        "kartik-v/yii2-tabs-x": "@dev",
+        "kartik-v/yii2-dropdown-x": "dev-master",
+        "kartik-v/yii2-nav-x": "dev-master",
+        "kartik-v/yii2-checkbox-x": "@dev",
+        "kartik-v/yii2-money": "dev-master",
+        "kartik-v/yii2-password": "@dev",
+        "kartik-v/yii2-slider": "dev-master",
+        "kartik-v/yii2-markdown": "dev-master",
+        "kartik-v/yii2-social": "@dev",
+        "kartik-v/yii2-krajee-base": "dev-master",
+        "kartik-v/yii2-popover-x": "1.3.0.x-dev",
+        "kartik-v/yii2-ipinfo": "@dev",
+        "kartik-v/yii2-widgets": "*",
+        "kartik-v/yii2-widget-datepicker": "@dev",
+        "kartik-v/yii2-widget-timepicker": "*",
+        "kartik-v/yii2-widget-datetimepicker": "*",
+        "kartik-v/yii2-widget-depdrop": "@dev",
+        "kartik-v/yii2-widget-typeahead": "*",
+        "kartik-v/yii2-widget-rating": "*",
+        "kartik-v/yii2-widget-alert": "*",
+        "kartik-v/yii2-widget-growl": "*",
+        "kartik-v/yii2-widget-sidenav": "*",
+        "kartik-v/yii2-widget-touchspin": "*",
+        "kartik-v/yii2-widget-spinner": "@dev",
+        "kartik-v/yii2-widget-rangeinput": "*",
+        "kartik-v/yii2-widget-affix": "*",
+        "kartik-v/yii2-widget-switchinput": "*",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "kartik-v/yii2-widget-colorinput": "@dev",
+        "kartik-v/yii2-widget-select2": "@dev",
+        "kartik-v/yii2-widget-activeform": "@dev",
+        "kartik-v/mpdf": "v1.0.2",
+        "kartik-v/yii2-mailer": "dev-master",
+        "yiier/yii2-backup": "*",
+        "dcb9/yii2-qiniu": "^0.5.0",
+        "xj/yii2-oauth": ">=2.0.0",
+        "mdmsoft/yii2-admin": "~2.0",
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "mootensai/yii2-enhanced-gii": "*",
+        "johnitvn/yii2-ajaxcrud": "*",
+        "schmunk42/yii2-giiant": "*",
+        "warrence/yii2-kartikgii": "@dev",
+        "omnilight/yii2-shopping-cart": "^1.2",
+        "linslin/yii2-curl": "^1.0",
+        "singrana/yii2-less": "dev-master",
+        "facebook/graph-sdk": "^5.4",
+        "deepziyu/yii-fast-api": "dev-master",
+        "maxwen/yii2-easy-wechat": "dev-master",
+        "callmez/yii2-wechat-sdk": "dev-master",
+        "extjs/extjs": "dev-master"
+    },
+    "require-dev": {
+        "codeception/codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": "php init --env=Development --overwrite=n"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
-  },
-  "repositories": [
-    {"type": "composer", "url": "http://packagist.phpcomposer.com"},
-    {"packagist": false}
-  ]
 }

@@ -6,60 +6,79 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 
-return [
+$config = [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
+    'name' => '轻纺家园管理中心',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'language' => 'zh-CN',
     'modules' => [
-        'setting' => [
-            'class' => 'funson86\setting\Module',
-            'controllerNamespace' => 'funson86\setting\controllers',
+        'admin' => [
+            'class' => \mdm\admin\Module::className(),
+            'mainLayout' => '@app/views/layouts/main.php',
+            'layout' => 'left-menu',
+            'menus' => [
+                'user' => null, // disable menu
+            ],
         ],
-        'backup' => [
-            'class' => 'yiier\backup\Module',
+        'treemanager' =>  [
+            'class' => \kartik\tree\Module::className(),
+        ],
+        'test' =>[
+            'class' => \backend\modules\test\Test::className(),
+        ],
+        'category' =>[
+            'class' => \backend\modules\category\Category::className(),
         ],
     ],
     'components' => [
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                // '<controller:\w+>/<id:\d+>'=>'<controller>',
-                '<controller:\w+>' => 'post/index/<PostSearch[tags=\w+>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
-                // '<controller:\w+Search[\w+]>'=>'<controller>/<action>',
-                // '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-                // '<controller:\w+>/<action:\w+>/<PostSearch[tags]:\w+>'=>'<controller>/',
-                // '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-            ],
+        'request' => [
+            'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => \common\models\User::className(),
             'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+        ],
+        'authManager' => [
+            'class' => \yii\rbac\DbManager::className(), // or use 'yii\rbac\DbManager'
+        ],
+        'session' => [
+            // this is the name of the session cookie used for login on the backend
+            'name' => 'advanced-backend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info', 'trace'],
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    'categories' => ['backups'],
-                    'logFile' => '@backend/runtime/logs/backup/app.log',
-                    'maxFileSize' => 1024 * 2,
-                    'maxLogFiles' => 20,
+                    'levels' => ['error', 'warning'],
                 ],
             ],
-
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+            ],
+        ],
+        'assetManager' => [
+            'converter' =>[
+                'class' => \singrana\assets\Converter::className(),
+            ],
+        ],
+    ],
+    'as access' => [
+        'class' => \mdm\admin\components\AccessControl::className(),
+        'allowActions' => [
+            'site/*',
+            'debug/*',
+        ]
     ],
     'params' => $params,
 ];
+
+return $config;

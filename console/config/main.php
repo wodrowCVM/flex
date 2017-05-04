@@ -9,25 +9,32 @@ $params = array_merge(
 return [
     'id' => 'app-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'gii'],
+    'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
-    'modules' => [
-        'gii' => 'yii\gii\Module',
+    'controllerMap' => [
+        'fixture' => [
+            'class' => 'yii\console\controllers\FixtureController',
+            'namespace' => 'common\fixtures',
+          ],
     ],
     'components' => [
         'log' => [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info'],
+                    'levels' => ['error', 'warning'],
                 ],
             ],
         ],
+        /*'user' => [
+            'class' => 'common\models\User',
+            'identityClass' => 'common\models\User',
+            'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+        ],
+        'authManager' => [
+            'class' => \yii\rbac\DbManager::className(), // or use 'yii\rbac\DbManager'
+        ],*/
     ],
     'params' => $params,
-    'controllerMap' => [
-        'backup' => [
-            'class' => 'yiier\backup\controllers\BackupController',
-        ]
-    ]
 ];
