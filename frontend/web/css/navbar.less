@@ -1,3 +1,24 @@
+.nav{
+  li > form > button.logout {
+    padding: 15px;
+    border: none;
+    &:focus{
+      text-decoration: none;
+      outline: none;
+    }
+    &:hover{
+      text-decoration: none;
+    }
+    @media(max-width:767px) {
+      &{
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 15px;
+      }
+    }
+  }
+}
 .navbar{
   .navbar-brand{
     color: #000;
@@ -14,7 +35,7 @@
     &.active{
       a{
         color: #5CB85C;
-        background-color: #FFF;
+        background: #FFF;
         border-bottom: 3px solid #5CB85C;
       }
     }
@@ -22,6 +43,28 @@
   .navbar-toggle{
     .icon-bar{
       background-color: #5CB85C;
+    }
+  }
+  //.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  //  background: #fff;
+  //  border-color: #337ab7;
+  //  border-left: 1px solid;
+  //  border-right: 1px solid;
+  //}
+  .nav{
+    .dropdown{
+      &>a, &>a:hover, &>a:focus, &>a:visited{
+        background: #fff;
+        border-color: #337ab7;
+      }
+    }
+    .open{
+      &>a, &>a:hover, &>a:focus, &>a:visited{
+        background: #fff;
+        border-color: #337ab7;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+      }
     }
   }
 }

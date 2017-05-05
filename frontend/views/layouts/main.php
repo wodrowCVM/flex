@@ -39,7 +39,8 @@ AppAsset::register($this);
     ]);
     $leftItems = [
         ['label' =>  \kartik\icons\Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
-        ['label' => \kartik\icons\Icon::show('comment').'社区', 'url' => ['/site/about']],
+//        ['label' => \kartik\icons\Icon::show('comment').'社区', 'url' => ['/site/about']],
+        ['label' => \kartik\icons\Icon::show('commenting').'帖子  ', 'url' => ['/site/about']],
         ['label' => \kartik\icons\Icon::show('user').'会员', 'url' => ['/site/contact']],
 //        ['label' => Icon::show('comment') . '社区', 'url' => ['/topic'], 'active' => $topicActive],
 //        ['label' => Icon::show('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
@@ -53,7 +54,7 @@ AppAsset::register($this);
         $rightItems[] = ['label' => '注册', 'url' => ['/site/signup']];
         $rightItems[] = ['label' => '登录', 'url' => ['/site/login']];
     } else {
-        // 撰写
+        // 提醒
         $rightItems[] = [
             'label' => Html::tag('i', '', ['class' => 'fa fa-bell']) . Html::tag('span', null),
               'url' => ['/notification/index'],
@@ -127,7 +128,7 @@ AppAsset::register($this);
             <dl class="col-sm-3">
                 <dt> 技术采用</dt>
                 <dd class="fs12">
-                    由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">GetYii</a>
+                    由 <a href="https://github.com/wodrow">wodrow</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">flex</a>
                     <br/>
                     <?= Yii::powered() ?> <?= Yii::getVersion() ?>
                     <br/>
@@ -143,6 +144,19 @@ AppAsset::register($this);
         </div>
     </div>
 </footer>
+
+<div class="btn-group-vertical" id="floatButton">
+    <button type="button" class="btn btn-default" id="goTop" title="去顶部"><span
+                class="glyphicon glyphicon-arrow-up"></span></button>
+    <button type="button" class="btn btn-default" id="refresh" title="刷新"><span
+                class="glyphicon glyphicon-repeat"></span></button>
+    <button type="button" class="btn btn-default" id="pageQrcode" title="本页二维码"><span
+                class="glyphicon glyphicon-qrcode"></span>
+        <img class="qrcode" width="130" height="130" src="<?= \yii\helpers\Url::to(['/site/qrcode', 'data' => Yii::$app->request->absoluteUrl])?>" />
+    </button>
+    <button type="button" class="btn btn-default" id="goBottom" title="去底部"><span
+                class="glyphicon glyphicon-arrow-down"></span></button>
+</div>
 
 
 <?php $this->endBody() ?>

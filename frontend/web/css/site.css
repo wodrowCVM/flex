@@ -77,22 +77,10 @@ a.desc:after {
   padding: 10px 20px;
   margin: 0 0 15px 0;
 }
-.nav li > form > button.logout {
-  padding: 15px;
-  border: none;
+.notification-count .new {
+  color: #F86334;
 }
-.nav li > form > button.logout:focus {
-  text-decoration: none;
-  outline: none;
-}
-.nav li > form > button.logout:hover {
-  text-decoration: none;
-}
-@media (max-width: 767px) {
-  .nav li > form > button.logout {
-    display: block;
-    text-align: left;
-    width: 100%;
-    padding: 10px 15px;
-  }
+.notification-count span {
+  margin-left: 3px;
+  font-size: 12px;
 }

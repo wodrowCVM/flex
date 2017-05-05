@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use EasyWeChat\QRCode\QRCode;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -12,6 +13,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\web\ErrorAction;
 
 /**
  * Site controller
@@ -56,11 +58,15 @@ class SiteController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => ErrorAction::className(),
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+            'qrcode' => [
+                'class' => \common\actions\QRcode::className(),
+                'data' => Yii::$app->request->get('data'),
             ],
         ];
     }
