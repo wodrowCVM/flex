@@ -128,7 +128,7 @@ AppAsset::register($this);
             <dl class="col-sm-3">
                 <dt> 技术采用</dt>
                 <dd class="fs12">
-                    由 <a href="https://github.com/wodrow">wodrow</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">flex</a>
+                    由 <a href="https://github.com/wodrow">wodrow</a> 创建 项目地址: <a href="https://github.com/wodrowCVM/flex">flex</a>
                     <br/>
                     <?= Yii::powered() ?> <?= Yii::getVersion() ?>
                     <br/>
