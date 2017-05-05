@@ -33,7 +33,6 @@ class AppAsset extends AssetBundle
         $this->depends = array_merge($this->depends, [
             Common::className(),
             YiiAsset::className(),
-            Bootstrap::className(),
         ]);
     }
 }

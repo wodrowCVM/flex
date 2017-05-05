@@ -81,110 +81,110 @@ jQuery(function ($) {
     //editorPreview();
 
 
-    function localStorage() {
-        $("#md-input").focus(function (event) {
-            // Topic Title ON Topic Creation View
-            localforage.getItem('topic_title', function (err, value) {
-                if ($('.topic-create #topic-title').val() == '' && !err) {
-                    $('.topic-create #topic-title').val(value);
-                }
-            });
-            $('.topic-create #topic-title').keyup(function () {
-                localforage.setItem('topic_title', $(this).val());
-            });
-
-            // Topic Content ON Topic Creation View
-            localforage.getItem('topic_create_content', function (err, value) {
-                if ($('.topic-create #md-input').val() == '' && !err) {
-                    $('.topic-create #md-input').val(value);
-                    runPreview();
-                }
-            });
-            $('.topic-create #md-input').keyup(function () {
-                localforage.setItem('topic_create_content', $(this).val());
-                runPreview();
-            });
-
-            // Reply Content ON Topic Detail View
-            localforage.getItem('comment_content', function (err, value) {
-                if ($('.topic-view #md-input').val() == '' && !err) {
-                    $('.topic-view #md-input').val(value);
-                    runPreview();
-                }
-            });
-            $('.topic-view #md-input').keyup(function () {
-                localforage.setItem('comment_content', $(this).val());
-                runPreview();
-            });
-
-
-        });
-
-        // Clear Local Storage on submit
-        $('.topic-create button[type=submit]').click(function (event) {
-            localforage.removeItem('topic_create_content');
-            localforage.removeItem('topic_title');
-        });
-        $('.topic-view button[type=submit]').click(function (event) {
-            localforage.removeItem('comment_content');
-        });
-    }
-
-    localStorage();
+    // function localStorage() {
+    //     $("#md-input").focus(function (event) {
+    //         // Topic Title ON Topic Creation View
+    //         localforage.getItem('topic_title', function (err, value) {
+    //             if ($('.topic-create #topic-title').val() == '' && !err) {
+    //                 $('.topic-create #topic-title').val(value);
+    //             }
+    //         });
+    //         $('.topic-create #topic-title').keyup(function () {
+    //             localforage.setItem('topic_title', $(this).val());
+    //         });
+    //
+    //         // Topic Content ON Topic Creation View
+    //         localforage.getItem('topic_create_content', function (err, value) {
+    //             if ($('.topic-create #md-input').val() == '' && !err) {
+    //                 $('.topic-create #md-input').val(value);
+    //                 runPreview();
+    //             }
+    //         });
+    //         $('.topic-create #md-input').keyup(function () {
+    //             localforage.setItem('topic_create_content', $(this).val());
+    //             runPreview();
+    //         });
+    //
+    //         // Reply Content ON Topic Detail View
+    //         localforage.getItem('comment_content', function (err, value) {
+    //             if ($('.topic-view #md-input').val() == '' && !err) {
+    //                 $('.topic-view #md-input').val(value);
+    //                 runPreview();
+    //             }
+    //         });
+    //         $('.topic-view #md-input').keyup(function () {
+    //             localforage.setItem('comment_content', $(this).val());
+    //             runPreview();
+    //         });
+    //
+    //
+    //     });
+    //
+    //     // Clear Local Storage on submit
+    //     $('.topic-create button[type=submit]').click(function (event) {
+    //         localforage.removeItem('topic_create_content');
+    //         localforage.removeItem('topic_title');
+    //     });
+    //     $('.topic-view button[type=submit]').click(function (event) {
+    //         localforage.removeItem('comment_content');
+    //     });
+    // }
+    //
+    // localStorage();
 
 
     /**
      * 监听键盘
      */
-    $('#markdown').keyup(function () {
-        var editor = ace.edit("markdown");
-        var oldContent = editor.getValue();
-        runPreview(oldContent);
-    });
-
-    $('#md-input').keyup(function () {
-        var oldContent = $("#md-input").val();
-        runPreview(oldContent);
-    });
+    // $('#markdown').keyup(function () {
+    //     var editor = ace.edit("markdown");
+    //     var oldContent = editor.getValue();
+    //     runPreview(oldContent);
+    // });
+    //
+    // $('#md-input').keyup(function () {
+    //     var oldContent = $("#md-input").val();
+    //     runPreview(oldContent);
+    // });
 
     /**
      * markdown预览
      */
-    function runPreview(oldContent) {
-        if (oldContent) {
-            marked(oldContent, function (err, content) {
-                $('#md-preview').html(content);
-                //highlightBlock();
-                //emojify.run(document.getElementById('preview-box'));
-            });
-        }
-    }
+    // function runPreview(oldContent) {
+    //     if (oldContent) {
+    //         marked(oldContent, function (err, content) {
+    //             $('#md-preview').html(content);
+    //             //highlightBlock();
+    //             //emojify.run(document.getElementById('preview-box'));
+    //         });
+    //     }
+    // }
+    //
+    // function highlightBlock() {
+    //     $('pre code').each(function (i, block) {
+    //         hljs.highlightBlock(block);
+    //     });
+    // }
 
-    function highlightBlock() {
-        $('pre code').each(function (i, block) {
-            hljs.highlightBlock(block);
-        });
-    }
-
-    $(document).on('click', '.btn-reply', function (e) {
-        e.preventDefault();
-        var username = $(this).data('username');
-        var floor = $(this).data('floor');
-        var replyContent = $("#md-input");
-        var oldContent = replyContent.val();
-        var prefix = "@" + username + " #" + floor + "楼 ";
-        var newContent = '';
-        if (oldContent.length > 0) {
-            if (oldContent != prefix) {
-                newContent = oldContent + "\n" + prefix;
-            }
-        } else {
-            newContent = prefix
-        }
-        replyContent.focus();
-        replyContent.val(newContent);
-        moveEnd($("#md-input"));
-    });
+    // $(document).on('click', '.btn-reply', function (e) {
+    //     e.preventDefault();
+    //     var username = $(this).data('username');
+    //     var floor = $(this).data('floor');
+    //     var replyContent = $("#md-input");
+    //     var oldContent = replyContent.val();
+    //     var prefix = "@" + username + " #" + floor + "楼 ";
+    //     var newContent = '';
+    //     if (oldContent.length > 0) {
+    //         if (oldContent != prefix) {
+    //             newContent = oldContent + "\n" + prefix;
+    //         }
+    //     } else {
+    //         newContent = prefix
+    //     }
+    //     replyContent.focus();
+    //     replyContent.val(newContent);
+    //     moveEnd($("#md-input"));
+    // });
 
 
     var moveEnd = function (obj) {

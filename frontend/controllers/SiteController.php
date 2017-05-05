@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\User;
 use EasyWeChat\QRCode\QRCode;
 use Yii;
 use yii\base\InvalidParamException;
@@ -78,7 +79,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $users = User::find()->all();
+        return $this->render('index', [
+            'users' => $users,
+        ]);
     }
 
     /**

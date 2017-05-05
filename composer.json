@@ -97,8 +97,7 @@
         "maxwen/yii2-easy-wechat": "dev-master",
         "callmez/yii2-wechat-sdk": "dev-master",
         "extjs/extjs": "dev-master",
-        "2amigos/yii2-qrcode-helper": "*",
-        "lightyii2-lock-form": "~1.0.2"
+        "2amigos/yii2-qrcode-helper": "*"
     },
     "require-dev": {
         "codeception/codeception": "*",
