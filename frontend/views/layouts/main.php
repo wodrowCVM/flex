@@ -99,7 +99,7 @@ AppAsset::register($this);
 
     <div class="container">
         <?php
-        echo $this->render('/public/categorys_toggle');
+//        echo $this->render('/public/categorys_toggle');
         ?>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
