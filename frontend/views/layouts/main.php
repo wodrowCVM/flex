@@ -110,7 +110,7 @@ AppAsset::register($this);
     </div>
 </div>
 <?=$this->render('//public/footer') ?>
-<?=$this->render('//public/online') ?>
+<?php // $this->render('//public/online') ?>
 <?=$this->render('//public/float_button') ?>
 <?php $this->endBody() ?>
 </body>
