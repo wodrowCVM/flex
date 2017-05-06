@@ -7,7 +7,7 @@
  */
 ?>
 
-<div class="panel panel-default online">
+<div class="panel panel-default online hidden-xs">
     <div class="panel-heading">在线<br><em>283</em>人</div>
     <div class="panel-body">
         <div class="nano has-scrollbar" style="height: 727px;"><ul class="nano-content" tabindex="0" style="right: -15px;">
