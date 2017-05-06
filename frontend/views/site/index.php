@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body text-center mp0">
-                Get Yii，对！没错！这里就是 Yii 社区，我们想做国内最权威的 Yii 社区，拥有国内所有资深的 Yii 工程师。
+                Get Flexiable，对！没错！这里就是 Flexiable 社区，我们想做国内最好的 Flexiable 社区。
             </div>
         </div>
     </div>
