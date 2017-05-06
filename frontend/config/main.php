@@ -14,9 +14,12 @@ $config = [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
-        'treemanager' =>  [
-            'class' => \kartik\tree\Module::className(),
-        ]
+//        'treemanager' =>  [
+//            'class' => \kartik\tree\Module::className(),
+//        ],
+        'user' => [
+            'class' => \frontend\modules\user\UserModule::className(),
+        ],
     ],
     'components' => [
         'request' => [
@@ -81,6 +84,18 @@ $config = [
             ],
         ],
     ],
+//    'as check' => [
+//        'class' => \frontend\behaviors\Check::className(),
+//        'except' => [
+//            'site/*',
+//        ],
+//        'rules' => [
+//            [
+//                'allow' => true,
+//                'roles' => ['@'],
+//            ],
+//        ],
+//    ],
     'params' => $params,
 ];
 
