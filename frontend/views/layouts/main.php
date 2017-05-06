@@ -146,49 +146,8 @@ AppAsset::register($this);
     </div>
 </footer>
 
-<div class="panel panel-default online">
-    <div class="panel-heading">在线<br><em>283</em>人</div>
-    <div class="panel-body">
-        <div class="nano has-scrollbar" style="height: 727px;"><ul class="nano-content" tabindex="0" style="right: -15px;">
-                <li><a href="/user/26533" rel="author"><img src="/uploads/avatar/000/02/65/33_avatar_small.jpg" alt="夭折的青春"></a></li>
-                <li><a href="/user/27825" rel="author"><img src="/uploads/avatar/000/02/78/25_avatar_small.jpg" alt="lionskys"></a></li>
-                <li><a href="/user/28792" rel="author"><img src="/uploads/avatar/000/02/87/92_avatar_small.jpg" alt="扑倒ricky"></a></li>
-                <li><a href="/user/30341" rel="author"><img src="/uploads/avatar/000/03/03/41_avatar_small.jpg" alt="sjjliqpl"></a></li>
-                <li><a href="/user/30998" rel="author"><img src="/uploads/avatar/000/03/09/98_avatar_small.jpg" alt="wodrow"></a></li>
-                <li><a href="/user/32647" rel="author"><img src="/images/noavatar_small.gif" alt="张震宇"></a></li>
-                <li><a href="/user/33081" rel="author"><img src="/images/noavatar_small.gif" alt="麦乐"></a></li>
-                <li><a href="/user/33795" rel="author"><img src="/uploads/avatar/000/03/37/95_avatar_small.jpg" alt="武家天下"></a></li>
-                <li><a href="/user/33900" rel="author"><img src="/uploads/avatar/000/03/39/00_avatar_small.jpg" alt="魏曦教你学"></a></li>
-                <li><a href="/user/34737" rel="author"><img src="/images/noavatar_small.gif" alt="小公举"></a></li>
-                <li><a href="/user/34766" rel="author"><img src="/images/noavatar_small.gif" alt="leowenyang"></a></li>
-                <li><a href="/user/35502" rel="author"><img src="/uploads/avatar/000/03/55/02_avatar_small.jpg" alt="dyyii"></a></li>
-                <li><a href="/user/35685" rel="author"><img src="/uploads/avatar/000/03/56/85_avatar_small.jpg" alt="raijin"></a></li>
-                <li><a href="/user/39407" rel="author"><img src="/uploads/avatar/000/03/94/07_avatar_small.jpg" alt="张2013帅"></a></li>
-                <li><a href="/user/39438" rel="author"><img src="/uploads/avatar/000/03/94/38_avatar_small.jpg" alt="diligentyang"></a></li>
-                <li><a href="/user/40343" rel="author"><img src="/uploads/avatar/000/04/03/43_avatar_small.jpg" alt="duandaxei"></a></li>
-                <li><a href="/user/40703" rel="author"><img src="/uploads/avatar/000/04/07/03_avatar_small.jpg" alt="易语晓乐"></a></li>
-                <li><a href="/user/40914" rel="author"><img src="/images/noavatar_small.gif" alt="yokoelement"></a></li>
-                <li><a href="/user/41828" rel="author"><img src="/uploads/avatar/000/04/18/28_avatar_small.jpg" alt="Wordsworth"></a></li>
-                <li><a href="/user/41911" rel="author"><img src="/images/noavatar_small.gif" alt="zzh97111"></a></li>
-                <li><a href="/user/41969" rel="author"><img src="/images/noavatar_small.gif" alt="cherishxing"></a></li>
-            </ul><div class="nano-pane"><div class="nano-slider" style="height: 634px; transform: translate(0px, 0px);"></div></div></div>
-    </div>
-    <div class="panel-footer">会员<br><em>21</em>人</div>
-</div>
-
-<div class="btn-group-vertical" id="floatButton">
-    <button type="button" class="btn btn-default" id="goTop" title="去顶部"><span
-                class="glyphicon glyphicon-arrow-up"></span></button>
-    <button type="button" class="btn btn-default" id="refresh" title="刷新"><span
-                class="glyphicon glyphicon-repeat"></span></button>
-    <button type="button" class="btn btn-default" id="pageQrcode" title="本页二维码"><span
-                class="glyphicon glyphicon-qrcode"></span>
-        <img class="qrcode" width="130" height="130" src="<?= \yii\helpers\Url::to(['/site/qrcode', 'data' => Yii::$app->request->absoluteUrl])?>" />
-    </button>
-    <button type="button" class="btn btn-default" id="goBottom" title="去底部"><span
-                class="glyphicon glyphicon-arrow-down"></span></button>
-</div>
-
+<?=$this->render('//public/online') ?>
+<?=$this->render('//public/float_button') ?>
 
 <?php $this->endBody() ?>
 </body>
