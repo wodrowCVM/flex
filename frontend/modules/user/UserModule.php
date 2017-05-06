@@ -21,4 +21,7 @@ class UserModule extends \yii\base\Module
 
         // custom initialization code goes here
     }
+
+    public $layout= "@frontend/modules/user/views/layout/ly1";
+//    public $layoutPath = "@frontend/modules/user/layout/ly1";
 }

@@ -13,7 +13,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body text-center mp0">
-                Get Flexiable，对！没错！这里就是 Flexiable 社区，我们想做国内最好的 Flexiable 社区。xx
+                Get Flexiable，对！没错！这里就是 Flexiable 社区，我们想做国内最好的 Flexiable 社区。
             </div>
         </div>
     </div>

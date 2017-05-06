@@ -38,10 +38,11 @@ AppAsset::register($this);
         ],
     ]);
     $leftItems = [
-        ['label' =>  \kartik\icons\Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
+        ['label' =>  \kartik\icons\Icon::show('th-large')  . '社区', 'url' => ['/site/index'] ],
 //        ['label' => \kartik\icons\Icon::show('comment').'社区', 'url' => ['/site/about']],
-        ['label' => \kartik\icons\Icon::show('commenting').'帖子  ', 'url' => ['/site/about']],
-        ['label' => \kartik\icons\Icon::show('user').'会员', 'url' => ['/site/contact']],
+        ['label' => \kartik\icons\Icon::show('commenting').'帖子', 'url' => ['/poster']],
+        ['label' => \kartik\icons\Icon::show('book').'文章', 'url' => ['/story']],
+        ['label' => \kartik\icons\Icon::show('user').'会员', 'url' => ['/users']],
 //        ['label' => Icon::show('comment') . '社区', 'url' => ['/topic'], 'active' => $topicActive],
 //        ['label' => Icon::show('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
 //        ['label' => \kartik\icons\Icon::show('commenting') . '动态', 'url' => ['/tweet'], 'active' => $tweetActive],
@@ -65,8 +66,8 @@ AppAsset::register($this);
         $rightItems[] = [
             'label' => Yii::$app->user->identity->username,
             'items' => [
-                ['label' => '我的主页', 'url' => ['/user/default']],
-                ['label' => '帐号设置', 'url' => ['/user/setting/profile']],
+                ['label' => '我的主页', 'url' => ['/user/default/index']],
+                ['label' => '帐号设置', 'url' => ['/user/setting/index']],
                 ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]
             ]
         ];
