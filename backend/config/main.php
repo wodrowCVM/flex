@@ -10,7 +10,7 @@ $config = [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'language' => 'zh-CN',
-    'name' => '轻纺家园管理中心',
+    'name' => '管理中心',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
@@ -22,8 +22,8 @@ $config = [
                 'user' => null, // disable menu
             ],
         ],
-        'treemanager' =>  [
-            'class' => \kartik\tree\Module::className(),
+        'users' => [ // 用户管理
+            'class' => 'backend\modules\users\UsersModule',
         ],
         'test' =>[
             'class' => \backend\modules\test\Test::className(),

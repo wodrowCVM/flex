@@ -10,6 +10,13 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property string $nickname
+ * @property string $avatar
+ * @property integer $type
+ * @property integer $level
+ * @property integer $integral
+ * @property integer $treasure
+ * @property string $qq
+ * @property string $mobile
  *
  * @property User $user
  */
@@ -30,8 +37,10 @@ class UserInfo extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id'], 'integer'],
-            [['nickname'], 'string', 'max' => 20],
+            [['user_id', 'type', 'level', 'integral', 'treasure'], 'integer'],
+            [['nickname', 'qq'], 'string', 'max' => 20],
+            [['avatar'], 'string', 'max' => 50],
+            [['mobile'], 'string', 'max' => 11],
             [['user_id'], 'unique'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -46,6 +55,13 @@ class UserInfo extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'nickname' => 'Nickname',
+            'avatar' => 'Avatar',
+            'type' => 'Type',
+            'level' => 'Level',
+            'integral' => 'Integral',
+            'treasure' => 'Treasure',
+            'qq' => 'Qq',
+            'mobile' => 'Mobile',
         ];
     }
 
