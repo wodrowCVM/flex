@@ -18,14 +18,14 @@
                 <h2 class="mt5"><strong><?= Yii::$app->user->identity->username ?></strong></h2>
                 <p>第 <?= Yii::$app->user->identity->id ?> 位会员</p>
                 <div class="pull-left">
-                    <span class="label label-info role">会员</span>
+                    <span class="label label-info role"><?=Yii::$app->user->identity->userInfo->levelRule->name ?> <?=Yii::$app->user->identity->userInfo->level ?></span>
                 </div>
             </div>
         </div>
 
         <div class="follow-info row">
             <div class="col-sm-4 followers" data-login="rei">
-                <a class="counter" href="/member/wodrow/point"><?=Yii::$app->user->identity->userInfo->level ?></a>
+                <a class="counter" href="/member/wodrow/point"><?=Yii::$app->user->identity->userInfo->levelRule->name ?></a>
                 <a class="text" href="/member/wodrow/point">等级</a>
             </div>
 <!--            <div class="col-sm-4 following">-->

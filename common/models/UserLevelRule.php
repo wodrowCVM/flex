@@ -11,5 +11,5 @@ namespace common\models;
 
 class UserLevelRule extends \common\models\tables\UserLevelRule
 {
-
+    const MAX_LEVEL = 4294967295;
 }

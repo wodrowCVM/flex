@@ -7,8 +7,14 @@
  */
 
 namespace common\models;
+use yii\base\Model;
 
-
+/**
+ * Class UserInfo
+ * @package common\models
+ *
+ * @property UserLevelRule $levelRule
+ */
 class UserInfo extends \common\models\tables\UserInfo
 {
     public function afterFind()
@@ -17,5 +23,24 @@ class UserInfo extends \common\models\tables\UserInfo
 //        if (!$this->nickname){
 //            $this->nickname = $this->user->username;
 //        }
+    }
+
+    /**
+     * @return array|null| Model
+     */
+    public function getLevelRule()
+    {
+        $x = new \stdClass();
+        $rule = UserLevelRule::find()->where(['and', ['>', 'end', $this->level], ['<=', 'begin', $this->level]])->one();
+        $max_level = \backend\modules\users\models\UserLevelRule::MAX_LEVEL;
+        $_l_bigin = $rule->begin;
+        $_l_end= $rule->end;
+        $x->percent1 = ($this->level-$_l_bigin)/($_l_end-$_l_bigin);
+        $x->percent2 = ($this->level)/($_l_end);
+        $x->percent3 = ($this->level)/($max_level);
+        foreach ($rule as $k => $v){
+            $x->$k = $v;
+        }
+        return $x;
     }
 }
