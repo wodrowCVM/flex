@@ -88,6 +88,7 @@ $config = [
         'class' => \frontend\behaviors\Check::className(),
         'except' => [
             'site/*',
+            'jour/*',
         ],
         'rules' => [
             [
