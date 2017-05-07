@@ -17,6 +17,9 @@ $config = [
         'user' => [
             'class' => \frontend\modules\user\UserModule::className(),
         ],
+        'jour' => [ // 教程 介绍
+            'class' => 'frontend\modules\jour\JourModule',
+        ],
     ],
     'components' => [
         'request' => [

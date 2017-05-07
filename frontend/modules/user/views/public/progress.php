@@ -11,7 +11,7 @@ $level_rule = Yii::$app->user->identity->userInfo->levelRule;
 
 <p>
     <span style="color: #D8582B; font-weight: bold;"><?=$level_rule->name ?></span>
-    <span class="pull-right"><a href="/rule">查看等级规则</a> | <a href="/top">排行榜</a></span>
+    <span class="pull-right"><a href="/jour/default/level-rule">查看等级规则</a> | <a href="/jour/default/top">排行榜</a></span>
 </p>
 <div id="w2" class="progress">
     <div class="progress-bar-success progress-bar" role="progressbar" aria-valuenow="<?=Yii::$app->user->identity->userInfo->level ?>" aria-valuemin="<?=$level_rule->begin; ?>" aria-valuemax="<?=$level_rule->end; ?>" style="width:<?=$level_rule->percent1*100 ?>%">
