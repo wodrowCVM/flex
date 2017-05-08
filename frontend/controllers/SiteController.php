@@ -72,6 +72,8 @@ class SiteController extends Controller
             ],
             'avatar' => [
                 'class' => Avatar::className(),
+                'text' => Yii::$app->request->get('text'),
+                'rule' => Yii::$app->request->get('rule'),
             ],
         ];
     }

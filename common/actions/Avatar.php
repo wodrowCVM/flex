@@ -15,14 +15,13 @@ use yii\base\Action;
 
 class Avatar extends Action
 {
-//    public $text;
-//    public $rule;
+    public $text;
+    public $rule;
 
     public function run()
     {
-        $user = \Yii::$app->user->identity;
-        $user_info = $user->userInfo;
-        $rule = $user_info->levelRule->avatar_rule;
+//        $rule = $user_info->levelRule->avatar_rule;
+        $rule = $this->rule;
         $rule = json_decode($rule);
 //        $avatar = $user_info->avatar?$user_info->avatar:substr($user->username, 0, 2);
         $im = imagecreatetruecolor(100, 100);
@@ -35,7 +34,7 @@ class Avatar extends Action
 //        $box->setTextShadow(new Color(0, 0, 0, 50), 0, 0);
         $box->setBox(0, 0, 100, 100);
         $box->setTextAlign('center', 'center');
-        $box->draw($user_info->avatar);
+        $box->draw($this->text);
         header("Content-type: image/png");
         imagepng($im);
     }

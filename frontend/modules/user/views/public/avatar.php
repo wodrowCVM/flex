@@ -11,14 +11,18 @@
     <div class="panel-body">
         <div class="media">
             <div class="media-left media-middle">
-                <?=\yii\helpers\Html::img(\yii\helpers\Url::to('/site/avatar'), [
+                <?=\yii\helpers\Html::img(Yii::$app->user->identity->userInfo->textAvatarUrl, [
                     'class'=>"media-object",
                     'width'=>100,
                     'height'=>100,
                 ]) ?>
             </div>
             <div class="media-body">
-                <h2 class="mt5"><strong><?= Yii::$app->user->identity->username ?></strong></h2>
+                <h2 class="mt5"><strong><?= \yii\helpers\Html::a(Yii::$app->user->identity->username, ["/user"], [
+                        'style'=>[
+                            'text-decoration'=>'none',
+                        ],
+                        ]) ?></strong></h2>
                 <p>第 <?= Yii::$app->user->identity->id ?> 位会员</p>
                 <div class="pull-left">
                     <span class="label label-info role"><?=Yii::$app->user->identity->userInfo->levelRule->name ?></span>

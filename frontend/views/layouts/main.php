@@ -63,13 +63,13 @@ AppAsset::register($this);
         // 提醒
         $rightItems[] = [
             'label' => Html::tag('i', '', ['class' => 'fa fa-bell']) . Html::tag('span', null),
-              'url' => ['/notification/index'],
+//              'url' => ['/notification/index'],
             'linkOptions' => ['class' => 'new',],
             'options' => ['class' => 'notification-count'],
         ];
         // 个人中心
         $rightItems[] = [
-            'label' => Html::img(\yii\helpers\Url::to('/site/avatar'), [
+            'label' => Html::img(Yii::$app->user->identity->userInfo->textAvatarUrl, [
                 'width'=>50,
                 'height'=>50,
             ]),

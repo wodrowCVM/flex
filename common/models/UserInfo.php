@@ -7,8 +7,11 @@
  */
 
 namespace common\models;
+use GDText\Box;
+use GDText\Color;
 use yii\base\Model;
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 
 /**
  * Class UserInfo
@@ -36,5 +39,15 @@ class UserInfo extends \common\models\tables\UserInfo
     {
         $rule = UserLevelRule::find()->where(['and', ['>', 'end', $this->level], ['<=', 'begin', $this->level]])->one();
         return $rule;
+    }
+
+    public function getTextAvatarUrl()
+    {
+        $text = $this->avatar;
+        $rule = $this->levelRule->avatar_rule;
+//        var_dump($rule->background->r);exit;
+        $url = Url::to(['/site/avatar', 'text'=>$text, 'rule'=>$rule]);
+//        var_dump($url); exit;
+        return $url;
     }
 }

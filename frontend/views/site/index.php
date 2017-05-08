@@ -447,12 +447,14 @@
                     <div class="col-xs-2" style="min-width: 80px;">
                         <div class="media user-card">
                             <div class="media-left">
-                                <a href="/member/wodrow" title="<?=$v->username ?>"><img class="media-object"
-                                                                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAABnRSTlMAAAAAAABupgeRAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAhElEQVRYhe3ZQQqAIBBA0QwP5FE6akfxSK3bjHwGcRb/bWvwY2BB7QrN8cY3jPnsmL3jyVPMIswizCLMIvryLN4nWLplXhEZ8bpFH6JZhFmEWUTRrJ4Z3ncUF90tswizCLMIs4j1R/MRRXfLLMIswizCLKJoVosv+7vgxyzCLMIsomjWBxUNGSUURtHsAAAAAElFTkSuQmCC"
-                                                                             alt=""></a></div>
+                                <a href="/member/wodrow"
+                                   title="<?= $v->username ?>"><?= \yii\helpers\Html::img($v->userInfo->textAvatarUrl, [
+                                        'width' => 50,
+                                        'height' => 50,
+                                    ]) ?></a></div>
                             <div class="media-body hidden-xs">
                                 <div class="media-heading">
-                                    <a href="/member/wodrow" title="<?=$v->username ?>"><?=$v->username ?></a></div>
+                                    <a href="/member/wodrow" title="<?= $v->username ?>"><?= $v->username ?></a></div>
                                 <div class="">
                                     积分：0
                                 </div>
