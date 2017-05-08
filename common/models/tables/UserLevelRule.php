@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property integer $begin
  * @property integer $end
+ * @property string $avatar_rule
  */
 class UserLevelRule extends \yii\db\ActiveRecord
 {
@@ -30,6 +31,7 @@ class UserLevelRule extends \yii\db\ActiveRecord
         return [
             [['name', 'begin', 'end'], 'required'],
             [['begin', 'end'], 'integer'],
+            [['avatar_rule'], 'string'],
             [['name'], 'string', 'max' => 20],
         ];
     }
@@ -44,6 +46,7 @@ class UserLevelRule extends \yii\db\ActiveRecord
             'name' => 'Name',
             'begin' => 'Begin',
             'end' => 'End',
+            'avatar_rule' => 'Avatar Rule',
         ];
     }
 }

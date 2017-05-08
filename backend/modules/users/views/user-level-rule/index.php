@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'begin',
             'end',
+            'avatar_rule',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

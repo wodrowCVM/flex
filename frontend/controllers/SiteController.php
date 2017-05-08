@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\actions\Avatar;
 use common\models\User;
 use EasyWeChat\QRCode\QRCode;
 use Yii;
@@ -68,6 +69,9 @@ class SiteController extends Controller
             'qrcode' => [
                 'class' => \common\actions\QRcode::className(),
                 'data' => Yii::$app->request->get('data'),
+            ],
+            'avatar' => [
+                'class' => Avatar::className(),
             ],
         ];
     }

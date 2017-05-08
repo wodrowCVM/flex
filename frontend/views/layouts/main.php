@@ -42,7 +42,12 @@ AppAsset::register($this);
 //        ['label' => \kartik\icons\Icon::show('comment').'社区', 'url' => ['/site/about']],
         ['label' => \kartik\icons\Icon::show('commenting').'帖子', 'url' => ['/poster']],
         ['label' => \kartik\icons\Icon::show('book').'文章', 'url' => ['/story']],
-        ['label' => \kartik\icons\Icon::show('user').'会员', 'url' => ['/users']],
+        ['label' => \kartik\icons\Icon::show('book').'问答', 'url' => ['/story']],
+        ['label' => \kartik\icons\Icon::show('book').'图片', 'url' => ['/story']],
+        ['label' => \kartik\icons\Icon::show('book').'视频', 'url' => ['/story']],
+        ['label' => \kartik\icons\Icon::show('book').'资源', 'url' => ['/story']],
+//        ['label' => \kartik\icons\Icon::show('user').'会员', 'url' => ['/users']],
+        ['label' => \kartik\icons\Icon::show('user').'排行', 'url' => ['/jour/default/top']],
 //        ['label' => Icon::show('comment') . '社区', 'url' => ['/topic'], 'active' => $topicActive],
 //        ['label' => Icon::show('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
 //        ['label' => \kartik\icons\Icon::show('commenting') . '动态', 'url' => ['/tweet'], 'active' => $tweetActive],
@@ -64,12 +69,18 @@ AppAsset::register($this);
         ];
         // 个人中心
         $rightItems[] = [
-            'label' => Yii::$app->user->identity->username,
+            'label' => Html::img(\yii\helpers\Url::to('/site/avatar'), [
+                'width'=>50,
+                'height'=>50,
+            ]),
             'items' => [
                 ['label' => '我的主页', 'url' => ['/user/default/index']],
                 ['label' => '帐号设置', 'url' => ['/user/setting/index']],
                 ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]
-            ]
+            ],
+            'linkOptions'=>[
+                'class'=>'avatar',
+            ],
         ];
         /*$rightItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

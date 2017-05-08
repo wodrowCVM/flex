@@ -14,11 +14,14 @@ $config = [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
-        'user' => [
+        'user' => [ // 用户中心
             'class' => \frontend\modules\user\UserModule::className(),
         ],
         'jour' => [ // 教程 介绍
             'class' => 'frontend\modules\jour\JourModule',
+        ],
+        'test' => [ // 测试
+            'class' => \frontend\modules\test\TestModule::className(),
         ],
     ],
     'components' => [

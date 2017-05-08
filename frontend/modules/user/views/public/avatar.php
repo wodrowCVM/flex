@@ -11,8 +11,11 @@
     <div class="panel-body">
         <div class="media">
             <div class="media-left media-middle">
-                <img class="media-object"
-                     src="https://getyii.com/uploads/avatars/cache/100_p4NoozEhjVx3DI-vkkb3mWHSeMd0qQ9t.png" alt="">
+                <?=\yii\helpers\Html::img(\yii\helpers\Url::to('/site/avatar'), [
+                    'class'=>"media-object",
+                    'width'=>100,
+                    'height'=>100,
+                ]) ?>
             </div>
             <div class="media-body">
                 <h2 class="mt5"><strong><?= Yii::$app->user->identity->username ?></strong></h2>
