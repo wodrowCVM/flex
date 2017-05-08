@@ -5,6 +5,7 @@
  * Date: 17-5-8
  * Time: 下午3:56
  */
+$users = \common\models\User::find()->all();
 ?>
 
 <div class="panel panel-default list-panel">

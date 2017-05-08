@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\actions\Avatar;
 use common\models\User;
+use dosamigos\qrcode\lib\Tools;
 use EasyWeChat\QRCode\QRCode;
 use Yii;
 use yii\base\InvalidParamException;
@@ -85,9 +86,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $users = User::find()->all();
         return $this->render('index', [
-            'users' => $users,
+//            'is_sign_in' => $is_sign_in,
         ]);
     }
 

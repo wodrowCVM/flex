@@ -12,25 +12,7 @@ $this->title = '首页';
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-body text-center mp0">
-                        <p>
-                            Get Flexiable，对！没错！这里就是 Flexiable 社区，我们想做国内最好的 Flexiable 社区。
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="btn-group" style="width: 100%;height: 40px;margin-bottom: 20px;">
-                    <button type="button" class="btn" style="width: 50%;height: 100%;" disabled>
-                        <?=\kartik\icons\Icon::show('calendar-check-o') ?>已连续签到1天
-                    </button>
-                    <button type="button" class="btn btn-primary" style="width: 50%;height: 100%;">今日已签到1人</button>
-                </div>
-            </div>
-        </div>
+        <?=$this->render('public/sign_in') ?>
     </div>
     <div class="col-lg-12">
         <div class="row">
@@ -49,7 +31,7 @@ $this->title = '首页';
         </div>
     </div>
     <div class="col-lg-12">
-        <?=$this->render('public/mem_list', ['users'=>$users]) ?>
+        <?=$this->render('public/mem_list') ?>
     </div>
     <div class="col-lg-12">
         <div class="panel panel-default node-panel">
