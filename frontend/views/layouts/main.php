@@ -41,7 +41,7 @@ AppAsset::register($this);
         ['label' =>  \kartik\icons\Icon::show('th-large')  . '社区', 'url' => ['/site/index'] ],
 //        ['label' => \kartik\icons\Icon::show('comment').'社区', 'url' => ['/site/about']],
         ['label' => \kartik\icons\Icon::show('commenting').'帖子', 'url' => ['/poster']],
-        ['label' => \kartik\icons\Icon::show('book').'文章', 'url' => ['/story']],
+        ['label' => \kartik\icons\Icon::show('book').'文章', 'url' => ['/story/default/index']],
         ['label' => \kartik\icons\Icon::show('book').'问答', 'url' => ['/story']],
 //        ['label' => \kartik\icons\Icon::show('book').'图片', 'url' => ['/story']],
 //        ['label' => \kartik\icons\Icon::show('book').'视频', 'url' => ['/story']],

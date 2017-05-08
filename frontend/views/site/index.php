@@ -20,7 +20,7 @@ $this->title = '首页';
                 <?=$this->render('public/commenting') ?>
             </div>
             <div class="col-md-6">
-                <?=$this->render('public/article') ?>
+                <?=$this->render('public/story') ?>
             </div>
             <div class="col-md-6">
                 <?=$this->render('public/ask') ?>

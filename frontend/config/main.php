@@ -20,6 +20,9 @@ $config = [
         'jour' => [ // 教程 介绍
             'class' => 'frontend\modules\jour\JourModule',
         ],
+        'story' => [ // 文章故事
+            'class' => 'frontend\modules\story\StoryModule',
+        ],
         'test' => [ // 测试
             'class' => \frontend\modules\test\TestModule::className(),
         ],
