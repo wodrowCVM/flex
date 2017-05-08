@@ -50,4 +50,20 @@ class UserInfo extends \common\models\tables\UserInfo
 //        var_dump($url); exit;
         return $url;
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => '编号',
+            'user_id' => '用户编号',
+            'nickname' => '昵称',
+            'avatar' => '头像',
+            'type' => '类型',
+            'level' => '级别',
+            'integral' => '积分',
+            'treasure' => '财富',
+            'qq' => 'QQ',
+            'mobile' => '手机',
+        ];
+    }
 }

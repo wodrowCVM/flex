@@ -31,7 +31,7 @@ $this->title = "设置";
                 'template' => '{label}<div class="col-md-4">{input}<div class="help-block"></div></div>{error}',
             ])->textInput() ?>
             <?=$form->field($user_info, 'avatar', [
-                'template' => '{label}<div class="col-md-2">{input}<div class="help-block"></div></div>{error}  ',
+                'template' => '{label}<div class="col-md-2">{input}<div class="help-block"></div></div><div style="line-height: 34px;color: red;">汉字不多于2个，字符不多于4个，注意美观。</div>{error}  ',
             ])->textInput() ?>
             <?=$form->field($user_info, 'type', [
                 'template' => '{label}<div class="col-md-2">{input}<div class="help-block"></div></div>{error}  ',
