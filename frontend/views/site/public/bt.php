@@ -3,14 +3,14 @@
  * Created by PhpStorm.
  * User: wodrow
  * Date: 17-5-8
- * Time: 下午3:37
+ * Time: 下午3:36
  */
 ?>
 
 <div class="panel panel-default list-panel">
     <div class="panel-heading">
         <h3 class="panel-title text-center">
-            精华帖子
+            热门资源&nbsp;
         </h3>
     </div>
     <div class="clearfix site-index-topic">

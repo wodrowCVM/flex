@@ -24,10 +24,10 @@ $this->title = '首页';
             </div>
             <div class="col-md-3">
                 <div class="btn-group" style="width: 100%;height: 40px;margin-bottom: 20px;">
-                    <button type="button" class="btn" style="width: 50%;height: 100%;">
-                        <?=\kartik\icons\Icon::show('calendar-check-o') ?>
+                    <button type="button" class="btn" style="width: 50%;height: 100%;" disabled>
+                        <?=\kartik\icons\Icon::show('calendar-check-o') ?>已连续签到1天
                     </button>
-                    <button type="button" class="btn btn-primary" style="width: 50%;height: 100%;">按钮 2</button>
+                    <button type="button" class="btn btn-primary" style="width: 50%;height: 100%;">今日已签到1人</button>
                 </div>
             </div>
         </div>
@@ -40,37 +40,16 @@ $this->title = '首页';
             <div class="col-md-6">
                 <?=$this->render('public/article') ?>
             </div>
+            <div class="col-md-6">
+                <?=$this->render('public/ask') ?>
+            </div>
+            <div class="col-md-6">
+                <?=$this->render('public/bt') ?>
+            </div>
         </div>
     </div>
     <div class="col-lg-12">
-        <div class="panel panel-default list-panel">
-            <div class="panel-heading">
-                <h3 class="panel-title text-center">会员榜</h3>
-            </div>
-
-            <div class="panel-body row">
-
-                <?php foreach ($users as $k => $v): ?>
-                    <div class="col-xs-2" style="min-width: 80px;">
-                        <div class="media user-card">
-                            <div class="media-left">
-                                <a href="/member/wodrow"
-                                   title="<?= $v->username ?>"><?= \yii\helpers\Html::img($v->userInfo->textAvatarUrl, [
-                                        'width' => 50,
-                                        'height' => 50,
-                                    ]) ?></a></div>
-                            <div class="media-body hidden-xs">
-                                <div class="media-heading">
-                                    <a href="/member/wodrow" title="<?= $v->username ?>"><?= $v->username ?></a></div>
-                                <div class="">
-                                    积分：0
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
+        <?=$this->render('public/mem_list', ['users'=>$users]) ?>
     </div>
     <div class="col-lg-12">
         <div class="panel panel-default node-panel">
