@@ -8,13 +8,21 @@
 
 namespace frontend\modules\user\controllers;
 
-
 use yii\web\Controller;
 
 class SettingController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $user = \Yii::$app->user->identity;
+        $user_info = $user->userInfo;
+        if ($user->load(\Yii::$app->request->post())&&$user_info->load(\Yii::$app->request->post())){
+            $user->save();
+            $user_info->save();
+        }
+        return $this->render('index', [
+            'user' => $user,
+            'user_info' => $user_info,
+        ]);
     }
 }
