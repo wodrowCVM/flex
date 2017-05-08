@@ -43,7 +43,7 @@ $this->title = "设置";
                 'template' => '{label}<div class="col-md-4">{input}<div class="help-block"></div></div>{error}  ',
             ])->textInput() ?>
             <div class="col-md-offset-2">
-                <?=\yii\helpers\Html::submitButton('提交', ['class'=>'btn btn-primary']) ?>
+                <?=\yii\helpers\Html::submitButton('保存', ['class'=>'btn btn-primary']) ?>
                 <?=\yii\helpers\Html::resetButton('重置', ['class'=>'btn']) ?>
             </div>
             <?php \kartik\form\ActiveForm::end(); ?>
