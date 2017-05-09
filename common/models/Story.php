@@ -17,9 +17,12 @@ use yii\behaviors\TimestampBehavior;
  * @package common\models
  *
  * @property User $user
+ * @property array $tagArr
  */
 class Story extends \common\models\tables\Story
 {
+    public $tagArr;
+
     public function behaviors()
     {
         return [
@@ -43,7 +46,7 @@ class Story extends \common\models\tables\Story
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
-            'label' => '标签',
+            'tagArr' => '标签',
         ];
     }
 
@@ -53,5 +56,18 @@ class Story extends \common\models\tables\Story
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return array $tagArr
+     */
+    public function getTagArr()
+    {
+        $arr = [];
+        $tags = $this->tags;
+        foreach($tags as $k => $v){
+            $arr[$v->id] = $v->name;
+        }
+        return $arr;
     }
 }

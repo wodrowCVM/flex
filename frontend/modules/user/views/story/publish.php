@@ -5,30 +5,11 @@
  * Date: 17-5-8
  * Time: 下午6:47
  */
-?>
 
-<?php
-/**
- * Created by PhpStorm.
- * User: wodrow
- * Date: 17-5-6
- * Time: 下午5:14
- */
-$this->title = $model->isNewRecord ? "发表文章":"修改文章";
+$this->title = $story->isNewRecord ? "发表文章" : "修改文章";
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-
-<div class="frontend-user-story-publish">
-    <div class="row">
-        <div class="col-sm-3">
-            <!--left col-->
-            <?= $this->render('/public/avatar') ?>
-            <div class="clear" style="clear: both"></div>
-        </div>
-        <div class="col-sm-9">
-            <?= $this->render('_form', [
-                'model' => $model,
-            ]) ?>
-        </div>
-    </div>
-</div>
+<?= $this->render('_form', [
+    'story' => $story,
+]) ?>
 

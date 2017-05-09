@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\users\models\UserLevelRule */
+/* @var $story backend\modules\users\models\UserLevelRule */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -14,11 +14,11 @@ use kartik\form\ActiveForm;
         'type' => \kartik\form\ActiveForm::TYPE_HORIZONTAL
     ]); ?>
 
-    <?= $form->field($model, 'title', [
+    <?= $form->field($story, 'title', [
         'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
     ])->textInput() ?>
 
-    <?= $form->field($model, 'content', [
+    <?= $form->field($story, 'content', [
 //        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
     ])->widget(\yii\redactor\widgets\Redactor::className(), [
         'clientOptions' => [
@@ -28,16 +28,24 @@ use kartik\form\ActiveForm;
             'lang' => 'zh_cn',
             'buttons'=>['html', 'bold', 'italic', 'deleted', 'link', 'horizontalrule'],
             'plugins' => ['fontcolor','imagemanager'],
-            'minHeight'=>500,
+            'minHeight'=>400,
         ],
     ]) ?>
 
-    <?= $form->field($model, 'label', [
-        'template' => '{label}<div class="col-md-4">{input}<div class="help-block"></div></div>    ',
-    ])->textInput() ?>
+    <?php
+    echo $form->field($story, 'tagArr')->widget(\kartik\select2\Select2::className(), [
+//        'data' => $data,
+        'options' => ['placeholder' => '请选择或输入', 'multiple' => true],
+        'pluginOptions' => [
+            'tags' => true,
+            'tokenSeparators' => [',', ' '],
+            'maximumInputLength' => 10
+        ],
+    ]);
+    ?>
 
     <div class="col-md-offset-2">
-        <?= Html::submitButton($model->isNewRecord ? '发布' : '保存', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($story->isNewRecord ? '发布' : '保存', ['class' => $story->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= \yii\helpers\Html::resetButton('重置', ['class' => 'btn']) ?>
     </div>
 

@@ -17,7 +17,7 @@ class Story extends \common\models\Story
             [['title', 'content'], 'required'],
             [['content'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['title', 'label'], 'string', 'max' => 50],
+            [['title'], 'string', 'max' => 50],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }

@@ -14,9 +14,11 @@ use Yii;
  * @property integer $created_by
  * @property integer $updated_at
  * @property integer $updated_by
- * @property string $label
+ * @property integer $need_level
  *
  * @property User $createdBy
+ * @property StoryTag[] $storyTags
+ * @property Tag[] $tags
  */
 class Story extends \yii\db\ActiveRecord
 {
@@ -36,8 +38,8 @@ class Story extends \yii\db\ActiveRecord
         return [
             [['title', 'content', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
             [['content'], 'string'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['title', 'label'], 'string', 'max' => 50],
+            [['created_at', 'created_by', 'updated_at', 'updated_by', 'need_level'], 'integer'],
+            [['title'], 'string', 'max' => 50],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
@@ -55,7 +57,7 @@ class Story extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
-            'label' => 'Label',
+            'need_level' => 'Need Level',
         ];
     }
 
@@ -65,5 +67,21 @@ class Story extends \yii\db\ActiveRecord
     public function getCreatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStoryTags()
+    {
+        return $this->hasMany(StoryTag::className(), ['story_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('{{%story_tag}}', ['story_id' => 'id']);
     }
 }
