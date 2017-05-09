@@ -15,7 +15,7 @@
     ],
 ]);
 $leftItems = [
-    ['label' =>  \kartik\icons\Icon::show('th-large')  . '社区', 'url' => ['/site'] ],
+    ['label' =>  \kartik\icons\Icon::show('th-large')  . '社区', 'url' => ['/site/index'] ],
 //        ['label' => \kartik\icons\Icon::show('comment').'社区', 'url' => ['/site/about']],
     ['label' => \kartik\icons\Icon::show('commenting').'帖子', 'url' => ['/poster']],
     ['label' => \kartik\icons\Icon::show('book').'文章', 'url' => ['/story']],

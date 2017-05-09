@@ -43,6 +43,11 @@ class StoryController extends Controller
         }
     }
 
+    /**
+     * 浏览个人文章
+     * @param $id
+     * @return string
+     */
     public function actionView($id)
     {
         $story = Story::findOne(['id'=>$id]);

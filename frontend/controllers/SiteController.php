@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\actions\Avatar;
+use common\actions\TagSearch;
 use common\models\User;
 use dosamigos\qrcode\lib\Tools;
 use EasyWeChat\QRCode\QRCode;
@@ -75,6 +76,12 @@ class SiteController extends Controller
                 'class' => Avatar::className(),
                 'text' => Yii::$app->request->get('text'),
                 'rule' => Yii::$app->request->get('rule'),
+            ],
+            'tag-search' => [ // 标签搜索
+                'class' => TagSearch::className(),
+                'search_name' => Yii::$app->request->get('name'),
+                'limit' => Yii::$app->request->get('limit') or 10,
+                'id' => Yii::$app->request->get('id'),
             ],
         ];
     }
