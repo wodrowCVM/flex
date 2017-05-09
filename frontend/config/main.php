@@ -27,10 +27,10 @@ $config = [
             'class' => \frontend\modules\test\TestModule::className(),
         ],
         'redactor' => [
-            'class' => 'yii\redactor\RedactorModule',
-            'uploadDir' => '@webroot/images/redactor',
-            'uploadUrl' => '@web/images/redactor',
-            'imageAllowExtensions'=>['jpg','png','gif']
+            'class' => \yii\redactor\RedactorModule::className(),
+//            'uploadDir' => '@webroot/images/redactor',
+//            'uploadUrl' => '@web/images/redactor',
+//            'imageAllowExtensions'=>['jpg','png','gif']
         ],
     ],
     'components' => [

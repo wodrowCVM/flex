@@ -31,7 +31,7 @@
         </div>
 
         <div class="follow-info row">
-            <div class="col-sm-4 followers" data-login="rei">
+            <div class="col-xs-4 followers" data-login="rei">
                 <a class="counter" href="/member/wodrow/point"><?=Yii::$app->user->identity->userInfo->level ?></a>
                 <a class="text" href="/member/wodrow/point">等级</a>
             </div>
@@ -43,11 +43,11 @@
 <!--                <a class="counter" href="#">0</a>-->
 <!--                <a class="text" href="#">感谢</a>-->
 <!--            </div>-->
-            <div class="col-sm-4 following">
+            <div class="col-xs-4 following">
                 <a class="counter" href="#"><?=Yii::$app->user->identity->userInfo->integral ?></a>
                 <a class="text" href="#">积分</a>
             </div>
-            <div class="col-sm-4 stars">
+            <div class="col-xs-4 stars">
                 <a class="counter" href="#"><?=Yii::$app->user->identity->userInfo->treasure ?></a>
                 <a class="text" href="#">财富</a>
             </div>

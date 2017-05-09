@@ -22,8 +22,9 @@ $this->title = $model->isNewRecord ? "发表文章":"修改文章";
         <div class="col-sm-3">
             <!--left col-->
             <?= $this->render('/public/avatar') ?>
+            <div class="clear" style="clear: both"></div>
         </div>
-        <div class="col-lg-9">
+        <div class="col-sm-9">
             <?= $this->render('_form', [
                 'model' => $model,
             ]) ?>
