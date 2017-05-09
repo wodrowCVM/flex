@@ -29,9 +29,6 @@ AppAsset::register($this);
 <div class="wrap">
     <?=$this->render('//public/_navbar') ?>
     <div class="container">
-        <?php
-//        echo $this->render('/public/categorys_toggle');
-        ?>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

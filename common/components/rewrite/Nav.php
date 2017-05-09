@@ -18,6 +18,9 @@ class Nav extends \yii\bootstrap\Nav
             if ($route[0] !== '/' && \Yii::$app->controller) {
                 $route = \Yii::$app->controller->module->getUniqueId() . '/' . $route;
             }
+//            if (ltrim($route, '/'   ) !== $this->route) {
+//                return false;
+//            }
             $_route = ltrim($route, '/');
             if (strpos($this->route, $_route)===0){
                 if($_route == $this->route){}else{
@@ -28,9 +31,6 @@ class Nav extends \yii\bootstrap\Nav
             }else{
                 return false;
             }
-//            if (ltrim($route, '/'   ) !== $this->route) {
-//                return false;
-//            }
             unset($item['url']['#']);
             if (count($item['url']) > 1) {
                 $params = $item['url'];
