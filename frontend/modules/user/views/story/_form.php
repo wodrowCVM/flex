@@ -20,7 +20,17 @@ use kartik\form\ActiveForm;
 
     <?= $form->field($model, 'content', [
 //        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
-    ])->widget(\yii\redactor\widgets\Redactor::className()) ?>
+    ])->widget(\yii\redactor\widgets\Redactor::className(), [
+        'clientOptions' => [
+            'imageManagerJson' => ['/redactor/upload/image-json'],
+            'imageUpload' => ['/redactor/upload/image'],
+            'fileUpload' => ['/redactor/upload/file'],
+            'lang' => 'zh_cn',
+            'buttons'=>['html', 'bold', 'italic', 'deleted', 'link', 'horizontalrule'],
+            'plugins' => ['fontcolor','imagemanager'],
+            'minHeight'=>500,
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'label', [
         'template' => '{label}<div class="col-md-4">{input}<div class="help-block"></div></div>    ',
