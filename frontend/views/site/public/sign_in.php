@@ -6,6 +6,7 @@
  * Date: 17-5-8
  * Time: 下午4:11
  *
+ * @var \yii\web\View $this
  * @var boolean $is_sign_in
  */
 $_date = date("Ymd", time());
@@ -73,4 +74,19 @@ if (Yii::$app->request->isPjax){
         <?php \yii\widgets\Pjax::end()?>
     </div>
 </div>
+
+<?php \common\components\jsblock\JsBlock::begin(); ?>
+<script>
+    $(function () {
+        $("#sign_in_btn").click(function () {
+            var is_guest = !"<?=Yii::$app->user->id ?>";
+//            var login_url = "<?//=Yii::$app->urlManager->createAbsoluteUrl(['/site/login']) ?>//";
+            var login_url = "<?=\yii\helpers\Url::to(['/site/login']) ?>";
+            if(is_guest){
+                location.href = login_url;
+            }
+        });
+    })
+</script>
+<?php \common\components\jsblock\JsBlock::end(); ?>
 
