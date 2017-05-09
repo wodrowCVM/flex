@@ -20,7 +20,7 @@ use kartik\form\ActiveForm;
 
     <?= $form->field($model, 'content', [
 //        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
-    ])->textarea() ?>
+    ])->widget(\yii\redactor\widgets\Redactor::className()) ?>
 
     <?= $form->field($model, 'label', [
         'template' => '{label}<div class="col-md-4">{input}<div class="help-block"></div></div>    ',

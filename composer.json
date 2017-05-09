@@ -98,7 +98,8 @@
         "callmez/yii2-wechat-sdk": "dev-master",
         "extjs/extjs": "dev-master",
         "2amigos/yii2-qrcode-helper": "*",
-        "stil/gd-text": "^1.1"
+        "stil/gd-text": "^1.1",
+        "yiidoc/yii2-redactor": "*"
     },
     "require-dev": {
         "codeception/codeception": "*",

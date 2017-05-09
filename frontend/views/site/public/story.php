@@ -35,7 +35,7 @@ $_count = \common\models\Story::find()->where(['<', 'need_level', '1000'])->coun
                         •
                         <?=\yii\helpers\Html::a($v->user->username, ['#'], []) ?>
                         •
-                        <span>6个月前</span>
+                        <span><?=date("Y-m-d", $v->created_at) ?></span>
                     </div>
                 </div>
             </li>

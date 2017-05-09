@@ -26,6 +26,12 @@ $config = [
         'test' => [ // 测试
             'class' => \frontend\modules\test\TestModule::className(),
         ],
+        'redactor' => [
+            'class' => 'yii\redactor\RedactorModule',
+            'uploadDir' => '@webroot/images/redactor',
+            'uploadUrl' => '@web/images/redactor',
+            'imageAllowExtensions'=>['jpg','png','gif']
+        ],
     ],
     'components' => [
         'request' => [
