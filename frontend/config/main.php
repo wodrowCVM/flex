@@ -14,6 +14,12 @@ $config = [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
+        'redactor' => [
+            'class' => \yii\redactor\RedactorModule::className(),
+//            'uploadDir' => '@webroot/images/redactor',
+//            'uploadUrl' => '@web/images/redactor',
+//            'imageAllowExtensions'=>['jpg','png','gif']
+        ],
         'user' => [ // 用户中心
             'class' => \frontend\modules\user\UserModule::className(),
         ],
@@ -26,11 +32,20 @@ $config = [
         'test' => [ // 测试
             'class' => \frontend\modules\test\TestModule::className(),
         ],
-        'redactor' => [
-            'class' => \yii\redactor\RedactorModule::className(),
-//            'uploadDir' => '@webroot/images/redactor',
-//            'uploadUrl' => '@web/images/redactor',
-//            'imageAllowExtensions'=>['jpg','png','gif']
+        'poster' => [ // 帖子
+            'class' => 'frontend\modules\poster\PosterModule',
+        ],
+        'ask' => [ // 问答
+            'class' => 'frontend\modules\ask\AskModule',
+        ],
+        'image' => [ // 图片
+            'class' => 'frontend\modules\image\ImageModule',
+        ],
+        'vedio' => [ // 视频
+            'class' => 'frontend\modules\vedio\VedioModule',
+        ],
+        'resource' => [ // 资源
+            'class' => 'frontend\modules\resource\ResourceModule',
         ],
     ],
     'components' => [
