@@ -4,6 +4,9 @@
  * @var \frontend\modules\story\models\Story $storys
  * @var \yii\data\Pagination $pages
  */
+
+$this->title = "文章列表";
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="story-default-index">
@@ -13,7 +16,7 @@
                 <?php foreach ($storys as $k => $v): ?>
                     <li class="list-group-item article-item">
                         <div class="home-list-title">
-                            <?= \dmstr\helpers\Html::a($v->title, ['#'], []) ?>
+                            <?= \dmstr\helpers\Html::a($v->title, ['view', 'id'=>$v->id], []) ?>
                         </div>
                         <div class="hide-overflow home-list-content">
                             <?= $v->desc ?>

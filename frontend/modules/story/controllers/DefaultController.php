@@ -11,17 +11,20 @@ use yii\web\Controller;
  */
 class DefaultController extends Controller
 {
+    private function getStory($id){
+        return Story::find()->where(['id'=>$id])->one();
+    }
     /**
      * Renders the index view for the module
      * @return string
      */
     public function actionIndex()
     {
-        $query = Story::find();
+        $query = Story::find()->orderBy(['created_at'=>SORT_DESC]);
         $countQuery = clone $query;
         $pages = new Pagination([
             'totalCount' => $countQuery->count(),
-            'pageSize' => 2,
+            'pageSize' => 10,
         ]);
         $storys = $query->offset($pages->offset)
             ->limit($pages->limit)
@@ -33,8 +36,11 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('view');
+        $story = $this->getStory($id);
+        return $this->render('view', [
+            'story' => $story,
+        ]);
     }
 }

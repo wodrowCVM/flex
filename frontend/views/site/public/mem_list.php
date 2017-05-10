@@ -10,7 +10,7 @@ $users = \common\models\User::find()->limit(36)->all();
 
 <div class="panel panel-default list-panel">
     <div class="panel-heading">
-        <h3 class="panel-title text-center">会员榜</h3>
+        <h3 class="panel-title text-center"><?=\kartik\icons\Icon::show('users') ?> 会员榜</h3>
     </div>
 
     <div class="panel-body row hidden-xs" style="height: 420px;">
