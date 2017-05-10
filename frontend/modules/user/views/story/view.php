@@ -47,7 +47,7 @@ echo DetailView::widget([
         [
             'label'=>'操作',
             'value'=>function()use($model){
-                return \dmstr\helpers\Html::a('修改', ["/user/story/update", 'id'=>$model->id], ['class'=>'btn btn-primary'])." ".\dmstr\helpers\Html::a('删除', ["/user/story/delete", 'id'=>$model->id], ['class'=>'btn btn-danger']);
+                return \dmstr\helpers\Html::a('修改', ["/user/story/update", 'id'=>$model->id], ['class'=>'btn btn-primary'])." ".\dmstr\helpers\Html::a('删除', ["/user/story/delete   ", 'id'=>$model->id], ['class'=>'btn btn-danger']);
             },
             'format'=>'raw',
         ],

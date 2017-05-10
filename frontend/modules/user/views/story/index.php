@@ -12,19 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 $columns = [
-    [
-        'class' => \kartik\grid\ExpandRowColumn::className(),
-        'width' => '50px',
-        'value' => function ($model, $key, $index, $column) {
-            return \kartik\grid\GridView::ROW_COLLAPSED;
-        },
-        'detail' => function ($model, $key, $index, $column) {
-            return Yii::$app->controller->renderPartial('view', ['story'=>$model, 'id'=>$key]);
-        },
-        'headerOptions' => ['class' => 'kartik-sheet-style'],
-        'expandOneOnly' => true,
-        'pageSummary'=>'总计',//可以是字符串，当为true时，自动合计
-    ],
     'id',
     'title',
     [
@@ -80,7 +67,7 @@ echo \kartik\grid\GridView::widget([
     'filterRowOptions'=>['class'=>'kartik-sheet-style'],
 //        'hover'=>true,//鼠标移动上去时，颜色变色，默认为false
     'floatHeader'=>true,//向下滚动时，标题栏可以fixed，默认为false
-    'showPageSummary'=>true,//显示统计栏，默认为false
+//    'showPageSummary'=>true,//显示统计栏，默认为false
     'condensed' => true,
     'bordered'=>true,
     'striped'=>true,
