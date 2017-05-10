@@ -285,6 +285,10 @@ h4 {
 // Use on `li`s or `div`s within the `.list-group` parent.
 @list-group-bg:#fff;
 @list-group-border:#ddd;
+@list-group-border-radius:0;
+@list-group-link-color:#fff;
+@list-group-link-heading-color:#fff;
+@list-group-hover-bg:#fff;
 .list-group-item {
   position: relative;
   display: block;
@@ -309,7 +313,7 @@ h4 {
 //
 // Use anchor or button elements instead of `li`s or `div`s to create interactive items.
 // Includes an extra `.active` modifier class for showing selected items.
-
+@list-group-link-hover-color:#fff;
 a.list-group-item,
 button.list-group-item {
   color: @list-group-link-color;
@@ -332,6 +336,10 @@ button.list-group-item {
   text-align: left;
 }
 
+@list-group-disabled-bg:#fff;
+@list-group-disabled-color:#fff;
+@cursor-disabled:pointer;
+@list-group-disabled-text-color:#fff;
 .list-group-item {
   margin-bottom: 20px;
   // Disabled state
@@ -352,6 +360,10 @@ button.list-group-item {
   }
 
   // Active class on item itself, not parent
+@list-group-active-color:#fff;
+@list-group-active-bg:#fff;
+@list-group-active-border:#fff;
+@list-group-active-text-color:#fff;
   &.active,
   &.active:hover,
   &.active:focus {
