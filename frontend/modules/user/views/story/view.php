@@ -10,4 +10,6 @@ $this->title = "我的文章-".$story->title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-test
+<?php
+var_dump($story->tagArr);
+?>

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $story backend\modules\users\models\UserLevelRule */
+/* @var $story \common\models\Story */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -34,12 +34,25 @@ use kartik\form\ActiveForm;
 
     <?php
     echo $form->field($story, 'tagArr')->widget(\kartik\select2\Select2::className(), [
-//        'data' => $data,
+//        'data' => ['adsf'],
+        'language' => Yii::$app->language,
         'options' => ['placeholder' => '请选择或输入', 'multiple' => true],
         'pluginOptions' => [
             'tags' => true,
             'tokenSeparators' => [',', ' '],
-            'maximumInputLength' => 10
+            'maximumInputLength' => 10,
+            'allowClear' => true,
+            'language' => [
+                'errorLoading' => new \yii\web\JsExpression("function () { return '等待结果'; }"),
+            ],
+            'ajax' => [
+                'url' => \yii\helpers\Url::to(['/site/tag-search']),
+                'dataType' => 'json',
+                'data' => new \yii\web\JsExpression('function(params) { return {name:params.term}; }')
+            ],
+            'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
+            'templateResult' => new \yii\web\JsExpression('function(tag) { return tag.text; }'),
+            'templateSelection' => new \yii\web\JsExpression('function (tag) { return tag.text; }'),
         ],
     ]);
     ?>

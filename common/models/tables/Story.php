@@ -39,7 +39,8 @@ class Story extends \yii\db\ActiveRecord
             [['title', 'content', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
             [['content'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'need_level'], 'integer'],
-            [['title'], 'string', 'max' => 50],
+            [['title'], 'string', 'max' => 25],
+            [['title', 'created_by'], 'unique', 'targetAttribute' => ['title', 'created_by'], 'message' => 'The combination of Title and Created By has already been taken.'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }

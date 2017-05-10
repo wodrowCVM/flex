@@ -37,7 +37,8 @@ class Tag extends \yii\db\ActiveRecord
             [['name', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['data'], 'string'],
-            [['name'], 'string', 'max' => 50],
+            [['name'], 'string', 'max' => 20],
+            [['name'], 'unique'],
         ];
     }
 
