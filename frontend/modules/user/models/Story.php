@@ -14,7 +14,7 @@ class Story extends \common\models\Story
     public function rules()
     {
         return [
-            [['title', 'content', 'desc'], 'required'],
+            [['title', 'content', 'desc', 'tagArr'], 'required'],
             [['content'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'need_level'], 'integer'],
             [['title'], 'string', 'max' => 25],
