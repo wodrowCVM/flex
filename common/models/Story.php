@@ -42,6 +42,7 @@ class Story extends \common\models\tables\Story
         return [
             'id' => '编号',
             'title' => '标题',
+            'desc' => '简介',
             'content' => '内容',
             'created_at' => '发布时间',
             'created_by' => '发布人',

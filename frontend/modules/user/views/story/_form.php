@@ -18,6 +18,10 @@ use kartik\form\ActiveForm;
         'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
     ])->textInput() ?>
 
+    <?= $form->field($story, 'desc', [
+        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
+    ])->textarea() ?>
+
     <?= $form->field($story, 'content', [
 //        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
     ])->widget(\yii\redactor\widgets\Redactor::className(), [

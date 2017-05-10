@@ -15,6 +15,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $updated_by
  * @property integer $need_level
+ * @property string $desc
  *
  * @property User $createdBy
  * @property StoryTag[] $storyTags
@@ -36,10 +37,11 @@ class Story extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
+            [['title', 'content', 'created_at', 'created_by', 'updated_at', 'updated_by', 'desc'], 'required'],
             [['content'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'need_level'], 'integer'],
             [['title'], 'string', 'max' => 25],
+            [['desc'], 'string', 'max' => 50],
             [['title', 'created_by'], 'unique', 'targetAttribute' => ['title', 'created_by'], 'message' => 'The combination of Title and Created By has already been taken.'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
@@ -59,6 +61,7 @@ class Story extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
             'need_level' => 'Need Level',
+            'desc' => 'Desc',
         ];
     }
 
