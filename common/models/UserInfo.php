@@ -7,6 +7,7 @@
  */
 
 namespace common\models;
+use common\components\rule\Level;
 use GDText\Box;
 use GDText\Color;
 use yii\base\Model;
@@ -37,7 +38,8 @@ class UserInfo extends \common\models\tables\UserInfo
      */
     public function getLevelRule()
     {
-        $rule = UserLevelRule::find()->where(['and', ['>', 'end', $this->level], ['<=', 'begin', $this->level]])->one();
+//        $rule = UserLevelRule::find()->where(['and', ['>', 'end', $this->level], ['<=', 'begin', $this->level]])->one();
+        $rule = Level::getUserLevelRule($this->level);
         return $rule;
     }
 

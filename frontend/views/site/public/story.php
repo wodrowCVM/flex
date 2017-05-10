@@ -5,8 +5,8 @@
  * Date: 17-5-8
  * Time: 下午3:36
  */
-$_items = \common\models\Story::find()->where(['<', 'need_level', '1000'])->limit(10)->orderBy(["updated_at"=>SORT_DESC, "created_at"=>SORT_DESC])->all();
-$_count = \common\models\Story::find()->where(['<', 'need_level', '1000'])->count();
+$_items = \common\models\Story::find()->where(['need_level'=>0])->limit(10)->orderBy(["updated_at"=>SORT_DESC, "created_at"=>SORT_DESC])->all();
+$_count = \common\models\Story::find()->where(['need_level'=>0])->count();
 ?>
 
 <div class="panel panel-default list-panel">
