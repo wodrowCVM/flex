@@ -17,6 +17,8 @@ $this->registerCssFile('@web/css/user/user.less');
             <div class="col-sm-3">
                 <!--left col-->
                 <?= $this->render('/public/avatar') ?>
+                <?php echo $this->render('/public/items') ?>
+                <?php echo $this->blocks['userLy1Left'] ?>
                 <div class="clear" style="clear: both"></div>
             </div>
             <div class="col-sm-9">
@@ -27,7 +29,6 @@ $this->registerCssFile('@web/css/user/user.less');
                 <?= $content ?>
             </div>
         </div>
-
     </div>
 </div>
 <?= $this->render('//public/footer') ?>
