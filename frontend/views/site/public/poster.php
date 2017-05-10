@@ -12,7 +12,7 @@ $_count = \common\models\Story::find()->where(['<', 'need_level', '1000'])->coun
 <div class="panel panel-default list-panel">
     <div class="panel-heading">
         <h3 class="panel-title text-center">
-            热门资源
+            精华帖子 &nbsp;
         </h3>
     </div>
     <div class="clearfix site-index-topic">

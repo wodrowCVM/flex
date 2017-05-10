@@ -15,10 +15,23 @@ use frontend\modules\user\models\Story;
 use frontend\modules\user\models\StorySearch;
 use yii\base\ErrorException;
 use yii\db\Exception;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 class StoryController extends Controller
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ]);
+    }
+
     private function getYouStory($id){
         $story = Story::findOne(['id'=>$id]);
         if (\Yii::$app->user->id!=$story->created_by){
@@ -106,5 +119,11 @@ class StoryController extends Controller
         return $this->render('view', [
             'story' => $story,
         ]);
+    }
+
+    public function actionDelete($id)
+    {
+        $this->getYouStory($id)->delete();
+        return $this->redirect(['index']);
     }
 }

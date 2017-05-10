@@ -9,7 +9,7 @@ $_items = \common\models\Story::find()->where(['<', 'need_level', '1000'])->limi
 $_count = \common\models\Story::find()->where(['<', 'need_level', '1000'])->count();
 ?>
 
-<div class="panel panel-primary list-panel">
+<div class="panel panel-default list-panel">
     <div class="panel-heading">
         <h3 class="panel-title text-center">
             免费文章 &nbsp;

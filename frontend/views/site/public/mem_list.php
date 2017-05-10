@@ -5,7 +5,7 @@
  * Date: 17-5-8
  * Time: 下午3:56
  */
-$users = \common\models\User::find()->all();
+$users = \common\models\User::find()->limit(36)->all();
 ?>
 
 <div class="panel panel-default list-panel">
@@ -13,8 +13,7 @@ $users = \common\models\User::find()->all();
         <h3 class="panel-title text-center">会员榜</h3>
     </div>
 
-    <div class="panel-body row">
-
+    <div class="panel-body row hidden-xs" style="height: 420px;">
         <?php foreach ($users as $k => $v): ?>
             <div class="col-xs-2" style="min-width: 80px;">
                 <div class="media user-card">

@@ -45,6 +45,7 @@ if (Yii::$app->request->isPjax){
                 </p>
             </div>
         </div>
+        <?=$this->render('public/mem_list') ?>
     </div>
     <div class="col-md-3">
         <?php \yii\widgets\Pjax::begin(['id'=>'sign_in'])?>
@@ -72,6 +73,7 @@ if (Yii::$app->request->isPjax){
             <button  class="btn btn-primary" style="width: 50%;height: 100%;">今日已签到<?=$has_sign_in_c ?>人</button>
         </div>
         <?php \yii\widgets\Pjax::end()?>
+        <?=$this->render('public/talk') ?>
     </div>
 </div>
 

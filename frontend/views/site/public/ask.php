@@ -5,6 +5,8 @@
  * Date: 17-5-8
  * Time: 下午3:36
  */
+$_items = \common\models\Story::find()->where(['<', 'need_level', '1000'])->limit(10)->orderBy(["updated_at"=>SORT_DESC, "created_at"=>SORT_DESC])->all();
+$_count = \common\models\Story::find()->where(['<', 'need_level', '1000'])->count();
 ?>
 
 <div class="panel panel-default list-panel">
@@ -14,27 +16,49 @@
         </h3>
     </div>
     <div class="clearfix site-index-topic">
-        <li class="list-group-item media col-sm-12 mt0">
-            <a class="pull-right" href="/topic/18#comment6"><span class="badge badge-reply-count">6</span></a>
-            <div class="avatar pull-left">
-                <a href="/member/wodrow"><img class="media-object"
-                                              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAABnRSTlMAAAAAAABupgeRAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAhElEQVRYhe3ZQQqAIBBA0QwP5FE6akfxSK3bjHwGcRb/bWvwY2BB7QrN8cY3jPnsmL3jyVPMIswizCLMIvryLN4nWLplXhEZ8bpFH6JZhFmEWUTRrJ4Z3ncUF90tswizCLMIs4j1R/MRRXfLLMIswizCLKJoVosv+7vgxyzCLMIsomjWBxUNGSUURtHsAAAAAElFTkSuQmCC"
-                                              alt=""></a></div>
+        <?php foreach($_items as $k => $v): ?>
+            <li class="list-group-item media col-sm-12 mt0">
+                <?=\yii\helpers\Html::a('<span class="badge badge-reply-count">6</span>', ['/topic/18#comment6'], [
+                    'class' => 'pull-right',
+                ]) ?>
+                <div class="avatar pull-left">
+                    <?=\yii\helpers\Html::a(\yii\helpers\Html::img($v->user->userInfo->getTextAvatarUrl()), ['#'], ["class"=>"media-objects"]) ?>
+                </div>
 
-            <div class="infos">
-                <div class="media-heading">
-                    <a href="/topic/18" title="At ipsa nam sequi ipsam.">At ipsa nam sequi ipsam.</a> <i
-                        class="fa fa-trophy excellent"></i></div>
-                <div class="media-body meta title-info">
-                    <a class="node" href="/node/booshit">瞎扯淡</a>•<a
-                        href="/member/wodrow">wodrow</a>•<span>6个月前</span></div>
-            </div>
-        </li>
+                <div class="infos">
+                    <div class="media-heading">
+                        <?=\yii\helpers\Html::a($v->title, ['#'], ["title"=>$v->title]) ?>
+                        <i class="fa fa-trophy excellent"></i>
+                    </div>
+                    <div class="media-body meta title-info">
+                        <?=\yii\helpers\Html::a('瞎扯淡', ['#'], ["class"=>"node"]) ?>
+                        •
+                        <?=\yii\helpers\Html::a($v->user->username, ['#'], []) ?>
+                        •
+                        <span><?=date("Y-m-d", $v->created_at) ?></span>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach; ?>
     </div>
 
     <div class="panel-footer text-right">
             <span class="index_count">
-                <i class="fa fa-user"></i> 当前在线人数：1                <i class="fa fa-list"></i> 主题数：50                <i
-                    class="fa fa-share"></i> 回答数：246            </span>
-        <a href="/topic/default/index?sort=excellent">查看更多精华帖</a></div>
+                <i class="fa fa-list"></i> 主题数：<?=$_count ?>
+            </span>
+        <?=\yii\helpers\Html::a('发表文章', '/user/story/publish', [
+            'class' => 'btn btn-success',
+            'style' => [
+                'padding' => 0,
+                'font-size' => "10px",
+            ],
+        ]) ?>
+        <?=\yii\helpers\Html::a('查看更多文章', ['/story'], [
+            'class' => 'btn btn-info',
+            'style' => [
+                'padding' => 0,
+                'font-size' => "10px",
+            ],
+        ]) ?>
+    </div>
 </div>

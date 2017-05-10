@@ -28,6 +28,7 @@ class TagSearch extends Action
             $query->select('id, name AS text')
                 ->from(Tag::tableName())
                 ->where(['like', 'name', $this->search_name])
+                ->orderBy(['created_at'=>SORT_DESC])
                 ->limit($this->limit);
             $command = $query->createCommand();
             $data = $command->queryAll();
