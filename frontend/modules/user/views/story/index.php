@@ -74,7 +74,7 @@ echo \kartik\grid\GridView::widget([
     'persistResize'=>true,
     'toolbar' => false,
     'panel' => [
-        'type' => 'primary',
+        'type' => 'default',
         'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> ' . \kartik\helpers\Html::encode($this->title) . ' </h3>',
 //        'before' => \kartik\helpers\Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),
         'after' => \kartik\helpers\Html::a(\kartik\icons\Icon::show('repeat').' 刷新', ['index'], ['class' => 'btn btn-info']). " ".\kartik\helpers\Html::a(\kartik\icons\Icon::show('pencil-square-o').' 发布新文章', ['/user/story/publish'], ['class' => 'btn btn-primary']).
