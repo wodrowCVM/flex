@@ -26,17 +26,18 @@
             <div class="nano has-scrollbar">
                 <ul id="w1" class="media-list nano-content" tabindex="0" style="right: -15px;">
                     <?php
-                    $x = [0,1,2,3,4,5,6,7];
+                    $x = [0, 1, 2, 3, 4, 5, 6, 7];
                     ?>
-                    <?php foreach($x as $k => $v): ?>
+                    <?php foreach ($x as $k => $v): ?>
                         <li class="med  ia" data-key="22310">
                             <div class="media-left">
                                 <a href="/user/41735" rel="author">
-                                    <?=\dmstr\helpers\Html::img("/site/avatar?text=11&rule=%7B+%22background%22%3A%7B+%22r%22%3A200%2C+%22g%22%3A200%2C+%22b%22%3A200+%7D+%2C+%22color%22%3A%7B+%22r%22%3A0%2C+%22g%22%3A0%2C+%22b%22%3A0+%7D%7D", ['class'=>"media-object"]) ?>
+                                    <?= \dmstr\helpers\Html::img("/site/avatar?text=11&rule=%7B+%22background%22%3A%7B+%22r%22%3A200%2C+%22g%22%3A200%2C+%22b%22%3A200+%7D+%2C+%22color%22%3A%7B+%22r%22%3A0%2C+%22g%22%3A0%2C+%22b%22%3A0+%7D%7D", ['class' => "media-object"]) ?>
                                 </a>
                             </div>
                             <div class="media-body">
-                                <div class="media-content"><a href="/user/41735" rel="author">暮澜寒冬</a>: 我一直在你身旁，从未走远</div>
+                                <div class="media-content"><a href="/user/41735" rel="author">暮澜寒冬</a>: 我一直在你身旁，从未走远
+                                </div>
                                 <div class="media-action"><span class="time">7分钟前</span><span class="pull-right"><a
                                             href="/feed/22310"><i class="fa fa-comment-o"></i> 0</a> <a class="vote up"
                                                                                                         href="javascript:void(0);"

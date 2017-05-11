@@ -12,6 +12,7 @@ $_count = \common\models\Story::find()->where(['need_level'=>0])->count();
 <div class="panel panel-default list-panel">
     <div class="panel-heading">
         <h3 class="panel-title text-center">
+            <?=\kartik\icons\Icon::show('book') ?>
             免费文章 &nbsp;
         </h3>
     </div>

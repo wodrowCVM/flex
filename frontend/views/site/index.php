@@ -17,16 +17,16 @@ $this->title = '首页';
     <div class="col-lg-12">
         <div class="row">
             <div class="col-md-6">
-                <?php  echo $this->render('public/poster') ?>
+                <?php // echo $this->render('public/poster') ?>
             </div>
             <div class="col-md-6">
                 <?php  echo $this->render('public/story') ?>
             </div>
             <div class="col-md-6">
-                <?php  echo $this->render('public/ask') ?>
+                <?php // echo $this->render('public/ask') ?>
             </div>
             <div class="col-md-6">
-                <?php  echo $this->render('public/bt') ?>
+                <?php // echo $this->render('public/bt') ?>
             </div>
         </div>
     </div>
