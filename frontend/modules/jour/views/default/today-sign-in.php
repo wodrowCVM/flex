@@ -7,7 +7,7 @@
  */
 $this->title = "今日签到";
 $this->params['breadcrumbs'][] = $this->title;
-$today_m = \common\models\UserSignIn::find()->where(['date'=>date("Ymd")-1]);
+$today_m = \common\models\UserSignIn::find()->where(['date'=>date("Ymd")]);
 $today_sign_in = $today_m->all();
 $countiously_sign_in = \common\models\UserSignIn::find()->select([
     '*',
@@ -34,7 +34,6 @@ $countiously_sign_in = \common\models\UserSignIn::find()->select([
                     </div>
                     <div class="media-body">
                         <div class="media-heading">
-                            c
                             <em>NO. <i><?=$k+1 ?></i></em>
                         </div>
                         <div class="media-content">
