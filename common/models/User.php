@@ -215,7 +215,7 @@ class User extends \common\models\tables\User implements IdentityInterface
 
     public function getMemberUrlArr()
     {
-        $arr = ["/site/member-info", 'id'=>$this->id];
+        $arr = ["/user/default/member-info", 'member-id'=>$this->id];
         return $arr;
     }
 

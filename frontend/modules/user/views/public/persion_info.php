@@ -6,13 +6,18 @@
  * Time: 下午5:51
  */
 $user = Yii::$app->user->identity;
+if ($member_id = Yii::$app->request->get('member-id')){
+    $user = \common\models\User::findOne(['id'=>$member_id]);
+}
 ?>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2 class="panel-title">个人信息</h2>
+        <?php if(!$member_id): ?>
         <span class="pull-right"><a class="btn btn-xs" href="/user/setting/index" title="" data-toggle="tooltip"
                                     data-original-title="帐户设置"><i class="fa fa-cog"></i> </a></span>
+        <?php endif; ?>
     </div>
     <div class="panel-body">
         <ul class="user-info">

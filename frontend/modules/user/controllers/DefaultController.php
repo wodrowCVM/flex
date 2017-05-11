@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use common\models\User;
 use yii\web\Controller;
 
 /**
@@ -18,5 +19,11 @@ class DefaultController extends Controller
     {
 //        echo 12345;
         return $this->render('index');
+    }
+
+    public function actionMemberInfo()
+    {
+        $this->layout = "ly2";
+        return $this->render('member-info');
     }
 }
