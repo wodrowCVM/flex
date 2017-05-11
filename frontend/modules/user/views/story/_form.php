@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use kartik\form\ActiveForm;
+//use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $story \common\models\Story */
@@ -11,15 +12,15 @@ use kartik\form\ActiveForm;
 <div class="user-level-rule-form">
 
     <?php $form = ActiveForm::begin([
-        'type' => \kartik\form\ActiveForm::TYPE_HORIZONTAL
+//        'type' => \kartik\form\ActiveForm::TYPE_HORIZONTAL
     ]); ?>
 
     <?= $form->field($story, 'title', [
-        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
+//        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
     ])->textInput() ?>
 
     <?= $form->field($story, 'desc', [
-        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
+//        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
     ])->textarea() ?>
 
     <?= $form->field($story, 'content', [

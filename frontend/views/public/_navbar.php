@@ -38,12 +38,12 @@ if (Yii::$app->user->isGuest) {
     $rightItems[] = ['label' => '登录', 'url' => ['/site/login']];
 } else {
     // 提醒
-    $rightItems[] = [
+    /*$rightItems[] = [
         'label' => \yii\helpers\Html::tag('i', '', ['class' => 'fa fa-bell']) . \yii\helpers\Html::tag('span', null),
-//              'url' => ['/notification/index'],
+//              'url' => ['#'],
         'linkOptions' => ['class' => 'new',],
         'options' => ['class' => 'notification-count'],
-    ];
+    ];*/
     // 个人中心
     $rightItems[] = [
         'label' => \yii\helpers\Html::img(Yii::$app->user->identity->userInfo->textAvatarUrl, [

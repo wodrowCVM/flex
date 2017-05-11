@@ -41,7 +41,7 @@ class StorySearch extends Story
      */
     public function search($params)
     {
-        $query = Story::find()->where(['created_by'=>Yii::$app->user->id]);
+        $query = Story::find()->where(['created_by'=>Yii::$app->user->id])->orderBy(['created_at'=>SORT_DESC]);
 
         // add conditions that should always apply here
 

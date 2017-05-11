@@ -11,6 +11,7 @@ namespace common\models;
 
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\Url;
 
 /**
  * Class Story
@@ -84,8 +85,20 @@ class Story extends \common\models\tables\Story
         $arr = [];
         $tags = $this->tags;
         foreach($tags as $k => $v){
-            $arr[$v->id] = $v->name;
+            $arr[] = $v->name;
         }
         return $arr;
+    }
+
+    public function getUrlArr()
+    {
+        $arr = ["/story/default/view", 'id'=>$this->id];
+        return $arr;
+    }
+
+    public function getUrl()
+    {
+        $url = Url::to($this->getUrlArr());
+        return $url;
     }
 }

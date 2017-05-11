@@ -22,18 +22,18 @@ $_count = \common\models\Story::find()->where(['need_level'=>0])->count();
                     'class' => 'pull-right',
                 ]) ?>
                 <div class="avatar pull-left">
-                    <?=\yii\helpers\Html::a(\yii\helpers\Html::img($v->user->userInfo->getTextAvatarUrl()), ['#'], ["class"=>"media-objects"]) ?>
+                    <?=\yii\helpers\Html::a(\yii\helpers\Html::img($v->user->userInfo->getTextAvatarUrl(),['style'=>['width'=>"50px", 'height'=>"50px"]]), $v->user->getMemberUrlArr(), ["class"=>"media-objects"]) ?>
                 </div>
 
                 <div class="infos">
-                    <div class="media-heading">
-                        <?=\yii\helpers\Html::a($v->title, ['#'], ["title"=>$v->title]) ?>
+                    <div class="media-heading" style="height: 20px;margin-bottom: 12px !important;">
+                        <?=\yii\helpers\Html::a($v->title, $v->getUrlArr(), ["title"=>$v->title]) ?>
                         <i class="fa fa-trophy excellent"></i>
                     </div>
                     <div class="media-body meta title-info">
-                        <?=\yii\helpers\Html::a('瞎扯淡', ['#'], ["class"=>"node"]) ?>
+                        <?=\yii\helpers\Html::a($v->tagArr[0], ['#'], ["class"=>"node"]) ?>
                         •
-                        <?=\yii\helpers\Html::a($v->user->username, ['#'], []) ?>
+                        <?=\yii\helpers\Html::a($v->user->username, $v->user->getMemberUrlArr(), []) ?>
                         •
                         <span><?=date("Y-m-d", $v->created_at) ?></span>
                     </div>

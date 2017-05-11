@@ -18,13 +18,26 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
+    /**
+     * 等级规则
+     * @return string
+     */
     public function actionLevelRule()
     {
         return $this->render('level-rule');
     }
 
+    /**
+     * 排行
+     * @return string
+     */
     public function actionTop()
     {
         return $this->render('top');
+    }
+
+    public function actionTodaySignIn()
+    {
+        return $this->render('today-sign-in');
     }
 }

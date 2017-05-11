@@ -70,7 +70,7 @@ if (Yii::$app->request->isPjax){
                     ],
                 ]) ?>
             <?php endif; ?>
-            <button  class="btn btn-primary" style="width: 50%;height: 100%;">今日已签到<?=$has_sign_in_c ?>人</button>
+            <?=\dmstr\helpers\Html::a('今日已签到'.$has_sign_in_c.'人', ['/jour/default/today-sign-in'], ['class'=>"btn btn-primary", 'style'=>['width'=>"50%", 'height'=>"100%", 'line-height'=>"28px"]]) ?>
         </div>
         <?php \yii\widgets\Pjax::end()?>
         <?=$this->render('public/talk') ?>

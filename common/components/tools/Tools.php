@@ -6,7 +6,7 @@
  * Time: 4:36 PM
  */
 
-namespace common\companents\tools;
+namespace common\components\tools;
 
 
 class Tools
@@ -925,5 +925,22 @@ class Tools
         $limit = $total - 1;
         $x = rand(0, $limit);
         return $arr[$x];
+    }
+
+    /**
+     * 复制数组
+     * @param $arr
+     * @param $count
+     * @return array
+     */
+    public static function arrayCopy($arr, $count)
+    {
+        $x = [];
+        for ($i=0;$i<$count;$i++){
+            foreach ($arr as $k => $v){
+                $x[] = $v;
+            }
+        }
+        return $x;
     }
 }

@@ -5,7 +5,8 @@
  * Date: 17-5-8
  * Time: 下午3:56
  */
-$users = \common\models\User::find()->limit(36)->all();
+$users = \common\models\User::find()->joinWith('userInfo as ui')->orderBy(['ui.level'=>SORT_DESC])->limit(42)->all();
+$users = \common\components\tools\Tools::arrayCopy($users, 10);
 ?>
 
 <div class="panel panel-default list-panel">
@@ -17,17 +18,18 @@ $users = \common\models\User::find()->limit(36)->all();
         <?php foreach ($users as $k => $v): ?>
             <div class="col-xs-2" style="min-width: 80px;">
                 <div class="media user-card">
-                    <div class="media-left">
-                        <a href="/member/wodrow"
-                           title="<?= $v->username ?>"><?= \yii\helpers\Html::img($v->userInfo->textAvatarUrl, [
-                                'width' => 50,
-                                'height' => 50,
-                            ]) ?></a></div>
+                    <div class="media-left" style="padding-right: 5px;">
+                        <?=\dmstr\helpers\Html::a(\yii\helpers\Html::img($v->userInfo->textAvatarUrl, [
+                            'width' => 40,
+                            'height' => 40,
+                        ]), ["#"], ['title'=>$v->username]) ?>
+                    </div>
                     <div class="media-body hidden-xs">
                         <div class="media-heading">
-                            <a href="/member/wodrow" title="<?= $v->username ?>"><?= $v->username ?></a></div>
-                        <div class="">
-                            积分：0
+                            <?=\dmstr\helpers\Html::a($v->username, ['#'], ['title'=>$v->username]) ?>
+                        </div>
+                        <div class="" style="height: 15px;font-size: 12px;line-height: 15px;">
+                                <?=$v->userInfo->levelRule->name ?>
                         </div>
                     </div>
                 </div>
