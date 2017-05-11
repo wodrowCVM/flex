@@ -6,7 +6,7 @@
  * Time: 下午3:56
  */
 $users = \common\models\User::find()->joinWith('userInfo as ui')->orderBy(['ui.level'=>SORT_DESC])->limit(42)->all();
-$users = \common\components\tools\Tools::arrayCopy($users, 10);
+//$users = \common\components\tools\Tools::arrayCopy($users, 10);
 ?>
 
 <div class="panel panel-default list-panel">
