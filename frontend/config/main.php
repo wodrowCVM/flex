@@ -11,6 +11,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'name' => "Get√flexible",
     'language' => 'zh-CN',
+    'timeZone' => 'Asia/Shanghai',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [

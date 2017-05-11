@@ -7,9 +7,13 @@
  */
 $this->title = "今日签到";
 $this->params['breadcrumbs'][] = $this->title;
-
-$users = \common\models\User::find()->joinWith('userInfo as ui')->orderBy(['ui.level'=>SORT_DESC])->limit(42)->all();
-$users = \common\components\tools\Tools::arrayCopy($users, 10);
+$today_m = \common\models\UserSignIn::find()->where(['date'=>date("Ymd")-1]);
+$today_sign_in = $today_m->all();
+$countiously_sign_in = \common\models\UserSignIn::find()->select([
+    '*',
+    'max(countinously_days) as countinously_days',
+])->orderBy(['countinously_days'=>SORT_DESC, 'time'=>SORT_ASC])->groupBy(['user_id'])->limit(100)->all();
+//var_dump($countiously_sign_in[0]);exit;
 ?>
 
 <div class="row">
@@ -17,25 +21,29 @@ $users = \common\components\tools\Tools::arrayCopy($users, 10);
         <div class="page-header">
             <h1>今日签到会员</h1>
             <span class="pull-right stat">
-                昨日签到：<strong>233</strong>
-                上周同期：<strong>217</strong>
-                今日签到：<strong>208</strong>
+                昨日签到：<strong><?=\common\models\UserSignIn::find()->where(['date'=>date("Ymd")-1])->count() ?></strong>
+                上周同期：<strong><?=\common\models\UserSignIn::find()->where(['date'=>date("Ymd")-7])->count() ?></strong>
+                今日签到：<strong><?=$today_m->count() ?></strong>
             </span>
         </div>
         <ul class="media-list registration">
-            <li class="media col-lg-4 col-md-4" style="float: left; margin-bottom: 15px; font-size: 12px; margin-top: 0;">
-                <div class="media-left">
-                    <a href="/user/270" rel="author"><img class="media-object" src="/site/avatar?text=%E7%A5%9E%E6%98%8E&rule=%7B+%22background%22%3A%7B+%22r%22%3A131%2C+%22g%22%3A175%2C+%22b%22%3A155+%7D+%2C+%22color%22%3A%7B+%22r%22%3A0%2C+%22g%22%3A0%2C+%22b%22%3A0+%7D%7D" alt="lilongsy"></a>                </div>
-                <div class="media-body">
-                    <div class="media-heading">
-                        <a href="/user/270" rel="author">lilongsy</a>                        <em>NO. <i>1</i></em>
+            <?php foreach($today_sign_in as $k => $v): ?>
+                <li class="media col-lg-4 col-md-4" style="float: left; margin-bottom: 15px; font-size: 12px; margin-top: 0;">
+                    <div class="media-left">
+                        <?=\dmstr\helpers\Html::a(\dmstr\helpers\Html::img($v->user->userInfo->getTextAvatarUrl(), ['width'=>60, 'height'=>60, 'class'=>"media-object", 'alt'=>$v->user->username]), $v->user->getMemberUrlArr(), ['rel'=>"author"]) ?>
                     </div>
-                    <div class="media-content">
-                        签到时间：<i>00:00:16</i><br>
-                        连续签到：<i>320</i>天
+                    <div class="media-body">
+                        <div class="media-heading">
+                            c
+                            <em>NO. <i><?=$k+1 ?></i></em>
+                        </div>
+                        <div class="media-content">
+                            签到时间：<i><?=date("H:i:s", $v->time) ?></i><br>
+                            连续签到：<i><?=$v->countinously_days ?></i>天
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </div>
     <div class="col-lg-3">
@@ -45,18 +53,22 @@ $users = \common\components\tools\Tools::arrayCopy($users, 10);
             </div>
             <div class="panel-body">
                 <ul class="media-list registration">
-                    <li class="media">
-                        <div class="media-left">
-                            <a href="/user/25794" rel="author"><img class="media-object" src="/site/avatar?text=%E7%A5%9E%E6%98%8E&rule=%7B+%22background%22%3A%7B+%22r%22%3A131%2C+%22g%22%3A175%2C+%22b%22%3A155+%7D+%2C+%22color%22%3A%7B+%22r%22%3A0%2C+%22g%22%3A0%2C+%22b%22%3A0+%7D%7D" alt="胖纸囧"></a>                        </div>
-                        <div class="media-body">
-                            <div class="media-heading">
-                                <a href="/user/25794" rel="author">胖纸囧</a>                                <em>NO. <i>1</i></em>
+                    <?php foreach($countiously_sign_in as $k => $v): ?>
+                        <li class="media">
+                            <div class="media-left">
+                                <?=\dmstr\helpers\Html::a(\dmstr\helpers\Html::img($v->user->userInfo->getTextAvatarUrl(), ['width'=>45, 'height'=>45, 'class'=>"media-object", 'alt'=>$v->user->username]), $v->user->getMemberUrlArr(), ['rel'=>"author"]) ?>
                             </div>
-                            <div class="media-content">
-                                连续签到：<i>945</i>天
+                            <div class="media-body">
+                                <div class="media-heading">
+                                    <?=\dmstr\helpers\Html::a($v->user->username, $v->user->getMemberUrlArr(), ['rel'=>"author"]) ?>
+                                    <em>NO. <i><?=$k+1 ?></i></em>
+                                </div>
+                                <div class="media-content">
+                                    连续签到：<i><?=$v->countinously_days ?></i>天
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
