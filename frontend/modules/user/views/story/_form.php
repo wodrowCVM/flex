@@ -62,7 +62,7 @@ use kartik\form\ActiveForm;
     ]);
     ?>
 
-    <div class="col-md-offset-2">
+    <div class="">
         <?= Html::submitButton($story->isNewRecord ? '发布' : '保存', ['class' => $story->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= \yii\helpers\Html::resetButton('重置', ['class' => 'btn']) ?>
     </div>

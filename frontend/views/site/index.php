@@ -12,21 +12,25 @@ $this->title = '首页';
 
 <div class="row">
     <div class="col-lg-12">
-        <?=$this->render('_sign_in') ?>
+        <?=$this->render('_sign_in', [
+            'talk_model' => $talk_model,
+            'talks' => $talks,
+            'talk_pages' => $talk_pages,
+        ]) ?>
     </div>
     <div class="col-lg-12">
         <div class="row">
             <div class="col-md-6">
-                <?php  echo $this->render('public/poster') ?>
+                <?php // echo $this->render('public/poster') ?>
             </div>
             <div class="col-md-6">
-                <?php  echo $this->render('public/story') ?>
+                <?php // echo $this->render('public/story') ?>
             </div>
             <div class="col-md-6">
-                <?php  echo $this->render('public/ask') ?>
+                <?php // echo $this->render('public/ask') ?>
             </div>
             <div class="col-md-6">
-                <?php  echo $this->render('public/bt') ?>
+                <?php // echo $this->render('public/bt') ?>
             </div>
         </div>
     </div>

@@ -22,11 +22,11 @@ $users = \common\models\User::find()->joinWith('userInfo as ui')->orderBy(['ui.l
                         <?=\dmstr\helpers\Html::a(\yii\helpers\Html::img($v->userInfo->textAvatarUrl, [
                             'width' => 40,
                             'height' => 40,
-                        ]), ["#"], ['title'=>$v->username]) ?>
+                        ]), $v->getMemberUrlArr(), ['title'=>$v->username]) ?>
                     </div>
                     <div class="media-body hidden-xs">
                         <div class="media-heading">
-                            <?=\dmstr\helpers\Html::a($v->username, ['#'], ['title'=>$v->username]) ?>
+                            <?=\dmstr\helpers\Html::a($v->username, $v->getMemberUrlArr(), ['title'=>$v->username]) ?>
                         </div>
                         <div class="" style="height: 15px;font-size: 12px;line-height: 15px;">
                                 <?=$v->userInfo->levelRule->name ?>

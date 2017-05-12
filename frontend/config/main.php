@@ -48,6 +48,9 @@ $config = [
         'resource' => [ // 资源
             'class' => 'frontend\modules\resource\ResourceModule',
         ],
+        'talk' => [ // 说说
+            'class' => 'frontend\modules\talk\TalkModule',
+        ],
     ],
     'components' => [
         'request' => [
