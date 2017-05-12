@@ -105,8 +105,9 @@ class SiteController extends Controller
         $x = new Talk();
         $talk_model = $x;
         if ($talk_model->load(Yii::$app->request->post()) && $talk_model->save()){
-            $talk_model = $x;
-            $talk_pages = $y;
+            /*$talk_model = $x;
+            $talk_pages = $y;*/
+            $this->redirect(['index']);
         }
         $talks = $query->offset($talk_pages->offset)
             ->limit($talk_pages->limit)
