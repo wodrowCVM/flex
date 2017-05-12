@@ -97,21 +97,16 @@ class SiteController extends Controller
     {
         $query = Talk::find()->orderBy(['created_at'=>SORT_DESC]);
         $countQuery = clone $query;
-        $talk_pages = new Pagination([
+        $y = new Pagination([
             'totalCount' => $countQuery->count(),
             'pageSize' => 10,
         ]);
-        $talk_model = new Talk();
+        $talk_pages = $y;
+        $x = new Talk();
+        $talk_model = $x;
         if ($talk_model->load(Yii::$app->request->post()) && $talk_model->save()){
-//            $talks = $query->offset($talk_pages->offset)
-//                ->limit($talk_pages->limit)
-//                ->all();
-            $talk_model = new Talk();
-            /*return $this->renderAjax('public/talk', [
-                'talk_model' => $talk_model,
-                'talks' => $talks,
-                'talk_pages' => $talk_pages,
-            ]);*/
+            $talk_model = $x;
+            $talk_pages = $y;
         }
         $talks = $query->offset($talk_pages->offset)
             ->limit($talk_pages->limit)

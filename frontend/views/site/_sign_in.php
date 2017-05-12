@@ -146,8 +146,7 @@ if (Yii::$app->request->isPjax){
                                 'lastPageLabel' => '尾页',
                                 'prevPageLabel' => '上一页',
                                 'nextPageLabel' => '下一页',
-                                'maxButtonCount' => 5, //控制每页显示的页数
-                                'options' => ['data-pjax' => "#talk", 'class'=>"pagination"],
+                                'maxButtonCount' => 10, //控制每页显示的页数
                             ]);
                             ?>
                         </ul>
