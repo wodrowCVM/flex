@@ -117,6 +117,7 @@ $config = [
         'except' => [
             'site/*',
             'jour/*',
+            'user/default/member-info',
         ],
         'rules' => [
             [
