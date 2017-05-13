@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Created by PhpStorm.
@@ -10,25 +9,26 @@
  * @var boolean $is_sign_in
  */
 $_date = date("Ymd", time());
-$sign_in = \common\models\UserSignIn::findOne(['user_id'=>Yii::$app->user->id, 'date'=>$_date]);
-$has_sign_in_c = \common\models\UserSignIn::find()->where(['date'=>$_date])->count();
-if (Yii::$app->request->isPjax){
-    if ($_REQUEST['_pjax']=='#sign_in'){
+$sign_in = \common\models\UserSignIn::findOne(['user_id' => Yii::$app->user->id, 'date' => $_date]);
+$has_sign_in_c = \common\models\UserSignIn::find()->where(['date' => $_date])->count();
+if (Yii::$app->request->isPjax) {
+    if ($_REQUEST['_pjax'] == '#sign_in') {
         $trans = Yii::$app->db->beginTransaction();
-        try{
+        try {
             $sign_in = new \common\models\UserSignIn();
             $sign_in->user_id = Yii::$app->user->id;
             $sign_in->date = $_date;
             $sign_in->time = time();
-            $yesterday_sign_in = \common\models\UserSignIn::findOne(['user_id'=>Yii::$app->user->id, 'date'=>$_date-1]);
-            $c = $yesterday_sign_in?$yesterday_sign_in->countinously_days+1:1;
+            $yesterday_sign_in = \common\models\UserSignIn::findOne(['user_id' => Yii::$app->user->id, 'date' => $_date - 1]);
+            $c = $yesterday_sign_in ? $yesterday_sign_in->countinously_days + 1 : 1;
             $sign_in->countinously_days = $c;
-            if ($sign_in->save()){}else{
+            if ($sign_in->save()) {
+            } else {
                 $sign_in = false;
             }
-            $has_sign_in_c = \common\models\UserSignIn::find()->where(['date'=>$_date])->count();
+            $has_sign_in_c = \common\models\UserSignIn::find()->where(['date' => $_date])->count();
             $trans->commit();
-        }catch (\yii\db\Exception $e){
+        } catch (\yii\db\Exception $e) {
             $trans->rollBack();
             throw $e;
         }
@@ -45,34 +45,34 @@ if (Yii::$app->request->isPjax){
                 </p>
             </div>
         </div>
-        <?=$this->render('public/mem_list') ?>
+        <?= $this->render('public/mem_list') ?>
     </div>
     <div class="col-md-3">
-        <?php \yii\widgets\Pjax::begin(['id'=>'sign_in'])?>
+        <?php \yii\widgets\Pjax::begin(['id' => 'sign_in']) ?>
         <div class="btn-group" id="sign_in_btn_group" style="width: 100%;height: 40px;margin-bottom: 20px;">
-            <?php if($sign_in): ?>
-                <?=\yii\helpers\Html::button(\kartik\icons\Icon::show('calendar-check-o').'已连续签到'.$sign_in->countinously_days.'天', [
+            <?php if ($sign_in): ?>
+                <?= \yii\helpers\Html::button(\kartik\icons\Icon::show('calendar-check-o') . '已连续签到' . $sign_in->countinously_days . '天', [
                     'class' => "btn",
                     'style' => [
-                        'width'=>'50%',
-                        'height'=>'100%',
+                        'width' => '50%',
+                        'height' => '100%',
                     ],
-                    'disabled'=>true,
+                    'disabled' => true,
                 ]) ?>
             <?php else: ?>
-                <?=\yii\helpers\Html::a('签到', ['index'], [
-                    'id'=>'sign_in_btn',
+                <?= \yii\helpers\Html::a('签到', ['index'], [
+                    'id' => 'sign_in_btn',
                     'class' => "btn btn-warning",
                     'style' => [
-                        'width'=>'50%',
-                        'height'=>'100%',
-                        'line-height'=>"26px",
+                        'width' => '50%',
+                        'height' => '100%',
+                        'line-height' => "26px",
                     ],
                 ]) ?>
             <?php endif; ?>
-            <?=\dmstr\helpers\Html::a('今日已签到'.$has_sign_in_c.'人', ['/jour/default/today-sign-in'], ['class'=>"btn btn-primary", 'style'=>['width'=>"50%", 'height'=>"100%", 'line-height'=>"28px"]]) ?>
+            <?= \dmstr\helpers\Html::a('今日已签到' . $has_sign_in_c . '人', ['/jour/default/today-sign-in'], ['class' => "btn btn-primary", 'style' => ['width' => "50%", 'height' => "100%", 'line-height' => "28px"]]) ?>
         </div>
-        <?php \yii\widgets\Pjax::end()?>
+        <?php \yii\widgets\Pjax::end() ?>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">
@@ -86,10 +86,10 @@ if (Yii::$app->request->isPjax){
             </div>
             <div class="panel-body">
                 <?php \yii\widgets\Pjax::begin(['id' => 'talk']); ?>
-                <?php $talk_form = \kartik\widgets\ActiveForm::begin(['options' => ['data-pjax' => true ], 'action'=>['/site/index', '_pjax'=>'#talk']]); ?>
+                <?php $talk_form = \kartik\widgets\ActiveForm::begin(['options' => ['data-pjax' => true], 'action' => ['/site/index', '_pjax' => '#talk']]); ?>
                 <?= $talk_form->field($talk_model, 'content', [
-                    'template' => '<div class="form-group input-group field-feed-content required">{input}<span class="input-group-btn">'.\dmstr\helpers\Html::submitButton('发布', ['class'=>"btn btn-success"]).'</span></div>',
-                ])->textarea(['id' => "feed-content", 'class' => "form-control", 'placeholder'=>"我想说..."]) ?>
+                    'template' => '<div class="form-group input-group field-feed-content required">{input}<span class="input-group-btn">' . \dmstr\helpers\Html::submitButton('发布', ['class' => "btn btn-success"]) . '</span></div>',
+                ])->textarea(['id' => "feed-content", 'class' => "form-control", 'placeholder' => "我想说..."]) ?>
                 <?php \kartik\widgets\ActiveForm::end(); ?>
                 <?php // \yii\widgets\Pjax::end(); ?>
                 <?php // \yii\widgets\Pjax::begin(['id' => 'talk_list']); ?>
@@ -125,15 +125,8 @@ if (Yii::$app->request->isPjax){
                                         }
                                         ?></span>
                                             <span class="pull-right">
-                                        <a href="/feed/22310">
-                                            <i class="fa fa-comment-o"></i>
-                                            0
-                                        </a>
-                                        <a class="vote up" href="javascript:void(0);" title="" data-type="feed"
-                                           data-id="22310" data-toggle="tooltip" data-original-title="顶">
-                                            <i class="fa fa-thumbs-o-up"></i>
-                                            1
-                                        </a>
+                                                <?=\dmstr\helpers\Html::a(\kartik\icons\Icon::show('comment-o')." 0 ",['#'], []) ?>
+                                                <?=\dmstr\helpers\Html::a(\kartik\icons\Icon::show('thumbs-o-up')." 0 ",['#'], []) ?>
                                     </span>
                                         </div>
                                     </div>
@@ -167,7 +160,7 @@ if (Yii::$app->request->isPjax){
         $("#sign_in_btn").click(function () {
             var is_guest = !"<?=Yii::$app->user->id ?>";
             var login_url = "<?=\yii\helpers\Url::to(['/site/login']) ?>";
-            if(is_guest){
+            if (is_guest) {
                 location.href = login_url;
             }
         });
