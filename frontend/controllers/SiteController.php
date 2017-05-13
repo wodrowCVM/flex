@@ -101,13 +101,13 @@ class SiteController extends Controller
             'totalCount' => $countQuery->count(),
             'pageSize' => 10,
         ]);
-        $talk_pages = $y;
+        $talk_pages = clone $y;
         $x = new Talk();
-        $talk_model = $x;
+        $talk_model = clone $x;
         if ($talk_model->load(Yii::$app->request->post()) && $talk_model->save()){
-            $_GET['page'] = 1;
-            $talk_model = $x;
-//            $talk_pages = $y;
+//            $_GET['page'] = 1;
+            $talk_model = clone $x;
+            $talk_pages = clone $y;
         }
         $talks = $query->offset($talk_pages->offset)
             ->limit($talk_pages->limit)

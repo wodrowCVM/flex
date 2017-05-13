@@ -86,7 +86,7 @@ if (Yii::$app->request->isPjax){
             </div>
             <div class="panel-body">
                 <?php \yii\widgets\Pjax::begin(['id' => 'talk']); ?>
-                <?php $talk_form = \kartik\widgets\ActiveForm::begin(['options' => ['data-pjax' => true ]]); ?>
+                <?php $talk_form = \kartik\widgets\ActiveForm::begin(['options' => ['data-pjax' => true ], 'action'=>['/site/index', '_pjax'=>'#talk']]); ?>
                 <?= $talk_form->field($talk_model, 'content', [
                     'template' => '<div class="form-group input-group field-feed-content required">{input}<span class="input-group-btn">'.\dmstr\helpers\Html::submitButton('发布', ['class'=>"btn btn-success"]).'</span></div>',
                 ])->textarea(['id' => "feed-content", 'class' => "form-control", 'placeholder'=>"我想说..."]) ?>
