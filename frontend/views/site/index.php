@@ -24,7 +24,7 @@ $this->title = '首页';
                 <?php // echo $this->render('public/poster') ?>
             </div>
             <div class="col-md-6">
-                <?php // echo $this->render('public/story') ?>
+                <?php  echo $this->render('public/story') ?>
             </div>
             <div class="col-md-6">
                 <?php // echo $this->render('public/ask') ?>

@@ -25,10 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             <span class="glyphicon glyphicon-calendar"></span>&nbsp;
                             发布日期：
                             <?=date("Y-m-d", $v->created_at) ?>
-                            <span class="glyphicon glyphicon-list" style="margin-left:15px;"></span>&nbsp;分类：
-                            <a href="/category/other.html">其他</a>
+                            <!--<span class="glyphicon glyphicon-list" style="margin-left:15px;"></span>&nbsp;分类：
+                            <a href="/category/other.html">其他</a>-->
                             <span class="glyphicon glyphicon-eye-open" style="margin-left:15px;"></span>&nbsp;热度：
-                            179&nbsp;℃
+                            <?=$v->view_count ?>°C
                             <span class="glyphicon glyphicon-comment" style="margin-left:15px;"></span>
                             0条评论
                             <?=\dmstr\helpers\Html::a('阅读全文', ['view', 'id'=>$v->id], ['class'=>'btn btn-default btn-xs pull-right']) ?>

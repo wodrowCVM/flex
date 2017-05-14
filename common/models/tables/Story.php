@@ -16,6 +16,7 @@ use Yii;
  * @property integer $updated_by
  * @property integer $need_level
  * @property string $desc
+ * @property integer $view_count
  *
  * @property User $createdBy
  * @property StoryTag[] $storyTags
@@ -39,7 +40,7 @@ class Story extends \yii\db\ActiveRecord
         return [
             [['title', 'content', 'created_at', 'created_by', 'updated_at', 'updated_by', 'desc'], 'required'],
             [['content'], 'string'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by', 'need_level'], 'integer'],
+            [['created_at', 'created_by', 'updated_at', 'updated_by', 'need_level', 'view_count'], 'integer'],
             [['title'], 'string', 'max' => 25],
             [['desc'], 'string', 'max' => 50],
             [['title', 'created_by'], 'unique', 'targetAttribute' => ['title', 'created_by'], 'message' => 'The combination of Title and Created By has already been taken.'],
@@ -62,6 +63,7 @@ class Story extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
             'need_level' => 'Need Level',
             'desc' => 'Desc',
+            'view_count' => 'View Count',
         ];
     }
 

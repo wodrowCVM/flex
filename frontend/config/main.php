@@ -121,6 +121,7 @@ $config = [
             'site/*',
             'jour/*',
             'user/default/member-info',
+            'story/*',
         ],
         'rules' => [
             [

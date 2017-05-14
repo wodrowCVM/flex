@@ -39,6 +39,9 @@ class DefaultController extends Controller
     public function actionView($id)
     {
         $story = $this->getStory($id);
+        $story->view_count ++;
+        $story->save();
+//        $story_reply = new
         return $this->render('view', [
             'story' => $story,
         ]);
