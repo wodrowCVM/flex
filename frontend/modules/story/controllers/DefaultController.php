@@ -2,6 +2,7 @@
 
 namespace frontend\modules\story\controllers;
 
+use common\models\tables\StoryReply;
 use frontend\modules\story\models\Story;
 use yii\data\Pagination;
 use yii\web\Controller;
@@ -41,9 +42,10 @@ class DefaultController extends Controller
         $story = $this->getStory($id);
         $story->view_count ++;
         $story->save();
-//        $story_reply = new
+        $story_reply = new StoryReply();
         return $this->render('view', [
             'story' => $story,
+            'story_reply' => $story_reply,
         ]);
     }
 }

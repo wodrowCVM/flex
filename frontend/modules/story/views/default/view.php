@@ -67,6 +67,28 @@ $this->title = $story->title;
                     </div>
                 </div>
                 <div class="row">
+                    <?php $form = \kartik\widgets\ActiveForm::begin(['id' => "comment-form", 'action' => ['/story/default/view'], 'options' => []]); ?>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <?=$form->field($story_reply, 'at_id', [
+                                    'template'=>'<div class="input-group form-group"><span class="input-group-addon">@</span>{input}</div>',
+                                ])->textInput()->label(false) ?>
+                            </div>
+                            <div class="form-group">
+                                <?=$form->field($story_reply, 'content', [
+                                    'options' => [
+//                                        'id' => "commentform-content",
+//                                        'class' => "form-control",
+//                                        'rows' => 5,
+                                    ],
+//                                    'template'=>'{input}',
+                                ])->textarea()->label(false) ?>
+                            </div>
+                            <div class="notice">最多500个字符</div>
+                        </div>
+                    </div>
+                    <?php $form = \kartik\widgets\ActiveForm::end(); ?>
                     <form id="comment-form" action="/article/comment.html" method="post">
                         <input type="hidden" name="pid" value="48">
                         <div class="col-md-10">
