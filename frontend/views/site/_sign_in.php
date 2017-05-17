@@ -88,7 +88,7 @@ if (Yii::$app->request->isPjax) {
                 <?php \yii\widgets\Pjax::begin(['id' => 'talk']); ?>
                 <?php $talk_form = \kartik\widgets\ActiveForm::begin(['options' => ['data-pjax' => true], 'action' => ['/site/index', '_pjax' => '#talk']]); ?>
                 <?= $talk_form->field($talk_model, 'content', [
-                    'template' => '<div class="form-group input-group field-feed-content required">{input}<span class="input-group-btn">' . \dmstr\helpers\Html::submitButton('发布', ['class' => "btn btn-success"]) . '</span></div>',
+                    'template' => '<div class="form-group input-group field-feed-content required">{input}<span class="input-group-btn">' . \dmstr\helpers\Html::submitButton('发布', ['class' => "btn btn-success", 'id' => 'index_talk_publish_button']) . '</span></div>',
                 ])->textarea(['id' => "feed-content", 'class' => "form-control", 'placeholder' => "我想说..."]) ?>
                 <?php \kartik\widgets\ActiveForm::end(); ?>
                 <?php // \yii\widgets\Pjax::end(); ?>
@@ -157,13 +157,18 @@ if (Yii::$app->request->isPjax) {
 <?php \common\components\jsblock\JsBlock::begin(); ?>
 <script>
     $(function () {
+        var is_guest = !"<?=Yii::$app->user->id ?>";
+        var login_url = "<?=\yii\helpers\Url::to(['/site/login']) ?>";
         $("#sign_in_btn").click(function () {
-            var is_guest = !"<?=Yii::$app->user->id ?>";
-            var login_url = "<?=\yii\helpers\Url::to(['/site/login']) ?>";
             if (is_guest) {
                 location.href = login_url;
             }
         });
+        $("#index_talk_publish_button").click(function () {
+            if (is_guest) {
+                location.href = login_url;
+            }
+        })
     })
 </script>
 <?php \common\components\jsblock\JsBlock::end(); ?>
