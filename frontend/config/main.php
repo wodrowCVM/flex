@@ -118,6 +118,8 @@ $config = [
     'as check' => [
         'class' => \frontend\behaviors\Check::className(),
         'except' => [
+            'gii/*',
+            'debug/*',
             'site/*',
             'jour/*',
             'user/default/member-info',
