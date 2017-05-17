@@ -73,7 +73,7 @@ $this->title = $story->title;
                             <div class="col-md-4">
                                 <?=$form->field($story_reply, 'at_id', [
                                     'template'=>'<div class="input-group form-group"><span class="input-group-addon">@</span>{input}</div>',
-                                ])->textInput()->label(false) ?>
+                                ])->textInput(['style'=>['background-image' => 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg=="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;']])->label(false) ?>
                             </div>
                             <div class="form-group">
                                 <?=$form->field($story_reply, 'content', [
@@ -88,7 +88,7 @@ $this->title = $story->title;
                             <div class="notice">最多500个字符</div>
                         </div>
                     </div>
-                    <?php $form = \kartik\widgets\ActiveForm::end(); ?>
+                    <?php \kartik\widgets\ActiveForm::end(); ?>
                     <form id="comment-form" action="/article/comment.html" method="post">
                         <input type="hidden" name="pid" value="48">
                         <div class="col-md-10">
