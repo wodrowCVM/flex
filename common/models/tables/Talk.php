@@ -16,6 +16,7 @@ use Yii;
  *
  * @property User $createdBy
  * @property User $updatedBy
+ * @property TalkReply[] $talkReplies
  */
 class Talk extends \yii\db\ActiveRecord
 {
@@ -70,5 +71,13 @@ class Talk extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTalkReplies()
+    {
+        return $this->hasMany(TalkReply::className(), ['talk_id' => 'id']);
     }
 }

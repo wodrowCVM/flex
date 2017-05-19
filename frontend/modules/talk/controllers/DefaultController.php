@@ -11,6 +11,10 @@ use yii\web\Controller;
  */
 class DefaultController extends Controller
 {
+    private function getTalk($id){
+        return Talk::find()->where(['id'=>$id])->one();
+    }
+
     /**
      * Renders the index view for the module
      * @return string
@@ -30,6 +34,18 @@ class DefaultController extends Controller
         return $this->render('index', [
             'talks' => $talks,
             'pages' => $pages,
+        ]);
+    }
+
+    public function actionView($id)
+    {
+        $talk = $this->getTalk($id);
+        $talk->view_count ++;
+        $talk->save();
+        $talk_reply = new StoryReply();
+        return $this->render('view', [
+            'story' => $story,
+            'story_reply' => $story_reply,
         ]);
     }
 }

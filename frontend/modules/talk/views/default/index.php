@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \common\models\Talk $talk
+ * @var \common\models\Talk[] $talk
  * @var \yii\data\Pagination $pages
  */
 
@@ -30,9 +30,26 @@ $x_talks = \common\models\Talk::find()->orderBy(['created_at' => SORT_DESC])->li
                             <div class="media-action">
                                 <span><?= date("Y-m-d H:i:s", $v->created_at) ?></span>
                                 <span class="pull-right">
+                                    <a href="<?=$v->getUrl() ?>">查看</a>
                         <a class="reply" href="javascript:void(0);"><i class="fa fa-reply"></i> 回复</a>
             <a class="vote up" href="javascript:void(0);" title="" data-type="feed" data-id="22652"
                data-toggle="tooltip" data-original-title="顶"><i class="fa fa-thumbs-o-up"></i> 0</a>        </span>
+                            </div>
+                            <div class="ups"><a href="/user/2" rel="author">╃巡洋艦㊣</a> , <a href="/user/29515" rel="author">YiiSoEasy</a> , <a href="/user/34520" rel="author">pmd</a> 觉得很赞</div>
+                            <div class="hint">共 <em>1</em> 条回复</div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="/user/30672" rel="author"><img class="media-object" src="/uploads/avatar/000/03/06/72_avatar_small.jpg" alt="大虫虎"></a>        </div>
+                                <div class="media-body">
+                                    <div class="media-content">
+                                        <a href="/user/30672" rel="author">大虫虎</a>: twat            </div>
+                                    <div class="media-action">
+                                        <span>11分钟前</span>
+                                        <span class="pull-right">
+                                        <a class="reply" href="javascript:void(0);"><i class="fa fa-reply"></i> 回复</a>
+                </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

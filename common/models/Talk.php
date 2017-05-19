@@ -11,6 +11,7 @@ namespace common\models;
 
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\Url;
 
 /**
  * Class Talk
@@ -77,5 +78,17 @@ class Talk extends \common\models\tables\Talk
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    public function getUrlArr()
+    {
+        $arr = ["/talk/default/view", 'id'=>$this->id];
+        return $arr;
+    }
+
+    public function getUrl()
+    {
+        $url = Url::to($this->getUrlArr());
+        return $url;
     }
 }
