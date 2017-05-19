@@ -2,6 +2,8 @@
 
 namespace frontend\modules\talk\controllers;
 
+use common\models\Talk;
+use yii\data\Pagination;
 use yii\web\Controller;
 
 /**
@@ -15,6 +17,19 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Talk::find()->orderBy(['created_at'=>SORT_DESC]);
+        $countQuery = clone $query;
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'pageSize' => 10,
+        ]);
+        $talks = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+        return $this->render('index', [
+            'talks' => $talks,
+            'pages' => $pages,
+        ]);
     }
 }

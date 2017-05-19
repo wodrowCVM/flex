@@ -5,7 +5,12 @@
  * Date: 17-5-10
  * Time: 下午5:30
  */
+
+/**
+ * @var \frontend\modules\story\models\Story $story
+ */
 $this->title = $story->title;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="row">
