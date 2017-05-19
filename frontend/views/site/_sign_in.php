@@ -125,7 +125,7 @@ if (Yii::$app->request->isPjax) {
                                         }
                                         ?></span>
                                             <span class="pull-right">
-                                                <?=\yii\helpers\Html::a(\kartik\icons\Icon::show('comment-o')." 0 ", $v->getUrlArr(), []) ?>
+                                                <?=\yii\helpers\Html::a(\kartik\icons\Icon::show('comment-o').\common\models\TalkReply::find()->where(['talk_id'=>$v->id])->count(), $v->getUrlArr(), []) ?>
                                                 <?=\yii\helpers\Html::a(\kartik\icons\Icon::show('thumbs-o-up')." 0 ",['#'], []) ?>
                                     </span>
                                         </div>
