@@ -14,6 +14,7 @@
     <div class="container">
         <?= \yii\widgets\Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            'encodeLabels' =>false,
         ]) ?>
         <?= \common\widgets\Alert::widget() ?>
         <?= $content ?>

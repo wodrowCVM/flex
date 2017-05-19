@@ -4,7 +4,7 @@
  * @var \yii\data\Pagination $pages
  */
 
-$this->title = "说说";
+$this->title = "所有说说";
 $this->params['breadcrumbs'][] = $this->title;
 
 $x_talks = \common\models\Talk::find()->orderBy(['created_at' => SORT_DESC])->limit(5)->all();

@@ -11,7 +11,9 @@
  * @var \common\models\TalkReply[] $talk_replys
  */
 $this->title = "说说详细";
+$this->params['breadcrumbs'][] = \dmstr\helpers\Html::a('所有说说', ['/talk']);
 $this->params['breadcrumbs'][] = $this->title;
+$reply_count = \common\models\TalkReply::find()->where(['talk_id'=>$talk->id])->count();
 ?>
 
 <div class="talk-default-view">
@@ -25,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <span><i class="fa fa-user"></i><?=$talk->createdBy->username ?></span>
                 <span><i class="fa fa-clock-o"></i><?=date("Y-m-d", $talk->created_at) ?></span>
                 <span><i class="fa fa-eye"></i><?=$talk->view_count ?></span>
-                <span><i class="fa fa-comments-o"></i> 0</span>
+                <span><i class="fa fa-comments-o"></i><?=$reply_count ?></span>
                 <span class="pull-right"><a class="vote up" href="javascript:void(0);" title="" data-type="feed" data-id="22668" data-toggle="tooltip" data-original-title="顶"><i class="fa fa-thumbs-o-up"></i> 0</a><a class="vote down" href="javascript:void(0);" title="" data-type="feed" data-id="22668" data-toggle="tooltip" data-original-title="踩"><i class="fa fa-thumbs-o-down"></i> 0</a></span>
             </div>
             <div class="col-lg-12 content" style="margin-bottom: 10px;">
@@ -34,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php //echo $this->render("//public/share") ?>
             <div id="replies">
                 <div class="page-header">
-                    <h2>共 <em><?=\common\models\TalkReply::find()->where(['talk_id'=>$talk->id])->count() ?></em> 条回复</h2>
+                    <h2>共 <em><?=$reply_count ?></em> 条回复</h2>
                     <ul id="w0" class="nav nav-tabs nav-sub">
                         <li class="active"><a href="#">最后回复</a></li>
                     </ul>
