@@ -99,6 +99,7 @@ $config = [
         'urlManager' => [
             'showScriptName' => false,
             'enablePrettyUrl' => true,
+            'rules' => [],
         ],
         'assetManager' => [
             'converter' =>
@@ -115,7 +116,7 @@ $config = [
             ],
         ],
     ],
-    'as check' => [
+    'as access' => [
         'class' => \frontend\behaviors\Check::className(),
         'except' => [
             'gii/*',
@@ -124,7 +125,7 @@ $config = [
             'jour/*',
             'user/default/member-info',
             'story/*',
-            'talk/*',
+            'talk/defalut/index',
         ],
         'rules' => [
             [

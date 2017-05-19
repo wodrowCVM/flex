@@ -19,20 +19,31 @@ use yii\helpers\Url;
  *
  * @property User $createdBy
  * @property User $updatedBy
+ * @property TalkReply[] $talkReplies
+ * @property TalkReply[] $last10TalkReplies
  */
 class Talk extends \common\models\tables\Talk
 {
+    const SCENARIO_VIEW_COUNT = 'view_count';
+
     public function behaviors()
     {
         return [
             [
                 'class' => BlameableBehavior::className(),
-//                'updatedByAttribute' => false,
+                'updatedByAttribute' => false,
             ],
             [
                 'class' => TimestampBehavior::className(),
             ],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_VIEW_COUNT] = ['view_count'];
+        return $scenarios;
     }
 
     /**
@@ -46,6 +57,7 @@ class Talk extends \common\models\tables\Talk
             [['content'], 'string', 'max' => 200],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            ['view_count', 'integer'],
         ];
     }
 
@@ -75,6 +87,14 @@ class Talk extends \common\models\tables\Talk
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getTalkReplies()
+    {
+        return $this->hasMany(TalkReply::className(), ['talk_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
@@ -82,7 +102,7 @@ class Talk extends \common\models\tables\Talk
 
     public function getUrlArr()
     {
-        $arr = ["/talk/default/view", 'id'=>$this->id];
+        $arr = ["/talk/default/view", 'id' => $this->id];
         return $arr;
     }
 
@@ -90,5 +110,13 @@ class Talk extends \common\models\tables\Talk
     {
         $url = Url::to($this->getUrlArr());
         return $url;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLast10TalkReplies()
+    {
+        return $this->hasMany(TalkReply::className(), ['talk_id' => 'id'])->orderBy(['created_at'=>SORT_DESC])->limit(10);
     }
 }

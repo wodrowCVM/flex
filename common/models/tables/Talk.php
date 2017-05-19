@@ -13,6 +13,7 @@ use Yii;
  * @property integer $created_by
  * @property integer $updated_by
  * @property string $content
+ * @property integer $view_count
  *
  * @property User $createdBy
  * @property User $updatedBy
@@ -35,7 +36,7 @@ class Talk extends \yii\db\ActiveRecord
     {
         return [
             [['created_at', 'updated_at', 'created_by', 'updated_by', 'content'], 'required'],
-            [['created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['created_at', 'updated_at', 'created_by', 'updated_by', 'view_count'], 'integer'],
             [['content'], 'string', 'max' => 200],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
@@ -54,6 +55,7 @@ class Talk extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
             'content' => 'Content',
+            'view_count' => 'View Count',
         ];
     }
 
