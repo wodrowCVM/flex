@@ -8,6 +8,7 @@
 
 /**
  * @var \frontend\modules\story\models\Story $story
+ * @var \common\models\StoryRelpy $story_reply
  */
 $this->title = $story->title;
 $this->params['breadcrumbs'][] = $this->title;
@@ -76,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-4">
-                                <?=$form->field($story_reply, 'at_id', [
+                                <?=$form->field($story_reply, 'at_user', [
                                     'template'=>'<div class="input-group form-group"><span class="input-group-addon">@</span>{input}</div>',
                                 ])->textInput(['style'=>['background-image' => 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg=="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;']])->label(false) ?>
                             </div>
