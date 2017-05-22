@@ -30,7 +30,10 @@
                                     <?= $this->render('//public/_show_talk_praise_icon', ['talk' => $talk]) ?>
                                 </span>
         </div>
+
+        <?php \yii\widgets\Pjax::begin(['id' => '#member_talk_praise_'.$talk->id]); ?>
         <div class="ups">
+            <?=\dmstr\helpers\Html::a('test', ['', '_pjax'=>'#member_talk_praise_'.$talk->id, 'praise_talk_id'=>$talk->id]) ?>
             <?php $praises = \common\models\TalkPraise::find()->where(['talk_id' => $talk->id])->limit(10)->all(); ?>
             <?php foreach ($praises as $k2 => $v2): ?>
                 <a href="<?= $v2->createdBy->getMemberUrl() ?>" rel="author"><?= $v2->createdBy->username ?></a> ,
@@ -39,6 +42,8 @@
                 觉得很赞
             <?php endif; ?>
         </div>
+        <?php \yii\widgets\Pjax::end(); ?>
+
         <div class="hint">共 <em><?= \common\models\TalkReply::find()->where(['talk_id' => $talk->id])->count() ?></em>
             条回复
         </div>

@@ -31,6 +31,15 @@ class DefaultController extends Controller
                 $talk_praise->talk_id = $talk_id;
                 $talk_praise->save();
                 $talk = Talk::findOne(['id'=>$talk_id]);
+                return $this->render('_ups', ['talk'=>$talk]);
+            }
+        }*/
+        /*if ($talk_id = \Yii::$app->request->get('praise_talk_id')){
+            if (!TalkPraise::findOne(['talk_id'=>$talk_id, 'created_by'=>\Yii::$app->user->id])){
+                $talk_praise = new TalkPraise();
+                $talk_praise->talk_id = $talk_id;
+                $talk_praise->save();
+                $talk = Talk::findOne(['id'=>$talk_id]);
                 return $this->render('_index_one_talk', ['talk'=>$talk]);
             }
         }*/
