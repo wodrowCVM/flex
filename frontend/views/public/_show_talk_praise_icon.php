@@ -17,5 +17,5 @@ $praise_count = \common\models\TalkPraise::find()->where(['talk_id' => $talk->id
 <?php if ($has_praise): ?>
     <?= \kartik\icons\Icon::show('thumbs-o-up') . $praise_count ?>
 <?php else: ?>
-    <?= \dmstr\helpers\Html::a(\kartik\icons\Icon::show('thumbs-o-up') . $praise_count, ['', '_pjax'=>'#talk_praise_icon_'.$talk->id, 'praise_talk_id' => $talk->id], ['class' => "vote up praise_talk_icon", 'data-type' => "feed", 'data-id' => $talk->id]) ?>
+    <?= \dmstr\helpers\Html::a(\kartik\icons\Icon::show('thumbs-o-up') . $praise_count, ['', '_pjax'=>'#talk', 'praise_talk_id' => $talk->id, 'page'=>Yii::$app->request->get('page'), 'per-page'=>Yii::$app->request->get('per-page')], ['class' => "vote up praise_talk_icon", 'data-type' => "feed", 'data-id' => $talk->id]) ?>
 <?php endif; ?>
