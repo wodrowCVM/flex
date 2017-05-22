@@ -36,4 +36,9 @@ class DefaultController extends Controller
     {
         return $this->render('test');
     }
+
+    public function actionTest2()
+    {
+        return $this->render('test2');
+    }
 }

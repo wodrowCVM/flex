@@ -104,6 +104,7 @@ $reply_count = \common\models\TalkReply::find()->where(['talk_id'=>$talk->id])->
         </div>
 
         <div class="col-lg-3">
+            <?=$this->render('/public/top_talks') ?>
             <?=$this->render('/public/hot_talks') ?>
         </div>
     </div>
