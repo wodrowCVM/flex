@@ -3,6 +3,7 @@
 namespace frontend\modules\talk\controllers;
 
 use common\models\Talk;
+use common\models\TalkPraise;
 use common\models\TalkReply;
 use frontend\modules\user\models\User;
 use yii\data\Pagination;
@@ -33,7 +34,6 @@ class DefaultController extends Controller
         $talks = $query->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
-
         return $this->render('index', [
             'talks' => $talks,
             'pages' => $pages,

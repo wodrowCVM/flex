@@ -30,12 +30,28 @@ $x_talks = \common\models\Talk::find()->orderBy(['created_at' => SORT_DESC])->li
                             <div class="media-action">
                                 <span><?= date("Y-m-d H:i:s", $v->created_at) ?></span>
                                 <span class="pull-right">
-                                    <a href="<?=$v->getUrl() ?>">查看</a>
-                        <a class="reply" href="javascript:void(0);">快速回复</a>
-            <a class="vote up" href="javascript:void(0);" title="" data-type="feed" data-id="22652"
-               data-toggle="tooltip" data-original-title="顶"><i class="fa fa-thumbs-o-up"></i> 0</a>        </span>
+                                    <?=\dmstr\helpers\Html::a('查看', $v->getUrlArr(), ['class'=>""]) ?>
+                                    <?=\dmstr\helpers\Html::a('快速回复', ['#'], ['class'=>"reply", ]) ?>
+                                    <?php
+                                    $has_praise = \common\models\TalkPraise::findOne(['talk_id'=>$v->id, 'created_by'=>Yii::$app->user->id])?true:false;
+                                    $praise_count = \common\models\TalkPraise::find()->where(['talk_id'=>$v->id])->count();
+                                    $praises = \common\models\TalkPraise::find()->where(['talk_id'=>$v->id])->limit(10)->all();
+                                    ?>
+                                    <?php if($has_praise): ?>
+                                        <?=\kartik\icons\Icon::show('thumbs-o-up').$praise_count ?>
+                                    <?php else: ?>
+                                        <?=\dmstr\helpers\Html::a(\kartik\icons\Icon::show('thumbs-o-up').$praise_count, ['#'], ['class'=>"vote up", 'data-type'=>"feed", 'data-id'=>$v->id,]) ?>
+                                    <?php endif; ?>
+                                </span>
                             </div>
-                            <div class="ups"><a href="/user/2" rel="author">╃巡洋艦㊣</a> , <a href="/user/29515" rel="author">YiiSoEasy</a> , <a href="/user/34520" rel="author">pmd</a> 觉得很赞</div>
+                            <div class="ups">
+                                <?php foreach($praises as $k2 => $v2): ?>
+                                    <a href="<?=$v2->createdBy->getMemberUrl() ?>" rel="author"><?=$v2->createdBy->username ?></a> ,
+                                <?php endforeach; ?>
+                                <?php if($praises): ?>
+                                    觉得很赞
+                                <?php endif; ?>
+                            </div>
                             <div class="hint">共 <em><?=\common\models\TalkReply::find()->where(['talk_id'=>$v->id])->count() ?></em> 条回复</div>
                             <?php foreach($v->last10TalkReplies as $k1 => $v1): ?>
                                 <div class="media">

@@ -21,6 +21,7 @@ use yii\helpers\Url;
  * @property User $updatedBy
  * @property TalkReply[] $talkReplies
  * @property TalkReply[] $last10TalkReplies
+ * @property TalkPraise[] $talkPraises
  */
 class Talk extends \common\models\tables\Talk
 {
@@ -118,5 +119,13 @@ class Talk extends \common\models\tables\Talk
     public function getLast10TalkReplies()
     {
         return $this->hasMany(TalkReply::className(), ['talk_id' => 'id'])->orderBy(['created_at'=>SORT_DESC])->limit(10);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTalkPraises()
+    {
+        return $this->hasMany(TalkPraise::className(), ['talk_id' => 'id']);
     }
 }
