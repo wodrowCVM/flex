@@ -96,6 +96,7 @@ if (Yii::$app->request->isPjax) {
                 <div class="feed">
                     <div class="nano has-scrollbar">
                         <ul id="w1" class="media-list nano-content" tabindex="0" style="right: -15px;">
+                            <?php \yii\widgets\Pjax::begin(['id'=>'talk_default_index']); ?>
                             <?php foreach ($talks as $k => $v): ?>
                                 <li class="media" data-key="<?= $v->id ?>">
                                     <div class="media-left">
@@ -124,10 +125,12 @@ if (Yii::$app->request->isPjax) {
                                             echo date("Y-m-d", $v->created_at);
                                         }
                                         ?></span>
+
                                             <span class="pull-right">
                                                 <?=\yii\helpers\Html::a(\kartik\icons\Icon::show('comment-o').\common\models\TalkReply::find()->where(['talk_id'=>$v->id])->count(), $v->getUrlArr(), []) ?>
                                                 <?=$this->render('//public/_show_talk_praise_icon', ['talk'=>$v]) ?>
                                     </span>
+
                                         </div>
                                     </div>
                                 </li>
@@ -142,6 +145,7 @@ if (Yii::$app->request->isPjax) {
                                 'maxButtonCount' => 10, //控制每页显示的页数
                             ]);
                             ?>
+                            <?php \yii\widgets\Pjax::end(); ?>
                         </ul>
                         <div class="nano-pane">
                             <div class="nano-slider" style="height: 56px; transform: translate(0px, 0px);"></div>

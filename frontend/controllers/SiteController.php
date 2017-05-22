@@ -112,7 +112,9 @@ class SiteController extends Controller
         $talk_pages = clone $y;
         $x = new Talk();
         $talk_model = clone $x;
-        if ($talk_model->load(Yii::$app->request->post()) && $talk_model->save()){
+        if ($talk_model->load(Yii::$app->request->post())){
+            $talk_model->updated_by = Yii::$app->user->id;
+            $talk_model->save();
 //            $_GET['page'] = 1;
             $talk_model = clone $x;
             $talk_pages = clone $y;
