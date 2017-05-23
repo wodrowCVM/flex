@@ -126,6 +126,7 @@ $config = [
             'user/default/member-info',
             'story/*',
             'talk/default/index',
+            'poster/*',
         ],
         'rules' => [
             [

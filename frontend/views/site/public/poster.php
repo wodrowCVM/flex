@@ -5,14 +5,15 @@
  * Date: 17-5-8
  * Time: 下午3:36
  */
-$_items = \common\models\Story::find()->where(['<', 'need_level', '1000'])->limit(10)->orderBy(["updated_at"=>SORT_DESC, "created_at"=>SORT_DESC])->all();
-$_count = \common\models\Story::find()->where(['<', 'need_level', '1000'])->count();
+$_items = \common\models\PosterSubject::find()->limit(10)->orderBy(["updated_at"=>SORT_DESC, "created_at"=>SORT_DESC])->all();
+$_count = \common\models\PosterSubject::find()->count();
 ?>
 
 <div class="panel panel-default list-panel">
     <div class="panel-heading">
         <h3 class="panel-title text-center">
-            精华帖子 &nbsp;
+            <?=\kartik\icons\Icon::show('book') ?>
+            帖子主题
         </h3>
     </div>
     <div class="clearfix site-index-topic">
@@ -22,18 +23,18 @@ $_count = \common\models\Story::find()->where(['<', 'need_level', '1000'])->coun
                     'class' => 'pull-right',
                 ]) ?>
                 <div class="avatar pull-left">
-                    <?=\yii\helpers\Html::a(\yii\helpers\Html::img($v->user->userInfo->getTextAvatarUrl()), ['#'], ["class"=>"media-objects"]) ?>
+                    <?=\yii\helpers\Html::a(\yii\helpers\Html::img($v->createdBy->userInfo->getTextAvatarUrl(),['style'=>['width'=>"50px", 'height'=>"50px"]]), $v->createdBy->getMemberUrlArr(), ["class"=>"media-objects"]) ?>
                 </div>
 
                 <div class="infos">
-                    <div class="media-heading">
-                        <?=\yii\helpers\Html::a($v->title, ['#'], ["title"=>$v->title]) ?>
+                    <div class="media-heading" style="height: 20px;margin-bottom: 12px !important;">
+                        <?php echo \yii\helpers\Html::a($v->title, $v->getUrlArr(), ["title"=>$v->title]) ?>
                         <i class="fa fa-trophy excellent"></i>
                     </div>
                     <div class="media-body meta title-info">
-                        <?=\yii\helpers\Html::a('瞎扯淡', ['#'], ["class"=>"node"]) ?>
+                        <?php // echo \yii\helpers\Html::a($v->tagArr[0], ['#'], ["class"=>"node"]) ?>
                         •
-                        <?=\yii\helpers\Html::a($v->user->username, ['#'], []) ?>
+                        <?=\yii\helpers\Html::a($v->createdBy->username, $v->createdBy->getMemberUrlArr(), []) ?>
                         •
                         <span><?=date("Y-m-d", $v->created_at) ?></span>
                     </div>

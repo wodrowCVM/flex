@@ -31,7 +31,7 @@ class Story extends \common\models\tables\Story
         return [
             [
                 'class' => BlameableBehavior::className(),
-//                'updatedByAttribute' => false,
+                'updatedByAttribute' => false,
             ],
             [
                 'class' => TimestampBehavior::className(),

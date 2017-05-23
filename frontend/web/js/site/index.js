@@ -1,6 +1,7 @@
 /**
  * Created by wodrow on 2017/2/24.
  */
+/*
 $(function () {
     $("#categorys_and_ads").find("ol li").hover(function () {
         var x = $(this).index();
@@ -10,4 +11,4 @@ $(function () {
             'top':x,
         })
     });
-})
+})*/

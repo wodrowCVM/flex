@@ -17,7 +17,7 @@
         ],
         [
             'label'=>'我的帖子',
-            'url'=>["/user/commenting"],
+            'url'=>["/user/poster"],
             'options' => ['class'=>"list-group-item"],
             'linkOptions'=>['class'=>"list-group"],
         ],

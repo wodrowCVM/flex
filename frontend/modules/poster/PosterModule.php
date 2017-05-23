@@ -12,6 +12,8 @@ class PosterModule extends \yii\base\Module
      */
     public $controllerNamespace = 'frontend\modules\poster\controllers';
 
+    public $layout= "@frontend/modules/poster/views/layouts/ly1";
+
     /**
      * @inheritdoc
      */

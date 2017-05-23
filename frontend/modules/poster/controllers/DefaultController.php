@@ -2,6 +2,8 @@
 
 namespace frontend\modules\poster\controllers;
 
+use frontend\modules\user\models\PosterSubject;
+use yii\data\Pagination;
 use yii\web\Controller;
 
 /**
@@ -15,6 +17,18 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = PosterSubject::find()->orderBy(['created_at'=>SORT_DESC]);
+        $countQuery = clone $query;
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'pageSize' => 10,
+        ]);
+        $subjects = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+        return $this->render('index', [
+            'subjects' => $subjects,
+            'pages' => $pages,
+        ]);
     }
 }

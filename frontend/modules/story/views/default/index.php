@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-9">
             <ul class="list-group">
                 <?php foreach ($storys as $k => $v): ?>
-                    <li class="list-group-item article-item">
+                    <li class="list-group-item article-item" style="margin-bottom: 20px;">
                         <div class="home-list-title">
                             <?= \dmstr\helpers\Html::a($v->title, ['view', 'id'=>$v->id], []) ?>
                         </div>
