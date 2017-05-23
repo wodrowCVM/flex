@@ -119,7 +119,8 @@ if (Yii::$app->request->isPjax) {
                                             echo $y . "分钟前";
                                         }
                                         if ($x >= 3600 && $x < 86400) {
-                                            $y = (int)($x / 3600) . "小时前";
+                                            $y = (int)($x / 3600);
+                                            echo $y. "小时前";
                                         }
                                         if ($x >= 86400) {
                                             echo date("Y-m-d", $v->created_at);

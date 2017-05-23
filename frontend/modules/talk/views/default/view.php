@@ -28,7 +28,7 @@ $reply_count = \common\models\TalkReply::find()->where(['talk_id'=>$talk->id])->
                 <span><i class="fa fa-clock-o"></i><?=date("Y-m-d", $talk->created_at) ?></span>
                 <span><i class="fa fa-eye"></i><?=$talk->view_count ?></span>
                 <span><i class="fa fa-comments-o"></i><?=$reply_count ?></span>
-                <span class="pull-right"><a class="vote up" href="javascript:void(0);" title="" data-type="feed" data-id="22668" data-toggle="tooltip" data-original-title="顶"><i class="fa fa-thumbs-o-up"></i> 0</a><a class="vote down" href="javascript:void(0);" title="" data-type="feed" data-id="22668" data-toggle="tooltip" data-original-title="踩"><i class="fa fa-thumbs-o-down"></i> 0</a></span>
+<!--                <span class="pull-right"><a class="vote up" href="javascript:void(0);" title="" data-type="feed" data-id="22668" data-toggle="tooltip" data-original-title="顶"><i class="fa fa-thumbs-o-up"></i> 0</a><a class="vote down" href="javascript:void(0);" title="" data-type="feed" data-id="22668" data-toggle="tooltip" data-original-title="踩"><i class="fa fa-thumbs-o-down"></i> 0</a></span>-->
             </div>
             <div class="col-lg-12 content" style="margin-bottom: 10px;">
                 <?=$talk->content ?>
