@@ -81,7 +81,7 @@ if (Yii::$app->request->isPjax) {
                     <i class="fa fa-ellipsis-h"></i>
                 </h2>
                 <span class="pull-right">
-            <?= \dmstr\helpers\Html::a('更多»', ['/talk'], ['class' => "btn btn-xs"]) ?>
+            <?= \dmstr\helpers\Html::a('更多»', ['/talk/default/index'], ['class' => "btn btn-xs"]) ?>
         </span>
             </div>
             <div class="panel-body">

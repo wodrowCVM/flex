@@ -21,11 +21,15 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php if(!Yii::$app->user->isGuest): ?>
+    <?php if(!Yii::$app->user->isGuest){ ?>
         <script>
             var user_id = "<?=json_encode(Yii::$app->user->id) ?>";
         </script>
-    <?php endif; ?>
+    <?php }else{ ?>
+        <script>
+            var user_id = 0;
+        </script>
+    <?php } ?>
     <?php $this->head() ?>
 </head>
 <body>

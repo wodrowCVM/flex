@@ -11,7 +11,7 @@
  * @var \common\models\TalkReply[] $talk_replys
  */
 $this->title = "说说详细";
-$this->params['breadcrumbs'][] = \dmstr\helpers\Html::a('所有说说', ['/talk']);
+$this->params['breadcrumbs'][] = \dmstr\helpers\Html::a('所有说说', ['/talk/default/index']);
 $this->params['breadcrumbs'][] = $this->title;
 $reply_count = \common\models\TalkReply::find()->where(['talk_id'=>$talk->id])->count();
 ?>

@@ -125,7 +125,7 @@ $config = [
             'jour/*',
             'user/default/member-info',
             'story/*',
-            'talk/defalut/index',
+            'talk/default/index',
         ],
         'rules' => [
             [

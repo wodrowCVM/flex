@@ -6,6 +6,7 @@ use common\models\Talk;
 use common\models\TalkPraise;
 use common\models\TalkReply;
 use frontend\modules\user\models\User;
+use Psy\Exception\ErrorException;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -32,6 +33,27 @@ class DefaultController extends Controller
                 $talk_praise->save();
             }
         }
+        $talk_reply = new TalkReply();
+        if (\Yii::$app->request->post('action')=='reply'){
+            if (\Yii::$app->user->isGuest){
+                $this->redirect(['/site/login']);
+            }
+            $post = \Yii::$app->request->post();
+            $at_user = null;
+            if (isset($post['at_user'])){
+                $at_user = User::findOne(['id'=>$post['at_user']]);
+            }
+            $talk_reply->talk_id = $post['talk_id'];
+            $string = $this->renderAjax('/public/quick_reply', ['talk_reply' => $talk_reply, 'at_user'=>$at_user, 'talk_id'=>$post['talk_id']]);
+            return $string;
+        }
+        if ($talk_reply->load(\Yii::$app->request->post())){
+            $talk_reply->updated_by = \Yii::$app->user->id;
+            var_dump($talk_reply->toArray());
+            if ($talk_reply->save()){}else{
+                var_dump($talk_reply->getErrors());exit;
+            }
+        }
         $query = Talk::find()->orderBy(['created_at'=>SORT_DESC]);
         $countQuery = clone $query;
         $pages = new Pagination([
@@ -44,6 +66,7 @@ class DefaultController extends Controller
         return $this->render('index', [
             'talks' => $talks,
             'pages' => $pages,
+            'talk_reply' => $talk_reply,
         ]);
     }
 

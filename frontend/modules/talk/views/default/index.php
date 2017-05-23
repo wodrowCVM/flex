@@ -2,6 +2,7 @@
 /**
  * @var \common\models\Talk[] $talks
  * @var \yii\data\Pagination $pages
+ * @var \common\models\TalkReply $talk_reply
  */
 
 $this->title = "所有说说";
@@ -18,7 +19,10 @@ $x_talks = \common\models\Talk::find()->orderBy(['created_at' => SORT_DESC])->li
             <div class="page-header">
                 <h1><?= $this->title ?></h1>
             </div>
-            <?=$this->render('_index_talks', ['talks'=>$talks]) ?>
+            <?=$this->render('_index_talks', [
+                'talks'=>$talks,
+                'talk_reply' => $talk_reply,
+            ]) ?>
             <?php
             echo \yii\widgets\LinkPager::widget([
                 'pagination' => $pages,
