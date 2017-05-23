@@ -26,7 +26,7 @@
                         <span><?= date("Y-m-d H:i:s", $talk->created_at) ?></span>
                         <span class="pull-right">
                                     <?= \dmstr\helpers\Html::a('查看', $talk->getUrlArr(), ['class' => "btn btn-xs btn-info"]) ?>
-                                    <?= \dmstr\helpers\Html::button('快速回复', ['class' => 'btn btn-xs quick_talk_reply_btn', 'data-talk_id'=>$talk->id]) ?>
+                                    <?php // echo \dmstr\helpers\Html::button('快速回复', ['class' => 'btn btn-xs quick_talk_reply_btn', 'data-talk_id'=>$talk->id]) ?>
                                     <?= $this->render('//public/_show_talk_praise_icon', ['talk' => $talk]) ?>
                                 </span>
                     </div>
@@ -36,7 +36,7 @@
                         条回复
                     </div>
                     <div class="quick_talk_reply">
-                        <?php // echo$this->render('/public/quick_reply', ['talk_reply'=>$talk_reply]) ?>
+
                     </div>
                     <?php foreach ($talk->last10TalkReplies as $k1 => $v1): ?>
                         <div class="media">
@@ -56,7 +56,7 @@
                                 <div class="media-action">
                                     <span><?= date("Y-m-d H:i:s", $v1->created_at) ?></span>
                                     <span class="pull-right">
-                            <?= \dmstr\helpers\Html::button('快速回复', ['class' => 'btn btn-xs quick_talk_reply_btn', 'data-talk_id'=>$talk->id, 'data-at_user'=>$v1->created_by]) ?>
+                            <?php // echo \dmstr\helpers\Html::button('快速回复', ['class' => 'btn btn-xs quick_talk_reply_btn', 'data-talk_id'=>$talk->id, 'data-at_user'=>$v1->created_by]) ?>
                 </span>
                                 </div>
                             </div>
@@ -67,31 +67,3 @@
             </li>
         <?php endforeach; ?>
     </ul>
-
-<?php \common\components\jsblock\JsBlock::begin(); ?>
-    <script>
-        $(function () {
-            $("button.quick_talk_reply_btn").click(function () {
-                $('.quick_talk_reply').find('form').remove();
-                var url = "<?=\yii\helpers\Url::to('/talk/default/index') ?>";
-                var talk_id = $(this).data('talk_id');
-                var at_user = $(this).data('at_user');
-                var li = $(this).parents('li');
-                $.ajax({
-                    url:url,
-                    type:'post',
-                    data:{talk_id:talk_id, at_user:at_user, action:'reply'},
-                    success:function (msg) {
-                        li.find('.quick_talk_reply').html(msg);
-                    }
-                })
-            })
-            $(".feed-list").on('click', ".quick_talk_reply_submit", function () {
-                if($("#talkreply-content").val()==''){
-                    $(".field-talkreply-content").addClass('error');
-                    return false;
-                }
-            })
-        })
-    </script>
-<?php \common\components\jsblock\JsBlock::end(); ?>

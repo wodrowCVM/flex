@@ -15,7 +15,7 @@ $has_praise = \common\models\TalkPraise::findOne(['talk_id' => $talk->id, 'creat
 $praise_count = \common\models\TalkPraise::find()->where(['talk_id' => $talk->id])->count();
 ?>
 <?php if ($has_praise): ?>
-    <?= \kartik\icons\Icon::show('thumbs-o-up') . $praise_count ?>
+    &nbsp;&nbsp;&nbsp;<?= \kartik\icons\Icon::show('thumbs-o-up') . $praise_count ?>
 <?php else: ?>
     <?php if(Yii::$app->user->isGuest): ?>
         <?= \dmstr\helpers\Html::a(\kartik\icons\Icon::show('thumbs-o-up') . $praise_count, ['/site/login'], ['class' => "vote up praise_talk_icon", 'data-type' => "feed", 'data-id' => $talk->id]) ?>

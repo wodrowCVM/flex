@@ -9,7 +9,10 @@
  * @var \common\models\Talk[] $hot_talks
  */
 
-$hot_talks = \common\models\Talk::find()->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+$hot_talks = \common\models\Talk::find()->alias('t')->joinWith("talkReplies AS tr")->select([
+    't.*',
+    'rc'=>'COUNT(tr.id)',
+])->groupBy(['t.id'])->orderBy(['rc'=>SORT_DESC, 'created_at'=>SORT_DESC])->limit(5)->all();
 ?>
 
 <div class="panel panel-default">

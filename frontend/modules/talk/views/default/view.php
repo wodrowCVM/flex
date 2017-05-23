@@ -23,7 +23,7 @@ $reply_count = \common\models\TalkReply::find()->where(['talk_id'=>$talk->id])->
                 <h1><?=$this->title ?></h1>
             </div>
 
-            <div class="action">
+            <div class="action" style="padding: 10px;">
                 <span><i class="fa fa-user"></i><?=$talk->createdBy->username ?></span>
                 <span><i class="fa fa-clock-o"></i><?=date("Y-m-d", $talk->created_at) ?></span>
                 <span><i class="fa fa-eye"></i><?=$talk->view_count ?></span>
