@@ -20,6 +20,7 @@ use yii\helpers\Url;
  * @property User $user
  * @property User $updateUser
  * @property array $tagArr
+ * @property StoryReply[] $storyReplies
  */
 class Story extends \common\models\tables\Story
 {
@@ -67,6 +68,14 @@ class Story extends \common\models\tables\Story
     public function getUpdateUser()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStoryReplies()
+    {
+        return $this->hasMany(StoryReply::className(), ['story_id' => 'id']);
     }
 
     public function afterFind()

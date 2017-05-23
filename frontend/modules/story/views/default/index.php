@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <span class="glyphicon glyphicon-eye-open" style="margin-left:15px;"></span>&nbsp;热度：
                             <?=$v->view_count ?>°C
                             <span class="glyphicon glyphicon-comment" style="margin-left:15px;"></span>
-                            0条评论
+                            <?=\common\models\StoryReply::find()->where(['story_id'=>$v->id])->count() ?>条评论
                             <?=\dmstr\helpers\Html::a('阅读全文', ['view', 'id'=>$v->id], ['class'=>'btn btn-default btn-xs pull-right']) ?>
                         </div>
                     </li>

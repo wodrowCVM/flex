@@ -95,7 +95,6 @@ class DefaultController extends Controller
         $talk_replys = $query->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
-        \Yii::trace($talk_reply->toArray(), 'wodrow');
         return $this->render('view', [
             'talk' => $talk,
             'talk_reply' => $talk_reply,

@@ -19,6 +19,7 @@ use Yii;
  * @property integer $view_count
  *
  * @property User $createdBy
+ * @property StoryReply[] $storyReplies
  * @property StoryTag[] $storyTags
  * @property Tag[] $tags
  */
@@ -73,6 +74,14 @@ class Story extends \yii\db\ActiveRecord
     public function getCreatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStoryReplies()
+    {
+        return $this->hasMany(StoryReply::className(), ['story_id' => 'id']);
     }
 
     /**
