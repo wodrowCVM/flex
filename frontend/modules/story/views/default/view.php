@@ -11,6 +11,7 @@
  * @var \common\models\StoryRelpy $story_reply
  */
 $this->title = $story->title;
+$this->params['breadcrumbs'][] = \dmstr\helpers\Html::a('文章列表',['/story/default/index']);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -73,50 +74,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
                 <div class="row">
-                    <?php $form = \kartik\widgets\ActiveForm::begin(['id' => "comment-form", 'action' => ['/story/default/view'], 'options' => []]); ?>
+                    <?php $form = \kartik\widgets\ActiveForm::begin(['id' => "comment-form", 'options' => []]); ?>
                     <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-4">
                                 <?=$form->field($story_reply, 'at_user', [
                                     'template'=>'<div class="input-group form-group"><span class="input-group-addon">@</span>{input}</div>',
-                                ])->textInput(['style'=>['background-image' => 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg=="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;']])->label(false) ?>
+                                ])->textInput(['style'=>['background-image' => 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/ il8IalkCLBfNVAAAAABJRU5ErkJggg=="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;'],'readonly'=>'true'])->label(false) ?>
                             </div>
-                            <div class="form-group">
-                                <?=$form->field($story_reply, 'content', [
-                                    'options' => [
-//                                        'id' => "commentform-content",
-//                                        'class' => "form-control",
-//                                        'rows' => 5,
-                                    ],
-//                                    'template'=>'{input}',
-                                ])->textarea()->label(false) ?>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <?=$form->field($story_reply, 'content', ['options' => [],])->textarea(['rows'=>5])->label(false) ?>
+                                </div>
+                                <div class="notice">最多500个字符</div>
                             </div>
-                            <div class="notice">最多500个字符</div>
+                            <div class="col-md-12">
+                                <?=\dmstr\helpers\Html::submitButton('发表',['class'=>"btn btn-default", 'data-loading-text'=>"提交中..."]) ?>
+                                <?=\dmstr\helpers\Html::resetButton('重置',['class'=>"btn btn-default",]) ?>
+                            </div>
                         </div>
                     </div>
                     <?php \kartik\widgets\ActiveForm::end(); ?>
-                    <form id="comment-form" action="/article/comment.html" method="post">
-                        <input type="hidden" name="pid" value="48">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-group form-group">
-                                        <span class="input-group-addon">@</span>
-                                        <input type="text" class="form-control" name="username" placeholder="必填" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <textarea id="commentform-content" class="form-control" name="conent" rows="5"></textarea>
-                            </div>
-                            <div class="notice">最多500个字符</div>
-                            <div class="error-summary" style="display:none"><p>请修复以下错误</p><ul></ul></div>
-                            <div class="form-group">
-                                <button type="button" class="btn btn-default" data-loading-text="提交中...">发表</button>
-                                <button type="reset" class="btn btn-default">重置</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

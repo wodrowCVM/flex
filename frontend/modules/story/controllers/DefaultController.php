@@ -39,10 +39,18 @@ class DefaultController extends Controller
 
     public function actionView($id)
     {
+        $x = new StoryReply();
+        $story_reply = $x;
+        if ($story_reply->load(\Yii::$app->request->post())){
+            if ($story_reply->save()){
+
+            }else{
+                var_dump($story_reply->getErrors());exit;
+            }
+        }
         $story = $this->getStory($id);
         $story->view_count ++;
         $story->save();
-        $story_reply = new StoryReply();
         return $this->render('view', [
             'story' => $story,
             'story_reply' => $story_reply,
