@@ -78,13 +78,15 @@ class DefaultController extends Controller
         $talk_reply->updated_by = \Yii::$app->user->id;
         if ($talk_reply->load(\Yii::$app->request->post())){
             if ($talk_reply->save()){
-                $this->redirect(['view', 'id'=>$id]);
+                $this->redirect(['view', 'id'=>$id, 'is_save'=>1]);
             }else{
                 \Yii::trace($talk_reply->getErrors(), 'wodrow');
             }
         }else{
-            $talk->view_count ++;
-            $talk->save();
+            if (\Yii::$app->request->get('is_save')==1){}else{
+                $talk->view_count ++;
+                $talk->save();
+            }
         }
         $query = TalkReply::find()->where(['talk_id' => $talk->id])->orderBy(['created_at'=>SORT_DESC]);
         $countQuery = clone $query;

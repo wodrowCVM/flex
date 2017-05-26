@@ -39,21 +39,27 @@ class DefaultController extends Controller
 
     public function actionView($id)
     {
+        $story = $this->getStory($id);
         $x = new StoryReply();
         $story_reply = clone $x;
         $story_reply->story_id = $id;
         if ($story_reply->load(\Yii::$app->request->post())){
+            if (\Yii::$app->user->isGuest){
+                $this->redirect(['/site/login']);
+            }
             $story_reply->updated_by = \Yii::$app->user->id;
             if ($story_reply->save()){
-                $this->redirect(['view', 'id'=>$id]);
+                $this->redirect(['view', 'id'=>$id, 'is_save'=>1]);
                 $story_reply = clone $x;
             }else{
                 var_dump($story_reply->getErrors());exit;
             }
+        }else{
+            if (\Yii::$app->request->get('is_save')==1){}else{
+                $story->view_count ++;
+                $story->save();
+            }
         }
-        $story = $this->getStory($id);
-        $story->view_count ++;
-        $story->save();
         $query = StoryReply::find()->where(['story_id' => $story->id])->orderBy(['created_at'=>SORT_DESC]);
         $countQuery = clone $query;
         $pages = new Pagination([
