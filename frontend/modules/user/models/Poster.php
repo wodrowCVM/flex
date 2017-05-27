@@ -9,7 +9,56 @@
 namespace frontend\modules\user\models;
 
 
+use common\models\PosterFloor;
+
 class Poster extends \common\models\Poster
 {
+    public $floor_head_content;
 
+    public function rules()
+    {
+        return [
+            [['poster_subject_id', 'title'], 'required'],
+            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
+            [['title'], 'string', 'max' => 50],
+            [['desc'], 'string', 'max' => 500],
+            [['poster_subject_id', 'title', 'created_by'], 'unique', 'targetAttribute' => ['poster_subject_id', 'title', 'created_by'], 'message' => 'The combination of Poster Subject ID, Title and Created By has already been taken.'],
+            [['poster_subject_id'], 'exist', 'skipOnError' => true, 'targetClass' => PosterSubject::className(), 'targetAttribute' => ['poster_subject_id' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
+            ['floor_head_content', 'required'],
+            ['floor_head_content', 'string', 'max' => 500],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'poster_subject_id' => 'Poster Subject ID',
+            'title' => '标题',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
+            'status' => 'Status',
+            'desc' => '介绍',
+            'floor_head_content' => '顶楼内容',
+        ];
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert){
+            $poster_floor = new PosterFloor();
+            $poster_floor->poster_id = $this->id;
+            $poster_floor->floor_sequence = 0;
+            $poster_floor->content = $this->floor_head_content;
+            $poster_floor->updated_by = \Yii::$app->user->id;
+            $poster_floor->status = $poster_floor::STATUS_ACTIVE;
+            if ($poster_floor->save()){}else{
+                var_dump($poster_floor->getErrors());exit;
+            }
+        }
+    }
 }

@@ -11,33 +11,33 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <h4><i class="fa fa-info-circle"></i> 关于 Yii</h4>
+                <h4><i class="fa fa-info-circle"></i> 关于</h4>
                 <ul>
-                    <li><a href="/about">Yii 的简介</a></li>
-                    <li><a href="/news">Yii 的动态</a></li>
-                    <li><a href="/features">Yii 的特性</a></li>
-                    <li><a href="/performance">Yii 的性能</a></li>
-                    <li><a href="/license">Yii 的许可</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
                 </ul>
             </div>
             <div class="col-lg-2">
-                <h4><i class="fa fa-book"></i> 文档手册</h4>
+                <h4><i class="fa fa-book"></i> xx</h4>
                 <ul>
-                    <li><a href="/doc">中文文档</a></li>
-                    <li><a href="/download">框架下载</a></li>
-                    <li><a href="/tutorial">中文教程</a></li>
-                    <li><a href="/extension">安装扩展</a></li>
-                    <li><a href="/code">优秀源码</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
                 </ul>
             </div>
             <div class="col-lg-2">
-                <h4><i class="fa fa-commenting"></i> 社区资源</h4>
+                <h4><i class="fa fa-commenting"></i> xx</h4>
                 <ul>
-                    <li><a href="/question">社区问答</a></li>
-                    <li><a href="/topic">社区讨论</a></li>
-                    <li><a href="/case">用户案例</a></li>
-                    <li><a href="/video">视频教程</a></li>
-                    <li><a href="/top">会员排行</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
+                    <li><a href="#">xxx</a></li>
                 </ul>
             </div>
             <div class="col-lg-3">

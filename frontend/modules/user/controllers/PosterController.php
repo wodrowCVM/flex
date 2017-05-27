@@ -10,9 +10,11 @@ namespace frontend\modules\user\controllers;
 
 
 use common\models\Poster;
+use common\models\PosterFloor;
 use common\models\PosterSubject;
 use frontend\modules\user\models\PosterSearch;
 use frontend\modules\user\models\PosterSubjectSearch;
+use yii\base\ErrorException;
 use yii\web\Controller;
 
 class PosterController extends Controller
@@ -52,17 +54,21 @@ class PosterController extends Controller
 
     public function actionCreatePoster($subject_id)
     {
-        $x = new Poster();
+        $x = new \frontend\modules\user\models\Poster();
         $poster = clone $x;
         $poster->poster_subject_id = $subject_id;
         if ($poster->load(\Yii::$app->request->post())){
-            $poster->updated_by = \Yii::$app->user->id;
-            $poster->status = $poster::STATUS_ACTIVE;
-            if ($poster->save()){
-//                $poster_subject = clone $x;
+            $trans = \Yii::$app->db->beginTransaction();
+            try{
+                $poster->updated_by = \Yii::$app->user->id;
+                $poster->status = $poster::STATUS_ACTIVE;
+                if ($poster->save()){}else{
+                    var_dump($poster->getErrors());exit;
+                }
+                $trans->commit();
                 $this->redirect(['poster-list']);
-            }else{
-                var_dump($poster->getErrors());exit;
+            }catch (ErrorException $e){
+                $trans->rollBack();
             }
         }
         return $this->render('create-poster', [

@@ -16,6 +16,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $updated_by
  * @property integer $status
+ * @property string $content
  *
  * @property PosterFloor $atFloor
  * @property PosterFloor[] $posterFloors
@@ -39,8 +40,9 @@ class PosterFloor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['poster_id', 'floor_sequence', 'created_by', 'created_at', 'updated_at', 'updated_by', 'status'], 'required'],
+            [['poster_id', 'floor_sequence', 'created_by', 'created_at', 'updated_at', 'updated_by', 'status', 'content'], 'required'],
             [['poster_id', 'floor_sequence', 'at_floor', 'created_by', 'created_at', 'updated_at', 'updated_by', 'status'], 'integer'],
+            [['content'], 'string'],
             [['at_floor'], 'exist', 'skipOnError' => true, 'targetClass' => PosterFloor::className(), 'targetAttribute' => ['at_floor' => 'floor_sequence']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['poster_id'], 'exist', 'skipOnError' => true, 'targetClass' => Poster::className(), 'targetAttribute' => ['poster_id' => 'id']],
@@ -63,6 +65,7 @@ class PosterFloor extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
             'status' => 'Status',
+            'content' => 'Content',
         ];
     }
 
