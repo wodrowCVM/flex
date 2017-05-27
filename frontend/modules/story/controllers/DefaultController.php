@@ -45,7 +45,7 @@ class DefaultController extends Controller
         $story_reply->story_id = $id;
         if ($story_reply->load(\Yii::$app->request->post())){
             if (\Yii::$app->user->isGuest){
-                $this->redirect(['/site/login']);
+                return $this->redirect(['/site/login']);
             }
             $story_reply->updated_by = \Yii::$app->user->id;
             if ($story_reply->save()){

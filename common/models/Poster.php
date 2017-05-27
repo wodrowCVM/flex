@@ -2,26 +2,28 @@
 /**
  * Created by PhpStorm.
  * User: wodrow
- * Date: 17-5-23
- * Time: 下午6:57
+ * Date: 17-5-27
+ * Time: 下午1:58
  */
 
 namespace common\models;
-
-
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\Url;
 
 /**
- * Class PosterSubject
+ * Class Poster
  * @package common\models
  *
+ * @property PosterSubject $posterSubject
  * @property User $createdBy
  * @property User $updatedBy
+ * @property PosterFloor[] $posterFloors
  */
-class PosterSubject extends \common\models\tables\PosterSubject
+class Poster extends \common\models\tables\Poster
 {
+    const STATUS_ACTIVE = 10;
+
     public function behaviors()
     {
         return [
@@ -38,21 +40,23 @@ class PosterSubject extends \common\models\tables\PosterSubject
     public function rules()
     {
         return [
-            [['title',], 'required'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
+            [['poster_subject_id', 'title'], 'required'],
+            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
             [['title'], 'string', 'max' => 50],
             [['desc'], 'string', 'max' => 500],
+            [['poster_subject_id', 'title', 'created_by'], 'unique', 'targetAttribute' => ['poster_subject_id', 'title', 'created_by'], 'message' => 'The combination of Poster Subject ID, Title and Created By has already been taken.'],
+            [['poster_subject_id'], 'exist', 'skipOnError' => true, 'targetClass' => PosterSubject::className(), 'targetAttribute' => ['poster_subject_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
-    public function attributeLabels()
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosterSubject()
     {
-        return [
-            'title' => "标题",
-            'desc'=>'介绍',
-        ];
+        return $this->hasOne(PosterSubject::className(), ['id' => 'poster_subject_id']);
     }
 
     /**
@@ -71,9 +75,17 @@ class PosterSubject extends \common\models\tables\PosterSubject
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosterFloors()
+    {
+        return $this->hasMany(PosterFloor::className(), ['poster_id' => 'id']);
+    }
+
     public function getUrlArr()
     {
-        $arr = ["/poster/subject/view", 'id'=>$this->id];
+        $arr = ["/poster/poster/view", 'id'=>$this->id];
         return $arr;
     }
 

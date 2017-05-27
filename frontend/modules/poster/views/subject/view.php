@@ -1,9 +1,12 @@
 <?php
 /**
- * @var \common\models\PosterSubject[] $subjects
+ * @var \common\models\PosterSubject $subject
+ * @var \common\models\Poster[] $posters
+ * @var \yii\data\Pagination $pages
  */
 
-$this->title = "所有主题";
+$this->title = "帖子列表";
+$this->params['breadcrumbs'][] = \kartik\helpers\Html::a('所有主题', '/poster/default/index');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -13,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?=$this->title ?>
             </div>
             <div>
-                <?php foreach($subjects as $k => $v): ?>
+                <?php foreach($posters as $k => $v): ?>
                     <div class="list-group" style="margin-bottom: 0px;">
                         <div class="list-group-item" data-key="44"><div class="media">
                                 <a class="pull-right" href="/topic/44#comment6">
@@ -70,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="panel-body text-center">
                     <div class="btn-group">
-                        <?=\dmstr\helpers\Html::a('创建新主题', ['/user/poster/create-subject'], ['class'=>"btn btn-primary"]) ?>
+                        <?=\dmstr\helpers\Html::a('创建新帖子', ['/user/poster/create-poster', 'subject_id'=>$subject->id], ['class'=>"btn btn-primary"]) ?>
                     </div>
                 </div>
             </div>

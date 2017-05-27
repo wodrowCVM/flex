@@ -19,7 +19,7 @@ $_count = \common\models\Story::find()->where(['need_level'=>0])->count();
     <div class="clearfix site-index-topic">
         <?php foreach($_items as $k => $v): ?>
             <li class="list-group-item media col-sm-12 mt0">
-                <?=\yii\helpers\Html::a('<span class="badge badge-reply-count">6</span>', ['/topic/18#comment6'], [
+                <?=\yii\helpers\Html::a('<span class="badge badge-reply-count">'.\common\models\StoryReply::find()->where(['story_id'=>$v->id])->count().'</span>', ['/topic/18#comment6'], [
                     'class' => 'pull-right',
                 ]) ?>
                 <div class="avatar pull-left">

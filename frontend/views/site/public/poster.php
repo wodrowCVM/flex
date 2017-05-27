@@ -47,14 +47,14 @@ $_count = \common\models\PosterSubject::find()->count();
             <span class="index_count">
                 <i class="fa fa-list"></i> 主题数：<?=$_count ?>
             </span>
-        <?=\yii\helpers\Html::a('发表文章', '/user/story/publish', [
+        <?=\yii\helpers\Html::a('发表主题贴', '/user/poster/create-subject', [
             'class' => 'btn btn-success',
             'style' => [
                 'padding' => 0,
                 'font-size' => "10px",
             ],
         ]) ?>
-        <?=\yii\helpers\Html::a('查看更多文章', ['/story'], [
+        <?=\yii\helpers\Html::a('查看更多主题贴', ['/poster'], [
             'class' => 'btn btn-info',
             'style' => [
                 'padding' => 0,

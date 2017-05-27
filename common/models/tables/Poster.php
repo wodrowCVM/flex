@@ -5,29 +5,31 @@ namespace common\models\tables;
 use Yii;
 
 /**
- * This is the model class for table "{{%poster_subject}}".
+ * This is the model class for table "{{%poster}}".
  *
  * @property integer $id
+ * @property integer $poster_subject_id
  * @property string $title
- * @property string $desc
  * @property integer $created_at
  * @property integer $created_by
  * @property integer $updated_at
  * @property integer $updated_by
  * @property integer $status
+ * @property string $desc
  *
- * @property Poster[] $posters
+ * @property PosterSubject $posterSubject
  * @property User $createdBy
  * @property User $updatedBy
+ * @property PosterFloor[] $posterFloors
  */
-class PosterSubject extends \yii\db\ActiveRecord
+class Poster extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%poster_subject}}';
+        return '{{%poster}}';
     }
 
     /**
@@ -36,11 +38,12 @@ class PosterSubject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
+            [['poster_subject_id', 'title', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'required'],
+            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
             [['title'], 'string', 'max' => 50],
             [['desc'], 'string', 'max' => 500],
-            [['created_by', 'title'], 'unique', 'targetAttribute' => ['created_by', 'title'], 'message' => 'The combination of Title and Created By has already been taken.'],
+            [['poster_subject_id', 'title', 'created_by'], 'unique', 'targetAttribute' => ['poster_subject_id', 'title', 'created_by'], 'message' => 'The combination of Poster Subject ID, Title and Created By has already been taken.'],
+            [['poster_subject_id'], 'exist', 'skipOnError' => true, 'targetClass' => PosterSubject::className(), 'targetAttribute' => ['poster_subject_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];
@@ -53,22 +56,23 @@ class PosterSubject extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'poster_subject_id' => 'Poster Subject ID',
             'title' => 'Title',
-            'desc' => 'Desc',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
             'status' => 'Status',
+            'desc' => 'Desc',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPosters()
+    public function getPosterSubject()
     {
-        return $this->hasMany(Poster::className(), ['poster_subject_id' => 'id']);
+        return $this->hasOne(PosterSubject::className(), ['id' => 'poster_subject_id']);
     }
 
     /**
@@ -85,5 +89,13 @@ class PosterSubject extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosterFloors()
+    {
+        return $this->hasMany(PosterFloor::className(), ['poster_id' => 'id']);
     }
 }

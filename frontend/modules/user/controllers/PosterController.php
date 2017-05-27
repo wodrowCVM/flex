@@ -9,7 +9,9 @@
 namespace frontend\modules\user\controllers;
 
 
+use common\models\Poster;
 use common\models\PosterSubject;
+use frontend\modules\user\models\PosterSearch;
 use frontend\modules\user\models\PosterSubjectSearch;
 use yii\web\Controller;
 
@@ -45,6 +47,36 @@ class PosterController extends Controller
         }
         return $this->render('create-subject', [
             'poster_subject'=>$poster_subject,
+        ]);
+    }
+
+    public function actionCreatePoster($subject_id)
+    {
+        $x = new Poster();
+        $poster = clone $x;
+        $poster->poster_subject_id = $subject_id;
+        if ($poster->load(\Yii::$app->request->post())){
+            $poster->updated_by = \Yii::$app->user->id;
+            $poster->status = $poster::STATUS_ACTIVE;
+            if ($poster->save()){
+//                $poster_subject = clone $x;
+                $this->redirect(['poster-list']);
+            }else{
+                var_dump($poster->getErrors());exit;
+            }
+        }
+        return $this->render('create-poster', [
+            'poster'=>$poster,
+        ]);
+    }
+
+    public function actionPosterList()
+    {
+        $searchModel = new PosterSearch();
+        $dataProvider = $searchModel->search(\Yii::$app->request->getQueryParams());
+        return $this->render('poster-list', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 }
