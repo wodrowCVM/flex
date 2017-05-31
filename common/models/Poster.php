@@ -19,6 +19,7 @@ use yii\helpers\Url;
  * @property User $createdBy
  * @property User $updatedBy
  * @property PosterFloor[] $posterFloors
+ * @property PosterFloor $lastFloor
  */
 class Poster extends \common\models\tables\Poster
 {
@@ -93,5 +94,26 @@ class Poster extends \common\models\tables\Poster
     {
         $url = Url::to($this->getUrlArr());
         return $url;
+    }
+
+    /**
+     * @return array|null|\yii\db\ActiveRecord
+     */
+    public function getLastFloor()
+    {
+        $floor = PosterFloor::find()->where(['poster_id'=>$this->id])->orderBy(['created_at'=>SORT_DESC])->one();
+        return $floor;
+    }
+
+    public function getFloorCount()
+    {
+        $count = PosterFloor::find()->where(['poster_id'=>$this->id])->count();
+        return $count;
+    }
+
+    public function getFloorUserCount()
+    {
+        $count = PosterFloor::find()->where(['poster_id'=>$this->id])->groupBy(['created_by'])->count();
+        return $count;
     }
 }

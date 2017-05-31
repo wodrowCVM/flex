@@ -19,6 +19,7 @@ use yii\helpers\Url;
  *
  * @property User $createdBy
  * @property User $updatedBy
+ * @property Poster $lastPoster
  */
 class PosterSubject extends \common\models\tables\PosterSubject
 {
@@ -81,5 +82,26 @@ class PosterSubject extends \common\models\tables\PosterSubject
     {
         $url = Url::to($this->getUrlArr());
         return $url;
+    }
+
+    /**
+     * @return array|null|\yii\db\ActiveRecord
+     */
+    public function getLastPoster()
+    {
+        $poster = Poster::find()->where(['poster_subject_id'=>$this->id])->orderBy(['created_at'=>SORT_DESC])->one();
+        return $poster;
+    }
+
+    public function getPosterCount()
+    {
+        $count = Poster::find()->where(['poster_subject_id'=>$this->id])->count();
+        return $count;
+    }
+
+    public function getPosterUserCount()
+    {
+        $count = Poster::find()->where(['poster_subject_id'=>$this->id])->groupBy(['created_by'])->count();
+        return $count;
     }
 }

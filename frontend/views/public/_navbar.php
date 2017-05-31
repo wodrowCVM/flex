@@ -75,11 +75,11 @@ echo \common\components\rewrite\Nav::widget([
 //    'activateItems' => false,
     'encodeLabels' => false,
 ]);
-echo '<form class="navbar-form navbar-left" role="search" action="" method="get">
-                <div class="form-group">
-                    <input type="text" value="" name="keyword" class="form-control search_input" id="navbar-search" placeholder="搜索..." data-placement="bottom" data-content="请输入要搜索的关键词！">
-                </div>
-            </form>';
+//echo '<form class="navbar-form navbar-left" role="search" action="" method="get">
+//                <div class="form-group">
+//                    <input type="text" value="" name="keyword" class="form-control search_input" id="navbar-search" placeholder="搜索..." data-placement="bottom" data-content="请输入要搜索的关键词！">
+//                </div>
+//            </form>';
 echo \common\components\rewrite\Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => $rightItems,

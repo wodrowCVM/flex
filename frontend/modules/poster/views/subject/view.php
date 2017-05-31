@@ -20,30 +20,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="list-group" style="margin-bottom: 0px;">
                         <div class="list-group-item" data-key="44"><div class="media">
                                 <a class="pull-right" href="/topic/44#comment6">
-                                    <span class="badge badge-reply-count">6</span>
+                                    <span class="badge badge-reply-count">置顶贴</span>
                                 </a>
                                 <div class="media-left">
                                     <?=\yii\helpers\Html::a(\yii\helpers\Html::img($v->createdBy->userInfo->getTextAvatarUrl(),['style'=>['width'=>"50px", 'height'=>"50px"], 'class'=>"media-object"]), $v->createdBy->getMemberUrlArr(), []) ?>
                                 </div>
                                 <div class="media-body">
-
                                     <div class="media-heading title">
-                                        <?=\yii\helpers\Html::a('【置顶】'.$v->title, $v->getUrlArr(), ['title'=>$v->title]) ?>
+                                        <?=\yii\helpers\Html::a($v->title, $v->getUrlArr(), ['title'=>$v->title]) ?>
                                         <i class="fa fa-trophy excellent"></i>
                                     </div>
-
                                     <div class="title-info">
-                                        <a class="remove-padding-left" href="/topic/44"><span class="fa fa-thumbs-o-up"> 9 </span></a>
-                                        •
-                                        <a class="node" href="/?node=notice">公告</a>
-                                        •
+                                        <span>
+                                            创建时间 <small><?=date("Y-m-d H:i:s", $v->created_at) ?></small>
+                                        </span>
                                         <span>
                                             最后由
-                                            <a href="/member/zhi8023nan"><strong> zhi8023nan </strong></a>
-                                            于 1个月前 回复
+                                            <a href="<?= $v->createdBy->getMemberUrl() ?>"><strong> <?= $v->createdBy->username ?> </strong></a>
+                                            于 <small><?=date("Y-m-d H:i:s", $v->lastFloor->created_at) ?></small> 回复
                                         </span>
                                         •
-                                        3938 次阅读
+                                        <code><?=$v->floorCount ?></code> 次回复
+                                        •
+                                        <code><?=$v->floorUserCount ?></code> 个讨论者
                                     </div>
                                 </div>
                             </div>

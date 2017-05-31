@@ -23,9 +23,27 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div data-key="<?=$v->id ?>" style="border-bottom: 1px solid #ccc;min-height: 200px;margin-bottom: 10px;">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <?= \yii\helpers\Html::a(\yii\helpers\Html::img($v->createdBy->userInfo->getTextAvatarUrl(), ['style' => ['width' => "100px", 'height' => "100px"], 'class' => "media-object"]), $v->createdBy->getMemberUrlArr(), []) ?>
+                                    <div>
+                                        <?= \yii\helpers\Html::a(\yii\helpers\Html::img($v->createdBy->userInfo->getTextAvatarUrl(), ['style' => ['width' => "100px", 'height' => "100px"], 'class' => "media-object"]), $v->createdBy->getMemberUrlArr(), []) ?>
+                                    </div>
                                     <br>
-                                    123456
+                                    <div>
+                                        <div class="btn-group btn-group-xs">
+                                            <?php if($v->created_by==$poster->created_by): ?>
+                                                <button type="button" class="btn btn-primary">楼主</button>
+                                            <?php endif; ?>
+                                            <button type="button" class="btn btn-default"><?=$v->createdBy->username ?></button>
+                                            <?php if($v->floor_sequence==0): ?>
+                                                <button type="button" class="btn btn-danger">顶楼</button>
+                                            <?php else: ?>
+                                                <button type="button" class="btn btn-default"><?=$v->floor_sequence ?></button>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <button class="btn btn-default btn-xs"><?=date("Y-m-d H:i:s", $v->created_at) ?></button>
+                                    </div>
                                 </div>
                                 <div class="col-sm-10">
                                     <?=$v->content ?>
