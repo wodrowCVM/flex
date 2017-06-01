@@ -39,6 +39,7 @@
         ],
     ]) ?>
     <?=$form->field($poster, 'title')->textInput() ?>
+    <?=Yii::$app->user->id==\common\config\ConfigData::getSuper()->id?$form->field($poster, 'is_top')->dropDownList($poster::getIsTop()):'' ?>
     <?=Yii::$app->user->id==\common\config\ConfigData::getSuper()->id?$form->field($poster, 'type')->dropDownList($poster::getType()):'' ?>
     <?=$form->field($poster, 'desc')->textarea(['rows'=>5]) ?>
     <?=$form->field($poster, 'floor_head_content')->textarea(['rows'=>5]) ?>

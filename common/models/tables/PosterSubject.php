@@ -16,6 +16,7 @@ use Yii;
  * @property integer $updated_by
  * @property integer $status
  * @property integer $type
+ * @property integer $is_top
  *
  * @property Poster[] $posters
  * @property User $createdBy
@@ -40,7 +41,7 @@ class PosterSubject extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type'], 'integer'],
+            [['created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type', 'is_top'], 'integer'],
             [['title'], 'string', 'max' => 8],
             [['desc'], 'string', 'max' => 500],
             [['title'], 'unique'],
@@ -64,6 +65,7 @@ class PosterSubject extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
             'status' => 'Status',
             'type' => 'Type',
+            'is_top' => 'Is Top',
         ];
     }
 

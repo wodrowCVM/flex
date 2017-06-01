@@ -17,7 +17,7 @@ class PosterSearch extends Poster
     public function rules()
     {
         return [
-            [['id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type'], 'integer'],
+            [['id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type', 'is_top'], 'integer'],
             [['title', 'desc'], 'safe'],
         ];
     }

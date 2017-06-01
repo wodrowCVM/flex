@@ -18,6 +18,11 @@ $columns = [
     'title',
     [
         'class' => \common\components\grid\KEnumColumn::className(),
+        'attribute' => 'is_top',
+        'enum' => $searchModel::getIsTop(),
+    ],
+    [
+        'class' => \common\components\grid\KEnumColumn::className(),
         'attribute' => 'type',
         'enum' => $searchModel::getType(),
     ],

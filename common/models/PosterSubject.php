@@ -26,15 +26,24 @@ class PosterSubject extends \common\models\tables\PosterSubject
     const STATUS_ACTIVE = 10;
 
     const TYPE_DEFAULT = 10;
-    const TYPE_TOP = 1;
     const TYPE_BOUTIQUE = 2;
 
     public static function getType()
     {
         return [
             self::TYPE_DEFAULT=>'默认集',
-            self::TYPE_TOP => '置顶集',
             self::TYPE_BOUTIQUE => '精品集',
+        ];
+    }
+
+    const IS_TOP_TRUE = 1;
+    const IS_TOP_FALSE = 0;
+
+    public static function getIsTop()
+    {
+        return [
+            self::IS_TOP_TRUE=>'置顶',
+            self::IS_TOP_FALSE => '不置顶',
         ];
     }
 

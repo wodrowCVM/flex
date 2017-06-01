@@ -21,7 +21,7 @@ class PosterController extends Controller
         $poster = Poster::findOne(['id'=>$id]);
         $x = new PosterFloor();
         $post_floor = clone $x;
-        $query = PosterFloor::find()->where(['poster_id'=>$id]);
+        $query = PosterFloor::find()->where(['poster_id'=>$id])->orderBy(['is_top'=>SORT_DESC, 'created_at'=>SORT_DESC]);
         if ($post_floor->load(\Yii::$app->request->post())){
             if (\Yii::$app->user->isGuest){
                 return $this->redirect(['/site/login']);

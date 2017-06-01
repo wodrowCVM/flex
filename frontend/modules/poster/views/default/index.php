@@ -21,8 +21,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?php if($v->created_by == Yii::$app->user->id || Yii::$app->user->id == \common\config\ConfigData::getSuper()->id): ?>
                                         <?=\yii\helpers\Html::a('修改', ['/user/poster/update-subject', 'subject_id'=>$v->id]) ?>
                                     <?php endif; ?>
+                                    <?php if($v->is_top == $v::IS_TOP_TRUE): ?>
+                                        <span class="label label-danger"><?=$v::getIsTop()[$v->is_top] ?></span>
+                                    <?php endif; ?>
                                     <?php if($v->type != $v::TYPE_DEFAULT): ?>
-                                        <span class="badge badge-reply-count"><?=$v::getType()[$v->type] ?></span>
+                                        <span class="label label-primary"><?=$v::getType()[$v->type] ?></span>
                                     <?php endif; ?>
                                 </div>
                                 <div class="media-left">

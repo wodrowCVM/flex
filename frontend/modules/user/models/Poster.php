@@ -19,7 +19,7 @@ class Poster extends \common\models\Poster
     {
         return [
             [['poster_subject_id', 'title'], 'required'],
-            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type'], 'integer'],
+            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type', 'is_top'], 'integer'],
             [['title'], 'string', 'max' => 50],
             [['desc'], 'string', 'max' => 500],
             [['poster_subject_id', 'title', 'created_by'], 'unique', 'targetAttribute' => ['poster_subject_id', 'title', 'created_by'], 'message' => 'The combination of Poster Subject ID, Title and Created By has already been taken.'],
@@ -45,6 +45,7 @@ class Poster extends \common\models\Poster
             'desc' => '介绍',
             'floor_head_content' => '顶楼内容',
             'type' => '类型',
+            'is_top' => '置顶',
         ];
     }
 
