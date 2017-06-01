@@ -19,7 +19,7 @@ class Poster extends \common\models\Poster
     {
         return [
             [['poster_subject_id', 'title'], 'required'],
-            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
+            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type'], 'integer'],
             [['title'], 'string', 'max' => 50],
             [['desc'], 'string', 'max' => 500],
             [['poster_subject_id', 'title', 'created_by'], 'unique', 'targetAttribute' => ['poster_subject_id', 'title', 'created_by'], 'message' => 'The combination of Poster Subject ID, Title and Created By has already been taken.'],
@@ -44,7 +44,15 @@ class Poster extends \common\models\Poster
             'status' => 'Status',
             'desc' => '介绍',
             'floor_head_content' => '顶楼内容',
+            'type' => '类型',
         ];
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+        $x = PosterFloor::findOne(['poster_id'=>$this->id, 'floor_sequence'=>0]);
+        $this->floor_head_content = $x->content;
     }
 
     public function afterSave($insert, $changedAttributes)

@@ -5,6 +5,9 @@
  * Date: 17-5-23
  * Time: 下午7:19
  */
+/**
+ * @var \frontend\modules\user\models\PosterSearch $searchModel
+ */
 $this->title = "帖子列表";
 $this->params['breadcrumbs'][] = \yii\helpers\Html::a('主题列表', ['poster-subject-list']);
 $this->params['breadcrumbs'][] = $this->title;
@@ -14,6 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
 $columns = [
     'id',
     'title',
+    [
+        'class' => \common\components\grid\KEnumColumn::className(),
+        'attribute' => 'type',
+        'enum' => $searchModel::getType(),
+    ],
     [
         'attribute' => 'posterSubject.title',
         'label' => '主题',
@@ -35,13 +43,13 @@ $columns = [
 //            'headerOptions' => [],
         'buttons' => [
             'view' => function($url, $model, $key){
-                return \yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['/user/story/view', 'id'=>$key], [
+                return \yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['/poster/poster/view', 'id'=>$key], [
                     'class' => 'data-view',
                     'data-id' => $key,
                 ]);
             },
             'update' => function($url, $modal, $key){
-                return \yii\helpers\Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['/user/story/update', 'id'=>$key], [
+                return \yii\helpers\Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['/user/poster/update-poster', 'poster_id'=>$key], [
                     'class' => 'data-update',
                     'data-id' => $key,
                 ]);

@@ -25,6 +25,19 @@ class Poster extends \common\models\tables\Poster
 {
     const STATUS_ACTIVE = 10;
 
+    const TYPE_DEFAULT = 10;
+    const TYPE_TOP = 1;
+    const TYPE_BOUTIQUE = 2;
+
+    public static function getType()
+    {
+        return [
+            self::TYPE_DEFAULT=>'默认贴',
+            self::TYPE_TOP => '置顶贴',
+            self::TYPE_BOUTIQUE => '精品贴',
+        ];
+    }
+
     public function behaviors()
     {
         return [
@@ -42,7 +55,7 @@ class Poster extends \common\models\tables\Poster
     {
         return [
             [['poster_subject_id', 'title'], 'required'],
-            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
+            [['poster_subject_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type'], 'integer'],
             [['title'], 'string', 'max' => 50],
             [['desc'], 'string', 'max' => 500],
             [['poster_subject_id', 'title', 'created_by'], 'unique', 'targetAttribute' => ['poster_subject_id', 'title', 'created_by'], 'message' => 'The combination of Poster Subject ID, Title and Created By has already been taken.'],
