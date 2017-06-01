@@ -19,7 +19,7 @@ class SubjectController extends Controller
     public function actionView($id)
     {
         $subject = PosterSubject::findOne(['id'=>$id]);
-        $query = Poster::find()->where(['poster_subject_id'=>$id])->orderBy(['created_at'=>SORT_DESC]);
+        $query = Poster::find()->where(['poster_subject_id'=>$id])->orderBy(['is_top'=>SORT_DESC, 'created_at'=>SORT_DESC]);
         $countQuery = clone $query;
         $pages = new Pagination([
             'totalCount' => $countQuery->count(),
