@@ -19,6 +19,8 @@ use Yii;
  * @property Poster[] $posters
  * @property User $createdBy
  * @property User $updatedBy
+ * @property PosterSubjectTag[] $posterSubjectTags
+ * @property Tag[] $tags
  */
 class PosterSubject extends \yii\db\ActiveRecord
 {
@@ -38,7 +40,7 @@ class PosterSubject extends \yii\db\ActiveRecord
         return [
             [['title', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
-            [['title'], 'string', 'max' => 50],
+            [['title'], 'string', 'max' => 8],
             [['desc'], 'string', 'max' => 500],
             [['created_by', 'title'], 'unique', 'targetAttribute' => ['created_by', 'title'], 'message' => 'The combination of Title and Created By has already been taken.'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -85,5 +87,21 @@ class PosterSubject extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosterSubjectTags()
+    {
+        return $this->hasMany(PosterSubjectTag::className(), ['poster_subject_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('{{%poster_subject_tag}}', ['poster_subject_id' => 'id']);
     }
 }

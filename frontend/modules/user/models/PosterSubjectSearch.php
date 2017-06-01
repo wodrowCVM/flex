@@ -40,7 +40,7 @@ class PosterSubjectSearch extends PosterSubject
      */
     public function search($params)
     {
-        $query = PosterSubject::find();
+        $query = PosterSubject::find()->where(['created_by'=>Yii::$app->user->id])->orderBy(['created_at'=>SORT_DESC]);
 
         // add conditions that should always apply here
 

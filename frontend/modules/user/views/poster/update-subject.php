@@ -9,7 +9,7 @@
  * @var \common\models\PosterSubject $poster_subject
  */
 
-$this->title = "创建主题";
+$this->title = "修改主题";
 $this->params['breadcrumbs'][] = \yii\helpers\Html::a('主题列表', ['poster-subject-list']);
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -5,6 +5,9 @@
  * Date: 17-5-8
  * Time: 下午3:36
  */
+/**
+ * @var \common\models\PosterSubject[] $_items
+ */
 $_items = \common\models\PosterSubject::find()->limit(10)->orderBy(["updated_at"=>SORT_DESC, "created_at"=>SORT_DESC])->all();
 $_count = \common\models\PosterSubject::find()->count();
 ?>
@@ -19,7 +22,7 @@ $_count = \common\models\PosterSubject::find()->count();
     <div class="clearfix site-index-topic">
         <?php foreach($_items as $k => $v): ?>
             <li class="list-group-item media col-sm-12 mt0">
-                <?=\yii\helpers\Html::a('<span class="badge badge-reply-count">6</span>', ['/topic/18#comment6'], [
+                <?=\yii\helpers\Html::a('<span class="badge badge-reply-count">'.$v->getPosterCount().'</span>', $v->getUrlArr(), [
                     'class' => 'pull-right',
                 ]) ?>
                 <div class="avatar pull-left">

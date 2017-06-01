@@ -40,7 +40,7 @@ class StoryController extends Controller
         return $story;
     }
 
-    private function transSave($story)
+    private function transSave(Story $story)
     {
         $trans = \Yii::$app->db->beginTransaction();
         try{

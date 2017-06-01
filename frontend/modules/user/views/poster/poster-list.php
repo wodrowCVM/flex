@@ -14,6 +14,10 @@ $columns = [
     'id',
     'title',
     [
+        'attribute' => 'posterSubject.title',
+        'label' => '主题',
+    ],
+    [
         'attribute' => 'createdBy.username',
         'label' => '创建者',
     ],
@@ -47,7 +51,7 @@ $columns = [
                     [
 //                                'class' => 'btn btn-default btn-xs',
                         'data' => [
-                            'confirm' => '你确定要删除吗？',
+                            'confirm' => '你确定要删除吗？将会删除此主题下的所有帖子！',
                         ],
                         'data-method' => 'post',
                     ]

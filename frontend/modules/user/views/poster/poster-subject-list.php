@@ -30,20 +30,20 @@ $columns = [
 //            'headerOptions' => [],
         'buttons' => [
             'view' => function($url, $model, $key){
-                return \yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['/user/story/view', 'id'=>$key], [
+                return \yii\helpers\Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['/poster/subject/view', 'id'=>$key], [
                     'class' => 'data-view',
                     'data-id' => $key,
                 ]);
             },
             'update' => function($url, $modal, $key){
-                return \yii\helpers\Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['/user/story/update', 'id'=>$key], [
+                return \yii\helpers\Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update-subject', 'subject_id'=>$key], [
                     'class' => 'data-update',
                     'data-id' => $key,
                 ]);
             },
             'delete' => function ($url, $model, $key) {
                 return \kartik\helpers\Html::a('<span class="glyphicon glyphicon-trash"></span>',
-                    ['delete', 'id' => $key],
+                    ['delete-subject', 'subject_id' => $key],
                     [
 //                                'class' => 'btn btn-default btn-xs',
                         'data' => [
@@ -52,6 +52,20 @@ $columns = [
                         'data-method' => 'post',
                     ]
                 );
+            },
+        ],
+    ],
+    [
+        'class' => \kartik\grid\ActionColumn::className(),
+        'header' => '其他操作',
+        'template' => '{create-poster}',//只需要展示删除和更新
+//            'headerOptions' => [],
+        'buttons' => [
+            'create-poster' => function($url, $model, $key){
+                return \yii\helpers\Html::a('创建帖子', ['/user/poster/create-poster', 'subject_id'=>$key], [
+                    'class' => 'data-view',
+                    'data-id' => $key,
+                ]);
             },
         ],
     ],

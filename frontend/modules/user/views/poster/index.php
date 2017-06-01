@@ -9,4 +9,7 @@ $this->title = "我的帖子";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-123456
+<div class="user-poster-index">
+    <?=\yii\helpers\Html::a('帖子主题列表', '/user/poster/poster-subject-list') ?>
+    <?=\yii\helpers\Html::a('帖子列表', '/user/poster/poster-list') ?>
+</div>

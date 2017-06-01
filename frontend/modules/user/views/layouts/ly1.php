@@ -24,6 +24,7 @@ $this->registerCssFile('@web/css/user/user.less');
                 <div class="col-sm-9">
                     <?= \yii\widgets\Breadcrumbs::widget([
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        'encodeLabels' => false,
                     ]) ?>
                     <?= \common\widgets\Alert::widget() ?>
                     <?= $content ?>
