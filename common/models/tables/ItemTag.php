@@ -7,7 +7,8 @@ use Yii;
 /**
  * This is the model class for table "{{%item_tag}}".
  *
- * @property string $name
+ * @property integer $tag_id
+ * @property string $tag_name
  * @property integer $item_id
  * @property string $item_title
  * @property integer $created_at
@@ -34,8 +35,8 @@ class ItemTag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type', 'item_type'], 'integer'],
-            [['name'], 'string', 'max' => 20],
+            [['tag_id', 'item_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type', 'item_type'], 'integer'],
+            [['tag_name'], 'string', 'max' => 20],
             [['item_title'], 'string', 'max' => 25],
         ];
     }
@@ -46,7 +47,8 @@ class ItemTag extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Name',
+            'tag_id' => 'Tag ID',
+            'tag_name' => 'Tag Name',
             'item_id' => 'Item ID',
             'item_title' => 'Item Title',
             'created_at' => 'Created At',
