@@ -16,7 +16,7 @@
             'linkOptions'=>['class'=>"list-group"],
         ],
         [
-            'label'=>'我的帖子',
+            'label'=>'我的主题帖',
             'url'=>["/user/poster"],
             'options' => ['class'=>"list-group-item"],
             'linkOptions'=>['class'=>"list-group"],

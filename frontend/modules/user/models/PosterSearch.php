@@ -64,6 +64,8 @@ class PosterSearch extends Poster
             'updated_at' => $this->updated_at,
             'updated_by' => $this->updated_by,
             'status' => $this->status,
+            'type' => $this->type,
+            'is_top' => $this->is_top,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

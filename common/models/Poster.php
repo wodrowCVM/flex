@@ -36,14 +36,14 @@ class Poster extends \common\models\tables\Poster
         ];
     }
 
-    const IS_TOP_TRUE = 1;
     const IS_TOP_FALSE = 0;
+    const IS_TOP_TRUE = 1;
 
     public static function getIsTop()
     {
         return [
-            self::IS_TOP_TRUE=>'置顶',
             self::IS_TOP_FALSE => '不置顶',
+            self::IS_TOP_TRUE=>'置顶',
         ];
     }
 
