@@ -13,11 +13,12 @@ use Yii;
  * @property integer $created_by
  * @property integer $updated_at
  * @property integer $updated_by
+ * @property integer $status
+ * @property integer $type
  * @property integer $item_type
  */
 class Item extends \yii\db\ActiveRecord
 {
-
     /**
      * @inheritdoc
      */
@@ -32,7 +33,7 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'item_type'], 'integer'],
+            [['item_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type', 'item_type'], 'integer'],
             [['item_title'], 'string', 'max' => 25],
         ];
     }
@@ -49,6 +50,8 @@ class Item extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
+            'status' => 'Status',
+            'type' => 'Type',
             'item_type' => 'Item Type',
         ];
     }
