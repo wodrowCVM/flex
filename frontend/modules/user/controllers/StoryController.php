@@ -64,6 +64,7 @@ class StoryController extends Controller
                 }
             }
             $trans->commit();
+            return $this->redirect(['/user/story/view', 'id' => $story->id]);
         }catch (Exception $e){
             $trans->rollBack();
             var_dump($e->getMessage());
@@ -88,8 +89,8 @@ class StoryController extends Controller
     {
         $story = new Story();
         if ($story->load(\Yii::$app->request->post())){
+            $story->updated_by = \Yii::$app->user->id;
             $this->transSave($story);
-            return $this->redirect(['/user/story/view', 'id' => $story->id]);
         }else {
             return $this->render('publish', [
                 'story' => $story,
@@ -101,6 +102,7 @@ class StoryController extends Controller
     {
         $story = Story::findOne(['id'=>$id]);
         if ($story->load(\Yii::$app->request->post())){
+            $story->updated_by = \Yii::$app->user->id;
             $this->transSave($story);
         }else {}
         return $this->render('update', [

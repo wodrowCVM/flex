@@ -7,6 +7,7 @@
  */
 
 $this->title = $story->isNewRecord ? "发表文章" : "修改文章";
+$this->params['breadcrumbs'][] = \yii\helpers\Html::a('文章列表', ['index']);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= $this->render('_form', [

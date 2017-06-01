@@ -48,6 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
         </div>
         <div class="col-md-3">
+            <div class="panel panel-default corner-radius">
+                <div class="panel-body text-center">
+                    <div class="btn-group">
+                        <?= \dmstr\helpers\Html::a('发布新文章', ['/user/story/publish'], ['class' => "btn btn-primary"]) ?>
+                    </div>
+                </div>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-star"></span>&nbsp;最新发布

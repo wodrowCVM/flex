@@ -51,6 +51,9 @@ $config = [
         'talk' => [ // 说说
             'class' => 'frontend\modules\talk\TalkModule',
         ],
+        'tag' => [ // 标签
+            'class' => \frontend\modules\tag\TagModule::className(),
+        ]
     ],
     'components' => [
         'request' => [
@@ -127,6 +130,7 @@ $config = [
             'story/*',
             'talk/default/index',
             'poster/*',
+            'tag/*',
         ],
         'rules' => [
             [

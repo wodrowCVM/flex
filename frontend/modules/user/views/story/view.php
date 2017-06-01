@@ -16,6 +16,7 @@ use yii\widgets\DetailView as DetailView;
 
 
 $this->title = "我的文章-".$story->title;
+$this->params['breadcrumbs'][] = \yii\helpers\Html::a('文章列表', ['index']);
 $this->params['breadcrumbs'][] = $this->title;
 $model = $story;
 $colors = ['primary', 'info', 'success', 'warning', 'danger'];
