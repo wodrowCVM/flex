@@ -13,6 +13,7 @@
 <div class="user-poster-subject-form">
     <?php $form = \kartik\widgets\ActiveForm::begin(); ?>
     <?=$form->field($poster_subject, 'title')->textInput() ?>
+    <?=Yii::$app->user->id==\common\config\ConfigData::getSuper()->id?$form->field($poster_subject, 'type')->dropDownList($poster_subject::getType()):'' ?>
     <?=$form->field($poster_subject, 'desc')->textarea(['rows'=>5]) ?>
     <?php
     echo $form->field($poster_subject, 'tagArr')->widget(\kartik\select2\Select2::className(), [

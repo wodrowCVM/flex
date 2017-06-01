@@ -9,6 +9,7 @@
 namespace frontend\modules\user\controllers;
 
 
+use common\config\ConfigData;
 use common\models\PosterSubjectTag;
 use common\models\Tag;
 use frontend\modules\user\models\Poster;
@@ -67,7 +68,11 @@ class PosterController extends Controller
 
     protected function getSubject($id)
     {
-        $x = PosterSubject::findOne(['id'=>$id, 'created_by'=>\Yii::$app->user->id]);
+        if (\Yii::$app->user->id == ConfigData::getSuper()->id){
+            $x = PosterSubject::findOne(['id'=>$id]);
+        }else{
+            $x = PosterSubject::findOne(['id'=>$id, 'created_by'=>\Yii::$app->user->id]);
+        }
         if ($x){
             return $x;
         }else{
@@ -77,7 +82,11 @@ class PosterController extends Controller
 
     protected function getPoster($id)
     {
-        $x = Poster::findOne(['id'=>$id, 'created_by'=>\Yii::$app->user->id]);
+        if (\Yii::$app->user->id == ConfigData::getSuper()->id){
+            $x = Poster::findOne(['id'=>$id]);
+        }else{
+            $x = Poster::findOne(['id'=>$id, 'created_by'=>\Yii::$app->user->id]);
+        }
         if ($x){
             return $x;
         }else{

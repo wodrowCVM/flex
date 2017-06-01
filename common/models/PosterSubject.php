@@ -25,6 +25,19 @@ class PosterSubject extends \common\models\tables\PosterSubject
 {
     const STATUS_ACTIVE = 10;
 
+    const TYPE_DEFAULT = 10;
+    const TYPE_TOP = 1;
+    const TYPE_BOUTIQUE = 2;
+
+    public static function getType()
+    {
+        return [
+            self::TYPE_DEFAULT=>'默认集',
+            self::TYPE_TOP => '置顶集',
+            self::TYPE_BOUTIQUE => '精品集',
+        ];
+    }
+
     public $tagArr;
 
     public function behaviors()
@@ -47,7 +60,7 @@ class PosterSubject extends \common\models\tables\PosterSubject
     {
         return [
             [['title', 'tagArr'], 'required'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
+            [['created_at', 'created_by', 'updated_at', 'updated_by', 'status', 'type'], 'integer'],
             [['title'], 'string', 'max' => 8],
             [['desc'], 'string', 'max' => 500],
             [['title'], 'unique'],
@@ -62,6 +75,7 @@ class PosterSubject extends \common\models\tables\PosterSubject
             'title' => "标题",
             'desc'=>'介绍',
             'tagArr' => '标签',
+            'type' => '类型',
         ];
     }
 

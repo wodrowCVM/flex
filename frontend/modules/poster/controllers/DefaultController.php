@@ -17,7 +17,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $query = PosterSubject::find()->orderBy(['created_at'=>SORT_DESC]);
+        $query = PosterSubject::find()->orderBy(['type'=>SORT_ASC, 'created_at'=>SORT_DESC]);
         $countQuery = clone $query;
         $pages = new Pagination([
             'totalCount' => $countQuery->count(),

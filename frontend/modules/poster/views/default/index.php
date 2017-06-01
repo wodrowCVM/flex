@@ -17,9 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="list-group" style="margin-bottom: 0px;">
                         <div class="list-group-item" data-key="44">
                             <div class="media">
-                                <a class="pull-right" href="/topic/44#comment6">
-                                      <span class="badge badge-reply-count">置顶集</span>
-                                </a>
+                                <div class="pull-right">
+                                    <?php if($v->created_by == Yii::$app->user->id || Yii::$app->user->id == \common\config\ConfigData::getSuper()->id): ?>
+                                        <?=\yii\helpers\Html::a('修改', ['/user/poster/update-subject', 'subject_id'=>$v->id]) ?>
+                                    <?php endif; ?>
+                                    <?php if($v->type != $v::TYPE_DEFAULT): ?>
+                                        <span class="badge badge-reply-count"><?=$v::getType()[$v->type] ?></span>
+                                    <?php endif; ?>
+                                </div>
                                 <div class="media-left">
                                     <?= \yii\helpers\Html::a(\yii\helpers\Html::img($v->createdBy->userInfo->getTextAvatarUrl(), ['style' => ['width' => "50px", 'height' => "50px"], 'class' => "media-object"]), $v->createdBy->getMemberUrlArr(), []) ?>
                                 </div>

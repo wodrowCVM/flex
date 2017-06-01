@@ -5,6 +5,9 @@
  * Date: 17-5-23
  * Time: 下午7:19
  */
+/**
+ * @var \frontend\modules\user\models\PosterSubjectSearch $searchModel
+ */
 $this->title = "主题列表";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -13,6 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 $columns = [
     'id',
     'title',
+    [
+        'class' => \common\components\grid\KEnumColumn::className(),
+        'attribute' => 'type',
+        'enum' => $searchModel::getType(),
+    ],
     [
         'attribute' => 'createdBy.username',
         'label' => '创建者',
