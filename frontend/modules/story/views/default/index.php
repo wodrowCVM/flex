@@ -32,6 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             <span class="glyphicon glyphicon-comment" style="margin-left:15px;"></span>
                             <?=\common\models\StoryReply::find()->where(['story_id'=>$v->id])->count() ?>条评论
                             <?=\dmstr\helpers\Html::a('阅读全文', ['view', 'id'=>$v->id], ['class'=>'btn btn-default btn-xs pull-right']) ?>
+                            <?php if($v->created_by == Yii::$app->user->id || Yii::$app->user->id == \common\config\ConfigData::getSuper()->id): ?>
+                                <?=\yii\helpers\Html::a('修改', ['/user/story/update', 'id'=>$v->id], ['class'=>'btn btn-default btn-xs pull-right']) ?>
+                            <?php endif; ?>
                         </div>
                     </li>
                 <?php endforeach; ?>

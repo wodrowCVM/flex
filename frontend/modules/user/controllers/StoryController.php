@@ -9,6 +9,7 @@
 namespace frontend\modules\user\controllers;
 
 
+use common\config\ConfigData;
 use common\models\StoryTag;
 use common\models\Tag;
 use frontend\modules\user\models\Story;
@@ -33,9 +34,15 @@ class StoryController extends Controller
     }
 
     private function getYouStory($id){
-        $story = Story::findOne(['id'=>$id]);
-        if (\Yii::$app->user->id!=$story->created_by){
-            throw new ErrorException("不是你的文章！");
+        if (\Yii::$app->user->id == ConfigData::getSuper()->id){
+            $x = Story::findOne(['id'=>$id]);
+        }else{
+            $x = Story::findOne(['id'=>$id, 'created_by'=>\Yii::$app->user->id]);
+        }
+        if ($x){
+            return $x;
+        }else{
+            throw new ErrorException('没有找到文章或不是你的文章');
         }
         return $story;
     }
