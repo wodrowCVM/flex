@@ -9,10 +9,9 @@
 namespace frontend\modules\user\controllers;
 
 
-use common\models\Poster;
-use common\models\PosterFloor;
 use common\models\PosterSubjectTag;
 use common\models\Tag;
+use frontend\modules\user\models\Poster;
 use frontend\modules\user\models\PosterSearch;
 use frontend\modules\user\models\PosterSubject;
 use frontend\modules\user\models\PosterSubjectSearch;
@@ -59,9 +58,10 @@ class PosterController extends Controller
                 }
             }
             $trans->commit();
+            $this->redirect('poster-subject-list');
         }catch (Exception $e){
             $trans->rollBack();
-            var_dump($e->getMessage());exit;
+            throw $e;
         }
     }
 
@@ -85,9 +85,24 @@ class PosterController extends Controller
         }
     }
 
+    protected function transSavePoster(Poster $poster)
+    {
+        $trans = \Yii::$app->db->beginTransaction();
+        try{
+            if ($poster->save()){}else{
+                var_dump($poster->getErrors());exit;
+            }
+            $trans->commit();
+            $this->redirect(['poster-list']);
+        }catch (ErrorException $e){
+            $trans->rollBack();
+        }
+    }
+
     public function actionIndex()
     {
-        return $this->render('index');
+//        return $this->render('index');
+        return $this->redirect(['poster-subject-list']);
     }
 
     public function actionPosterSubjectList()
@@ -136,26 +151,32 @@ class PosterController extends Controller
         }
     }
 
-    public function actionCreatePoster($subject_id)
+    public function actionCreatePoster()
     {
-        $x = new \frontend\modules\user\models\Poster();
+        $x = new Poster();
         $poster = clone $x;
-        $poster->poster_subject_id = $subject_id;
+        if ($subject_id = \Yii::$app->request->get('subject_id')){
+            $poster->poster_subject_id = $subject_id;
+        }
         if ($poster->load(\Yii::$app->request->post())){
-            $trans = \Yii::$app->db->beginTransaction();
-            try{
-                $poster->updated_by = \Yii::$app->user->id;
-                $poster->status = $poster::STATUS_ACTIVE;
-                if ($poster->save()){}else{
-                    var_dump($poster->getErrors());exit;
-                }
-                $trans->commit();
-                $this->redirect(['poster-list']);
-            }catch (ErrorException $e){
-                $trans->rollBack();
-            }
+            $poster->updated_by = \Yii::$app->user->id;
+            $poster->status = $poster::STATUS_ACTIVE;
+            $this->transSavePoster($poster);
         }
         return $this->render('create-poster', [
+            'poster'=>$poster,
+        ]);
+    }
+
+    public function actionUpdatePoster($poster_id)
+    {
+        $x = $this->getPoster($poster_id);
+        $poster = clone $x;
+        if ($poster->load(\Yii::$app->request->post())){
+            $poster->updated_by = \Yii::$app->user->id;
+            $this->transSavePoster($poster);
+        }
+        return $this->render('update-poster', [
             'poster'=>$poster,
         ]);
     }

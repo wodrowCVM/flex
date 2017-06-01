@@ -24,7 +24,7 @@ $leftItems = [
 //    ['label' => \kartik\icons\Icon::show('book').'视频', 'url' => ['/vedio']],
 //    ['label' => \kartik\icons\Icon::show('book').'资源', 'url' => ['/resource']],
 //        ['label' => \kartik\icons\Icon::show('user').'会员', 'url' => ['/users']],
-    ['label' => \kartik\icons\Icon::show('user').'排行', 'url' => ['/jour/default/top']],
+//    ['label' => \kartik\icons\Icon::show('user').'排行', 'url' => ['/jour/default/top']],
 //        ['label' => Icon::show('comment') . '社区', 'url' => ['/topic'], 'active' => $topicActive],
 //        ['label' => Icon::show('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
 //        ['label' => \kartik\icons\Icon::show('commenting') . '动态', 'url' => ['/tweet'], 'active' => $tweetActive],

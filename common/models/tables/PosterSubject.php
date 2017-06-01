@@ -42,7 +42,7 @@ class PosterSubject extends \yii\db\ActiveRecord
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'status'], 'integer'],
             [['title'], 'string', 'max' => 8],
             [['desc'], 'string', 'max' => 500],
-            [['created_by', 'title'], 'unique', 'targetAttribute' => ['created_by', 'title'], 'message' => 'The combination of Title and Created By has already been taken.'],
+            [['title'], 'unique'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];

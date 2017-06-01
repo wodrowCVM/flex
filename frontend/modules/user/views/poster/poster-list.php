@@ -6,6 +6,7 @@
  * Time: 下午7:19
  */
 $this->title = "帖子列表";
+$this->params['breadcrumbs'][] = \yii\helpers\Html::a('主题列表', ['poster-subject-list']);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -51,7 +52,7 @@ $columns = [
                     [
 //                                'class' => 'btn btn-default btn-xs',
                         'data' => [
-                            'confirm' => '你确定要删除吗？将会删除此主题下的所有帖子！',
+                            'confirm' => '你确定要删除吗？将会删除此帖子下的所有内容！',
                         ],
                         'data-method' => 'post',
                     ]
@@ -80,7 +81,7 @@ echo \kartik\grid\GridView::widget([
         'type' => 'default',
         'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> ' . \kartik\helpers\Html::encode($this->title) . ' </h3>',
 //        'before' => \kartik\helpers\Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),
-        'after' => \kartik\helpers\Html::a(\kartik\icons\Icon::show('repeat').' 刷新', ['poster-list'], ['class' => 'btn btn-info']).
+        'after' => \kartik\helpers\Html::a(\kartik\icons\Icon::show('repeat').' 刷新', ['poster-list'], ['class' => 'btn btn-info']). " ".\kartik\helpers\Html::a(\kartik\icons\Icon::show('pencil-square-o').' 创建新贴', ['/user/poster/create-poster'], ['class' => 'btn btn-primary']).
             '<div class="clearfix"></div>',
     ],
     'pager' => [

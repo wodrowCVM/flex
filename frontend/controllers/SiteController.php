@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\actions\Avatar;
+use common\actions\PosterSubjectSearch;
 use common\actions\TagSearch;
 use common\models\Talk;
 use common\models\TalkPraise;
@@ -82,6 +83,12 @@ class SiteController extends Controller
             ],
             'tag-search' => [ // 标签搜索
                 'class' => TagSearch::className(),
+                'search_name' => Yii::$app->request->get('name'),
+                'limit' => Yii::$app->request->get('limit')?Yii::$app->request->get('limit'):10,
+                'id' => Yii::$app->request->get('id'),
+            ],
+            'poster-subject-search' => [ // 帖子主题搜索
+                'class' => PosterSubjectSearch::className(),
                 'search_name' => Yii::$app->request->get('name'),
                 'limit' => Yii::$app->request->get('limit')?Yii::$app->request->get('limit'):10,
                 'id' => Yii::$app->request->get('id'),

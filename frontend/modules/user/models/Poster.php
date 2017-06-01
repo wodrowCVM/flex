@@ -35,7 +35,7 @@ class Poster extends \common\models\Poster
     {
         return [
             'id' => 'ID',
-            'poster_subject_id' => 'Poster Subject ID',
+            'poster_subject_id' => '所属主题',
             'title' => '标题',
             'created_at' => 'Created At',
             'created_by' => 'Created By',

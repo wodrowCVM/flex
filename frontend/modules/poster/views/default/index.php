@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?php else: ?>
                                             <span>
                                             最后由
-                                            <a href="<?= $v->createdBy->getMemberUrl() ?>"><strong> <?= $v->createdBy->username ?> </strong></a>
+                                            <a href="<?= $v->lastPoster->createdBy->getMemberUrl() ?>"><strong> <?= $v->lastPoster->createdBy->username ?> </strong></a>
                                             于 <small><?= date("Y-m-d H:m:s", $v->lastPoster->created_at) ?></small> 发帖
                                         </span>
                                             •

@@ -47,7 +47,7 @@ $columns = [
                     [
 //                                'class' => 'btn btn-default btn-xs',
                         'data' => [
-                            'confirm' => '你确定要删除吗？',
+                            'confirm' => '你确定要删除吗？将会删除此主题下的所有帖子！',
                         ],
                         'data-method' => 'post',
                     ]
@@ -90,7 +90,7 @@ echo \kartik\grid\GridView::widget([
         'type' => 'default',
         'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> ' . \kartik\helpers\Html::encode($this->title) . ' </h3>',
 //        'before' => \kartik\helpers\Html::a('<i class="glyphicon glyphicon-plus"></i> Add', ['create'], ['class' => 'btn btn-success']),
-        'after' => \kartik\helpers\Html::a(\kartik\icons\Icon::show('repeat').' 刷新', ['poster-subject-list'], ['class' => 'btn btn-info']). " ".\kartik\helpers\Html::a(\kartik\icons\Icon::show('pencil-square-o').' 创建新主题', ['/user/poster/create-subject'], ['class' => 'btn btn-primary']).
+        'after' => \kartik\helpers\Html::a(\kartik\icons\Icon::show('repeat').' 刷新', ['poster-subject-list'], ['class' => 'btn btn-info']). " ".\kartik\helpers\Html::a(\kartik\icons\Icon::show('pencil-square-o').' 创建新主题', ['/user/poster/create-subject'], ['class' => 'btn btn-primary']). " ".\kartik\helpers\Html::a(\kartik\icons\Icon::show('list').' 我的帖子', ['/user/poster/poster-list'], ['class' => 'btn btn-primary']).
             '<div class="clearfix"></div>',
     ],
     'pager' => [

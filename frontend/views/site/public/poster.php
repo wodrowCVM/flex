@@ -31,11 +31,11 @@ $_count = \common\models\PosterSubject::find()->count();
 
                 <div class="infos">
                     <div class="media-heading" style="height: 20px;margin-bottom: 12px !important;">
-                        <?php echo \yii\helpers\Html::a($v->title, $v->getUrlArr(), ["title"=>$v->title]) ?>
+                        <?php echo \yii\helpers\Html::a($v->title."集", $v->getUrlArr(), ["title"=>$v->title]) ?>
                         <i class="fa fa-trophy excellent"></i>
                     </div>
                     <div class="media-body meta title-info">
-                        <?php // echo \yii\helpers\Html::a($v->tagArr[0], ['#'], ["class"=>"node"]) ?>
+                        <?=\yii\helpers\Html::a($v->tagArr[0], ['#'], ["class"=>"node"]) ?>
                         •
                         <?=\yii\helpers\Html::a($v->createdBy->username, $v->createdBy->getMemberUrlArr(), []) ?>
                         •
