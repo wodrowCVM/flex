@@ -77,6 +77,14 @@ class Talk extends \common\models\tables\Talk
         ];
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert){
+            $user_info = UserInfo::findOne(['user_id'=>\Yii::$app->user->id]);
+            $user_info->editInfoLevel(UserLevelRule::$update_rules['talk_publish_rule']);
+        }
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
