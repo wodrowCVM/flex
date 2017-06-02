@@ -6,8 +6,10 @@
  * Time: 下午5:49
  */
 $user = Yii::$app->user->identity;
+$is_you = !Yii::$app->user->isGuest;
 if ($member_id = Yii::$app->request->get('member-id')){
     $user = \common\models\User::findOne(['id'=>$member_id]);
+    $is_you = Yii::$app->user->id == $member_id;
 }
 ?>
 
@@ -22,12 +24,23 @@ if ($member_id = Yii::$app->request->get('member-id')){
                 ]) ?>
             </div>
             <div class="media-body">
-                <h2 class="mt5"><strong><?= \yii\helpers\Html::a($user->username, $member_id?$user->getMemberUrl():["/user"], [
+                <h2 class="mt5"><strong><?= \yii\helpers\Html::a($user->username, !$is_you?$user->getMemberUrl():["/user"], [
                         'style'=>[
                             'text-decoration'=>'none',
                         ],
                         ]) ?></strong></h2>
-                <p>第 <?= $user->id ?> 位会员</p>
+                <p>
+                    <?php if(!$is_you): ?>
+                        <?php if(\common\models\Fans::findOne(['at_user'=>$member_id, 'follower'=>Yii::$app->user->id])): ?>
+                            <?=\yii\helpers\Html::a('已关注', ['#'], ['class'=>"btn btn-default btn-xs", 'disabled'=>'disabled']) ?>
+                            <?=\yii\helpers\Html::a('取消关注', ['/user/default/att', 'follower'=>Yii::$app->user->id, 'at_user'=>$member_id, 'undo'=>1], ['class'=>"btn btn-warning btn-xs"]) ?>
+                            <?php else: ?>
+                            <?=\yii\helpers\Html::a('关注', ['/user/default/att', 'follower'=>Yii::$app->user->id, 'at_user'=>$member_id], ['class'=>"btn btn-success btn-xs"]) ?>
+                        <?php endif; ?>
+                        <?php else: ?>
+                        第<?=$user->id ?>位会员
+                    <?php endif; ?>
+                </p>
                 <div class="pull-left">
                     <span class="label label-info role"><?=$user->userInfo->levelRule->name ?></span>
                 </div>

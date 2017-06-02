@@ -23,7 +23,7 @@ $x->percent3 = ($user_info->level)/($max_level);
 
 <p>
     <span style="color: #D8582B; font-weight: bold;"><?=$level_rule->name ?></span>
-    <span class="pull-right"><a href="/jour/default/level-rule" target="_blank">查看等级规则</a> | <a href="/jour/default/top" target="_blank">排行榜</a></span>
+    <span class="pull-right"><a href="/jour/default/level-rule" target="_blank">查看等级规则</a> <!--| <a href="/jour/default/top" target="_blank">排行榜</a>--></span>
 </p>
 <div id="w2" class="progress">
     <div class="progress-bar-success progress-bar" role="progressbar" aria-valuenow="<?=$user_info->level ?>" aria-valuemin="<?=$level_rule->begin; ?>" aria-valuemax="<?=$level_rule->end; ?>" style="width:<?=$x->percent1*100 ?>%">

@@ -29,7 +29,7 @@ $this->registerCssFile('@web/css/user/user.less');
 
                     <?= $this->render('/public/attention') ?>
                     <?= $this->render('/public/fans') ?>
-                    <?= $this->render('/public/visitors') ?>
+                    <?php // echo $this->render('/public/visitors') ?>
                 </div>
             </div>
         </div>
