@@ -10,6 +10,7 @@ namespace common\models;
 use common\components\rule\Level;
 use GDText\Box;
 use GDText\Color;
+use yii\base\ErrorException;
 use yii\base\Model;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
@@ -67,5 +68,16 @@ class UserInfo extends \common\models\tables\UserInfo
             'qq' => 'QQ',
             'mobile' => '手机',
         ];
+    }
+
+    public function editInfoLevel($rule)
+    {
+        if (is_numeric($rule['level'])&&is_numeric($rule['integral'])&&is_numeric($rule['treasure'])){}else{
+            throw new ErrorException("参数不是数字", 1052);
+        }
+        $this->level += $rule['level'];
+        $this->integral += $rule['integral'];
+        $this->treasure += $rule['treasure'];
+        $this->save();
     }
 }

@@ -11,6 +11,7 @@ namespace frontend\modules\poster\controllers;
 
 use common\models\PosterFloor;
 use frontend\modules\user\models\Poster;
+use yii\base\ErrorException;
 use yii\data\Pagination;
 use yii\web\Controller;
 
@@ -26,16 +27,20 @@ class PosterController extends Controller
             if (\Yii::$app->user->isGuest){
                 return $this->redirect(['/site/login']);
             }
-            $post_floor->poster_id = $id;
-            $y = clone $query;
-            $c = $y->count();
-            $post_floor->floor_sequence = $c;
-            $post_floor->status = $post_floor::STATUS_ACTIVE;
-            $post_floor->updated_by = \Yii::$app->user->id;
-            if ($post_floor->save()){
+            $trans = \Yii::$app->db->beginTransaction();
+            try{
+                $post_floor->poster_id = $id;
+                $y = clone $query;
+                $c = $y->count();
+                $post_floor->floor_sequence = $c;
+                $post_floor->status = $post_floor::STATUS_ACTIVE;
+                $post_floor->updated_by = \Yii::$app->user->id;
+                $post_floor->save();
+                $trans->commit();
                 $this->redirect(['view', 'id'=>$id, 'is_save'=>1]);
-            }else{
-                var_dump($post_floor->getErrors());exit;
+            }catch (ErrorException $e){
+                $trans->rollBack();
+                throw $e;
             }
         }else{}
         $countQuery = clone $query;

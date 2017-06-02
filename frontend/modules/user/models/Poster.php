@@ -58,6 +58,7 @@ class Poster extends \common\models\Poster
 
     public function afterSave($insert, $changedAttributes)
     {
+        parent::afterSave($insert, $changedAttributes);
         if ($insert){
             $poster_floor = new PosterFloor();
             $poster_floor->poster_id = $this->id;

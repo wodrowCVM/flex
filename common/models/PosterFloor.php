@@ -68,6 +68,14 @@ class PosterFloor extends \common\models\tables\PosterFloor
         ];
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+        $user_info = UserInfo::findOne(['user_id'=>\Yii::$app->user->id]);
+        if ($insert){
+            $user_info->editInfoLevel(UserLevelRule::$update_rules['poster_reply_rule']);
+        }
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

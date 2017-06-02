@@ -74,6 +74,24 @@ class Poster extends \common\models\tables\Poster
         ];
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+        $user_info = UserInfo::findOne(['user_id'=>\Yii::$app->user->id]);
+        if ($insert){
+            $user_info->editInfoLevel(UserLevelRule::$update_rules['poster_create_rule']);
+            if ($this->type == self::TYPE_BOUTIQUE){
+                $user_info->editInfoLevel(UserLevelRule::$update_rules['poster_add_boutique_rule']);
+            }
+        }else{
+            if ($this->type == self::TYPE_BOUTIQUE && $changedAttributes['type'] != self::TYPE_BOUTIQUE){
+                $user_info->editInfoLevel(UserLevelRule::$update_rules['poster_add_boutique_rule']);
+            }
+            if ($this->type != self::TYPE_BOUTIQUE && $changedAttributes['type'] == self::TYPE_BOUTIQUE){
+                $user_info->editInfoLevel(UserLevelRule::$update_rules['poster_rm_boutique_rule']);
+            }
+        }
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

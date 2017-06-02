@@ -98,13 +98,12 @@ class PosterController extends Controller
     {
         $trans = \Yii::$app->db->beginTransaction();
         try{
-            if ($poster->save()){}else{
-                var_dump($poster->getErrors());exit;
-            }
+            $poster->save();
             $trans->commit();
             $this->redirect(['poster-list']);
         }catch (ErrorException $e){
             $trans->rollBack();
+            throw $e;
         }
     }
 
