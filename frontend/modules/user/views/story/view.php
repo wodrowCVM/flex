@@ -11,8 +11,8 @@
  * @var \common\models\Story $story
  */
 
-use yii\widgets\DetailView as DetailView;
-//use kartik\detail\DetailView as DetailView;
+use yii\widgets\DetailView;
+//use kartik\detail\DetailView;
 
 
 $this->title = "我的文章-".$story->title;
@@ -22,9 +22,9 @@ $model = $story;
 $colors = ['primary', 'info', 'success', 'warning', 'danger'];
 ?>
 
-<?php $this->beginBlock('userLy1Left'); ?>
+<?php // $this->beginBlock('userLy1Left'); ?>
 <?php // echo $this->render('/public/items') ?>
-<?php $this->endBlock(); ?>
+<?php // $this->endBlock(); ?>
 
 <?php
 echo DetailView::widget([
@@ -39,7 +39,7 @@ echo DetailView::widget([
             'value'=>function()use($model, $colors){
                 $x = "";
                 foreach($model->tagArr as $k => $v){
-                    $x .= '<span class="label label-'.$colors[array_rand($colors, 1)].'">'.$v.'</span> ';
+                    $x .= '<a class="label label-'.$colors[array_rand($colors, 1)].'">'.$v.'</a> ';
                 }
                 return $x;
             },

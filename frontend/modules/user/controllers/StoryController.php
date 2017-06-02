@@ -44,7 +44,6 @@ class StoryController extends Controller
         }else{
             throw new ErrorException('没有找到文章或不是你的文章');
         }
-        return $story;
     }
 
     private function transSave(Story $story)
@@ -74,7 +73,7 @@ class StoryController extends Controller
             return $this->redirect(['/user/story/view', 'id' => $story->id]);
         }catch (Exception $e){
             $trans->rollBack();
-            var_dump($e->getMessage());
+            throw $e;
         }
     }
 
