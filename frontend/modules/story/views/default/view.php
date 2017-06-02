@@ -36,7 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?=\common\models\StoryReply::find()->where(['story_id'=>$story->id])->count() ?>
                     <span class="glyphicon glyphicon-tags" style="margin-left:15px;"></span>
                     标签：
-                    <a href="/tag/117.html"><span class="label label-default label-fix">dns</span></a>
+                    <?php foreach($story->tagArr as $k => $v): ?>
+                        <?=\yii\helpers\Html::a($v, \common\models\Tag::getSearchUrlByName($v), ['class' => "label label-info label-fix"]) ?>
+                    <?php endforeach; ?>
                 </div>
                 <div class="article-notice">
                     <p><span class="glyphicon glyphicon-pushpin"></span>&nbsp;提示：转载请注明原文链接</p>
@@ -112,6 +114,15 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="col-md-3 visible-lg-block">
+        <?php if($story->created_by == Yii::$app->user->id || Yii::$app->user->id == \common\config\ConfigData::getSuper()->id): ?>
+            <div class="panel panel-default corner-radius">
+                <div class="panel-body text-center">
+                    <div class="btn-group">
+                        <?=\dmstr\helpers\Html::a('修改文章', $story->getUpdateUrlArr(), ['class'=>"btn btn-primary"]) ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <div id="article-sidebar" class="article-sidebar affix-top">
             <?=$this->render('/public/hot_story') ?>
         </div>

@@ -16,7 +16,7 @@ class Story extends \common\models\Story
         return [
             [['title', 'content', 'desc', 'tagArr'], 'required'],
             [['content'], 'string'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by', 'need_level'], 'integer'],
+            [['created_at', 'created_by', 'updated_at', 'updated_by', 'need_level', 'status', 'type'], 'integer'],
             [['title'], 'string', 'max' => 25],
             [['desc'], 'string', 'max' => 50],
             [['title', 'created_by'], 'unique', 'targetAttribute' => ['title', 'created_by'], 'message' => 'The combination of Title and Created By has already been taken.'],

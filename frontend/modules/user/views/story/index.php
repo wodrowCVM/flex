@@ -56,6 +56,20 @@ $columns = [
             },
         ],
     ],
+    [
+        'class' => \kartik\grid\ActionColumn::className(),
+        'header' => '更多操作',
+        'template' => '{view}',//只需要展示删除和更新
+//            'headerOptions' => [],
+        'buttons' => [
+            'view' => function($url, $model, $key){
+                return \yii\helpers\Html::a('在前台查看', ['/story/default/view', 'id'=>$key], [
+                    'class' => 'data-view',
+                    'data-id' => $key,
+                ]);
+            },
+        ],
+    ],
 ];
 echo \kartik\grid\GridView::widget([
 //    'id' => 'test',

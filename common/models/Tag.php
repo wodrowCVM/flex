@@ -13,6 +13,17 @@ use yii\helpers\Url;
 
 class Tag extends \common\models\tables\Tag
 {
+    public static function getTagByName($tag_name)
+    {
+        return self::findOne(['name'=>$tag_name]);
+    }
+
+    public static function getSearchUrlByName($tag_name)
+    {
+        $tag = self::getTagByName($tag_name);
+        return $tag->getSearchUrl();
+    }
+
     public function getSearchUrlArr()
     {
         $arr = ["/tag/tag-search/search", 'id' => $this->id];

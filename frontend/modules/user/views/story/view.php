@@ -39,7 +39,7 @@ echo DetailView::widget([
             'value'=>function()use($model, $colors){
                 $x = "";
                 foreach($model->tagArr as $k => $v){
-                    $x .= '<a class="label label-'.$colors[array_rand($colors, 1)].'">'.$v.'</a> ';
+                    $x .= '<a href="'.\common\models\Tag::getSearchUrlByName($v).'" class="label label-'.$colors[array_rand($colors, 1)].'">'.$v.'</a> ';
                 }
                 return $x;
             },
@@ -48,7 +48,11 @@ echo DetailView::widget([
         [
             'label'=>'操作',
             'value'=>function()use($model){
-                return \dmstr\helpers\Html::a('修改', ["/user/story/update", 'id'=>$model->id], ['class'=>'btn btn-primary'])." ".\dmstr\helpers\Html::a('删除', ["/user/story/delete   ", 'id'=>$model->id], ['class'=>'btn btn-danger']);
+                $x = "";
+                $x .= \dmstr\helpers\Html::a('修改', ["/user/story/update", 'id'=>$model->id], ['class'=>'btn btn-primary'])." ";
+                $x .= \dmstr\helpers\Html::a('删除', ["/user/story/delete", 'id'=>$model->id], ['class'=>'btn btn-danger']);
+                $x .= \dmstr\helpers\Html::a('在前台查看', ['/story/default/view', 'id'=>$model->id], ['class'=>'btn btn-info']);
+                return $x;
             },
             'format'=>'raw',
         ],

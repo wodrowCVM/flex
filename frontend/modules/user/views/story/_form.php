@@ -5,7 +5,7 @@ use kartik\form\ActiveForm;
 //use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $story \common\models\Story */
+/* @var $story \frontend\modules\user\models\Story */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -18,6 +18,10 @@ use kartik\form\ActiveForm;
     <?= $form->field($story, 'title', [
 //        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',
     ])->textInput() ?>
+
+    <?=Yii::$app->user->id==\common\config\ConfigData::getSuper()->id?$form->field($story, 'status')->dropDownList($story::getStatus()):'' ?>
+
+    <?=Yii::$app->user->id==\common\config\ConfigData::getSuper()->id?$form->field($story, 'type')->dropDownList($story::getType()):'' ?>
 
     <?= $form->field($story, 'desc', [
 //        'template' => '{label}<div class="col-md-6">{input}<div class="help-block"></div></div>    ',

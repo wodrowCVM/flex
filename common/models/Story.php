@@ -19,11 +19,31 @@ use yii\helpers\Url;
  *
  * @property User $user
  * @property User $updateUser
+ * @property User $createdBy
+ * @property User $updatedBy
  * @property array $tagArr
  * @property StoryReply[] $storyReplies
  */
 class Story extends \common\models\tables\Story
 {
+    const STATUS_ACTIVE = 10;
+
+    public static function getStatus()
+    {
+        return [
+            self::STATUS_ACTIVE => '正常',
+        ];
+    }
+
+    const TYPE_DEFAULT = 10;
+
+    public static function getType()
+    {
+        return [
+            self::TYPE_DEFAULT => '默认',
+        ];
+    }
+
     public $tagArr;
 
     public function behaviors()
@@ -51,7 +71,25 @@ class Story extends \common\models\tables\Story
             'updated_at' => '修改时间',
             'updated_by' => '修改人',
             'tagArr' => '标签',
+            'status' => '状态',
+            'type' => '类型',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 
     /**
@@ -108,6 +146,18 @@ class Story extends \common\models\tables\Story
     public function getUrl()
     {
         $url = Url::to($this->getUrlArr());
+        return $url;
+    }
+
+    public function getUpdateUrlArr()
+    {
+        $arr = ["/user/story/update", 'id'=>$this->id];
+        return $arr;
+    }
+
+    public function getUpdateUrl()
+    {
+        $url = Url::to($this->getUpdateUrlArr());
         return $url;
     }
 }
