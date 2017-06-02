@@ -32,7 +32,7 @@ $_count = \common\models\Story::find()->where(['need_level'=>0])->count();
                         <i class="fa fa-trophy excellent"></i>
                     </div>
                     <div class="media-body meta title-info">
-                        <?=\yii\helpers\Html::a($v->tagArr[0], ['#'], ["class"=>"node"]) ?>
+                        <?=\yii\helpers\Html::a($v->tagArr[0], \common\models\Tag::getSearchUrlByName($v->tagArr[0]), ["class"=>"node"]) ?>
                         •
                         <?=\yii\helpers\Html::a($v->user->username, $v->user->getMemberUrlArr(), []) ?>
                         •
