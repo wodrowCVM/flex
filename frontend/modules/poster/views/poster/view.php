@@ -95,25 +95,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
-            <div class="panel panel-default corner-radius">
-                <div class="panel-heading text-center">
-                    <h3 class="panel-title">推荐资源</h3>
-                </div>
-                <div class="panel-body side-bar">
-                    <ul class="list">
-                        <li><a href="http://www.digpage.com/">深入理解Yii2.0</a></li>
-                        <li><a href="http://www.phpcomposer.com/">Composer 中文文档</a></li>
-                        <li><a href="https://github.com/PizzaLiu/PHP-FIG">PHP-FIG 编程规范中文</a></li>
-                        <li><a href="http://laravel-china.github.io/php-the-right-way/">PHP The Right Way 中文版</a></li>
-                        <li><a href="https://github.com/forecho/awesome-yii2">awesome-yii2（Yii2 干货）</a></li>
-                        <li><a href="http://phptrends.com/">上升最快的 PHP 类库</a></li>
-                        <li><a href="http://www.book.php.code.kekou.de/">Hacking with PHP</a></li>
-                        <li><a href="http://pkg.phpcomposer.com/">Packagist / Composer 中国全量镜像</a></li>
-                        <li><a href="http://cookbook.getyii.com/"> Yii 2.0 Cookbook 中国翻译版</a></li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
     </div>
     <div class="clearfix"></div>
