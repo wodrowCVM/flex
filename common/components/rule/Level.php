@@ -19,7 +19,7 @@ class Level extends Component
         $c = \Yii::$app->cache->get('all_user_level');
         if (!$c){
             $all = UserLevelRule::find()->all();
-            \Yii::$app->cache->set('all_user_level', $all);
+            \Yii::$app->cache->set('all_user_level', $all, 3600*24);
             $c = $all;
         }
         return $c;
