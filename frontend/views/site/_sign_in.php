@@ -41,7 +41,7 @@ if (Yii::$app->request->isPjax) {
         <div class="panel panel-default">
             <div class="panel-body text-center mp0">
                 <p>
-                    Get Flexiable，对！没错！这里就是 Flexiable 社区，我们想做国内最好的 Flexiable 社区。
+                    Get 飞飞，对！没错！这里就是 飞飞社区，我们想做国内最好的 飞飞社区。
                 </p>
             </div>
         </div>

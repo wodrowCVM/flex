@@ -18,6 +18,6 @@ class ConfigData
      */
     public static function getSuper()
     {
-        return User::findOne(['username'=>'wodrow']);
+        return User::findOne(['username'=>ConfigDataLocal::$super]);
     }
 }
