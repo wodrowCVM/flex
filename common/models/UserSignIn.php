@@ -23,4 +23,14 @@ class UserSignIn extends \common\models\tables\UserSignIn
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert){
+            $x = $this->countinously_days>20?20:$this->countinously_days;
+            $rule = ['level'=>5+$x*5, 'integral'=>5+$x*5, 'treasure'=>1+$x, 'title' => '签到'];
+            $user_info = UserInfo::findOne(['user_id'=>\Yii::$app->user->id]);
+            $user_info->editInfoLevel($rule);
+        }
+    }
 }

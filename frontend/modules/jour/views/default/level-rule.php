@@ -14,6 +14,8 @@ $level_rule = \common\models\UserLevelRule::find()->limit(20)->all();
     <h2><?=$v['title'] ?></h2>
     等级加<?=$v['level'] ?>,积分加<?=$v['integral'] ?>,金钱加<?=$v['treasure'] ?>.
 <?php endforeach; ?>
+<h2>连续签到</h2>
+等级加5+连续签到天数*5(最大100),积分加5+连续签到天数*5(最大100),金钱加1+连续签到天数*1(最大20).
 
 <h2>等级名称</h2>
 <table class="table table-bordered">
