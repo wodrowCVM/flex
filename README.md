@@ -8,7 +8,7 @@
 
 ## 安装方式
 
-git clone https://github.com/wodrowCVM/flex/tree/v0.9.9
+git clone https://github.com/wodrowCVM/flex/tree/origin/v0.9.9
 
 composer update -vv
 
