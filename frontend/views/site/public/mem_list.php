@@ -26,7 +26,7 @@ $users = \common\models\User::find()->joinWith('userInfo as ui')->orderBy(['ui.l
                     </div>
                     <div class="media-body hidden-xs">
                         <div class="media-heading">
-                            <?=\dmstr\helpers\Html::a($v->username, $v->getMemberUrlArr(), ['title'=>$v->username]) ?>
+                            <?=\dmstr\helpers\Html::a($v->username, $v->getMemberUrlArr(), ['title'=>$v->username], ['style'=>['max-height'=>"21px"]]) ?>
                         </div>
                         <div class="" style="height: 15px;font-size: 12px;line-height: 15px;">
                                 <?=$v->userInfo->levelRule->name ?>
