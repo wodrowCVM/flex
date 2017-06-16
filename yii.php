@@ -22,6 +22,7 @@ Yii::$container = new yii\di\Container;
  * Used for properties that are identical for both WebApplication and ConsoleApplication
  *
  * @property \common\components\tools\Tools $tools
+ * @property \common\components\web\User $user
  */
 abstract class BaseApplication extends yii\base\Application
 {

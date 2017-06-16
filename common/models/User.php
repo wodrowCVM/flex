@@ -22,6 +22,8 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  *
+ * @property \common\models\User $identity
+ * @method User getIdentity()
  * @property UserInfo $userInfo
  */
 class User extends \common\models\tables\User implements IdentityInterface

@@ -8,6 +8,7 @@
  */
 $this->beginContent('@frontend/views/layouts/base.php');
 $this->registerCssFile('@web/css/user/user.less');
+Yii::$app->user->identity->id;
 ?>
 
     <div class="wrap">
